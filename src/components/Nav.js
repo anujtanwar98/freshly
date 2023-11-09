@@ -15,25 +15,25 @@ const Nav = () => {
     <NavigationContainer>
       <Tab.Navigator 
       screenOptions={{
-        tabBarActiveTintColor: 'tomato',
-        tabBarInactiveTintColor: 'gray',
+        tabBarActiveTintColor: '#FFA197',
+        tabBarInactiveTintColor: '#C8C8C8',
         tabBarStyle: {
-          backgroundColor: '#3E48A0',
+          backgroundColor: '#820C00',
         },
         }}>
           <Tab.Screen name="Home" component={HomeMain} options={{
             tabBarIcon: ({ focused  }) => (
-              <Feather name="home" color={focused ? 'tomato' : 'black'} size={25} />
+              <Feather name="home" color={focused ? '#FFA197' : '#C8C8C8'} size={25} />
             )
           }} />
           <Tab.Screen name="Scan" component={Scan} options={{
             tabBarIcon: ({ focused }) => (
-              <Ionicons name="scan" color={focused ? 'tomato' : 'black'} size={25} />
+              <Ionicons name="scan" color={focused ? '#FFA197' : '#C8C8C8'} size={25} />
             )
           }} />
           <Tab.Screen name="Progress" component={Progress} options={{
             tabBarIcon: ({ focused }) => (
-              <MaterialCommunityIcons name="chart-line" color={focused ? 'tomato' : 'black'} size={25} />
+              <MaterialCommunityIcons name="chart-line" color={focused ? '#FFA197' : '#C8C8C8'} size={25} />
             )
           }} />
       </Tab.Navigator>
