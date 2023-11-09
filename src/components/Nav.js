@@ -20,6 +20,9 @@ const Nav = () => {
         tabBarStyle: {
           backgroundColor: '#820C00',
         },
+        tabBarLabelStyle: {
+          fontSize: 14,
+        },
         }}>
           <Tab.Screen name="Home" component={HomeMain} options={{
             tabBarIcon: ({ focused  }) => (
