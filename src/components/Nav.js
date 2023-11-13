@@ -27,17 +27,20 @@ const Nav = () => {
           <Tab.Screen name="Home" component={HomeMain} options={{
             tabBarIcon: ({ focused  }) => (
               <Feather name="home" color={focused ? '#FFA197' : '#C8C8C8'} size={25} />
-            )
+            ),
+            headerShown: false,
           }} />
           <Tab.Screen name="Scan" component={Scan} options={{
             tabBarIcon: ({ focused }) => (
               <Ionicons name="scan" color={focused ? '#FFA197' : '#C8C8C8'} size={25} />
-            )
+            ),
+            headerShown: false,
           }} />
           <Tab.Screen name="Progress" component={Progress} options={{
             tabBarIcon: ({ focused }) => (
               <MaterialCommunityIcons name="chart-line" color={focused ? '#FFA197' : '#C8C8C8'} size={25} />
-            )
+            ),
+            headerShown: false,
           }} />
       </Tab.Navigator>
     </NavigationContainer>
