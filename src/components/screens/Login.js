@@ -26,7 +26,7 @@ const Login = () => {
           <TextInput
             style={styles.inputText}
             placeholder="Email"
-            placeholderTextColor="#003f5c"
+            placeholderTextColor="#000000"
             onChangeText={(text) => setState({ email: text })}
           />
         </View>
@@ -35,7 +35,7 @@ const Login = () => {
             style={styles.inputText}
             secureTextEntry
             placeholder="Password"
-            placeholderTextColor="#003f5c"
+            placeholderTextColor="#000000"
             onChangeText={(text) => setState({ password: text })}
           />
         </View>
@@ -54,14 +54,15 @@ const Login = () => {
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: "#BCFFAF",
+      // backgroundColor: "#BCFFAF",
+      backgroundColor: "#E8FFCE",
       alignItems: "center",
       justifyContent: "center",
     },
     title: {
       fontWeight: "bold",
       fontSize: 50,
-      color: "#fb5b5a",
+      color: "#27963C",
       marginBottom: 40,
     },
     inputView: {
@@ -90,6 +91,9 @@ const styles = StyleSheet.create({
       justifyContent: "center",
       marginTop: 40,
       marginBottom: 10,
+    },
+    loginText: {
+      color: "#ffffff",
     },
 });
 
