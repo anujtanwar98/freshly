@@ -4,8 +4,8 @@ import Login from "./src/components/screens/Login";
 
 const App = () => {
   return (
-    <Login />
-    // <Nav />
+    // <Login />
+    <Nav />
   );
 }
 
