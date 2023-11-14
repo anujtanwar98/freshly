@@ -4,10 +4,13 @@ import { StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useState } from 'react';
 import * as ImagePicker from 'expo-image-picker';
+import { Image } from 'react-native';
 
 
 const HomeMain = () => {
   const [modalVisible, setModalVisible] = useState(false);
+  const [previewModalVisible, setPreviewModalVisible] = useState(false);
+  const [selectedImage, setSelectedImage] = useState(null);
 
   const handleUploadPress = async () => {
     const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
@@ -22,8 +25,9 @@ const HomeMain = () => {
     });
   
     if (!result.cancelled) {
-      console.log(result.uri);
-      // You can handle the uploaded image here
+      setSelectedImage(result.uri);
+      setModalVisible(false); // Close the first modal
+      setPreviewModalVisible(true); // Open the image preview modal
     }
   };
   
@@ -43,6 +47,32 @@ const HomeMain = () => {
           <Text style={styles.AddText}>Add Food</Text>
         </TouchableOpacity>
       </View>
+          <Modal
+            animationType="slide"
+            transparent={true}
+            visible={previewModalVisible}
+            onRequestClose={() => {
+              setPreviewModalVisible(!previewModalVisible);
+            }}
+          >
+            <View style={styles.centeredView}>
+              <View style={styles.previewModalView}>
+                <Image source={{ uri: selectedImage }} style={styles.previewImage} />
+                <View style={styles.previewButtonContainer}>
+                  <TouchableOpacity style={[styles.button, styles.buttonClose]} onPress={() => setPreviewModalVisible(false)} >
+                    <Text>Cancel</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    style={styles.button} onPress={() => { console.log("Upload action");
+                      // Add upload logic here
+                    }}
+                  >
+                    <Text>Upload</Text>
+                  </TouchableOpacity>
+                </View>
+              </View>
+            </View>
+          </Modal>
         <Modal
         animationType="slide"
         transparent={true}
@@ -138,6 +168,31 @@ const styles = StyleSheet.create({
     top: 10,
     right: 10,
     backgroundColor: 'transparent',
+  },
+  previewModalView: {
+    margin: 20,
+    backgroundColor: 'white',
+    borderRadius: 20,
+    padding: 35,
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+  },
+  previewImage: {
+    width: 400,
+    height: 500,
+    resizeMode: 'contain',
+  },
+  previewButtonContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    width: '100%',
   },
 })
 
