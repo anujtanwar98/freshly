@@ -31,16 +31,15 @@ const HomeMain = () => {
           setModalVisible(!modalVisible);
         }}
         >
-          <View style={styles.centeredView}>
+        <View style={styles.centeredView}>
           <View style={styles.modalView}>
-            <TouchableOpacity
-              style={[styles.button, styles.buttonClose]}
-              onPress={() => setModalVisible(!modalVisible)}
-            >
-              <Ionicons name="close-circle" size={24} color="black" />
+            <TouchableOpacity style={[styles.button, styles.buttonClose]} onPress={() => setModalVisible(!modalVisible)}>
+              <Ionicons name="close-circle" size={30} color="black" />
             </TouchableOpacity>
-              <Ionicons name="ios-camera" size={40} color={'#009359'} />
-            <Text>Camera</Text>
+            <TouchableOpacity style={styles.button}>
+              <Ionicons name="ios-camera" size={40} color={'#00B076'} />
+              <Text>Camera</Text>
+            </TouchableOpacity>
             <TouchableOpacity style={styles.button}>
               <Ionicons name="ios-receipt" size={40} color="#00B076" />
               <Text style={styles.textStyle}>Upload</Text>
@@ -60,7 +59,7 @@ const styles = StyleSheet.create({
   container: {
     paddingTop: 80,
     flex: 1,
-    backgroundColor: '#00A2D6',
+    backgroundColor: '#3ECAB1',
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'flex-start',
@@ -97,11 +96,14 @@ const styles = StyleSheet.create({
     marginTop: 22,
   },
   modalView: {
-    margin: 20,
-    backgroundColor: 'white',
-    borderRadius: 20,
-    padding: 35,
+    width: '70%', 
+    height: '25%', 
+    backgroundColor: '#00866E',
+    borderRadius: 30,
+    padding: 20,
     alignItems: 'center',
+    justifyContent: 'space-between',
+    flexDirection: 'row', 
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
@@ -112,7 +114,10 @@ const styles = StyleSheet.create({
     elevation: 5
   },
   buttonClose: {
-    backgroundColor: '#2196F3',
+    position: 'absolute',
+    top: 10,
+    right: 10,
+    backgroundColor: 'transparent',
   },
 })
 
