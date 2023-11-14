@@ -3,10 +3,30 @@ import { View, Text, SafeAreaView, TouchableOpacity, Modal } from 'react-native'
 import { StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useState } from 'react';
+import * as ImagePicker from 'expo-image-picker';
 
 
 const HomeMain = () => {
   const [modalVisible, setModalVisible] = useState(false);
+
+  const handleUploadPress = async () => {
+    const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+    if (status !== 'granted') {
+      alert('Sorry, we need camera roll permissions to make this work!');
+      return;
+    }
+  
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      quality: 1,
+    });
+  
+    if (!result.cancelled) {
+      console.log(result.uri);
+      // You can handle the uploaded image here
+    }
+  };
+  
 
   const handlePress = () => {
     console.log("Icon button pressed!");
@@ -40,7 +60,7 @@ const HomeMain = () => {
               <Ionicons name="ios-camera" size={40} color={'#00B076'} />
               <Text>Camera</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.button}>
+            <TouchableOpacity style={styles.button} onPress={handleUploadPress}>
               <Ionicons name="ios-receipt" size={40} color="#00B076" />
               <Text style={styles.textStyle}>Upload</Text>
             </TouchableOpacity>
