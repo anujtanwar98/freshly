@@ -41,7 +41,7 @@ const HomeMain = () => {
     // <SafeAreaView style={styles.mainWrapper}>
     <View style={styles.mainWrapper}>
       <View style={styles.container}>
-        <Text style={styles.text}>My Food 🍱</Text>
+        <Text style={styles.text}>My Groceries 🛒</Text>
         <TouchableOpacity style={styles.button} onPress={handlePress}>
           <Ionicons style={styles.icon} name="add-circle" color={'#FFA197'} size={30} />
           <Text style={styles.AddText}>Add Food</Text>
