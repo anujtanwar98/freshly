@@ -9,7 +9,7 @@ const Test = ({ title, freshness }) => {
     <View style={styles.mainCard}>
     <View style={styles.cardContainer}>
       <Image
-        source={{ uri: '/Users/anujtanwar/Desktop/dev_work/Freshly/assets/freshly_logo.png' }} 
+        source={require('./../../../assets/freshly_logo.png')}
         style={styles.imageStyle}
       />
       <View style={styles.textContainer}>

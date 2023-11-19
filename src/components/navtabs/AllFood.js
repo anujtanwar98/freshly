@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { View, Text, SafeAreaView, TouchableOpacity, Modal, ScrollView } from 'react-native';
 import { StyleSheet } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import { Ionicons, Entypo} from '@expo/vector-icons';
 import { useState } from 'react';
 import * as ImagePicker from 'expo-image-picker';
 import { Image } from 'react-native';
@@ -45,10 +45,10 @@ const HomeMain = () => {
     <View style={styles.mainWrapper}>
       <View style={styles.container}>
         <Text style={styles.text}>My Groceries 🛒</Text>
-        <TouchableOpacity style={styles.button} onPress={handlePress}>
+        {/* <TouchableOpacity style={styles.button} onPress={handlePress}>
           <Ionicons style={styles.icon} name="add-circle" color={'#FFA197'} size={30} />
           <Text style={styles.AddText}>Add Food</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
       </View>
       <View style={styles.cardcontain}>
         <Test />
@@ -119,6 +119,10 @@ const HomeMain = () => {
       </Modal>
     </View>
     </ScrollView>
+    <TouchableOpacity style={[styles.button, styles.addButton]} onPress={handlePress}>
+          <Entypo name="plus" style={styles.icon} color={'#FFA197'} size={30} />
+          {/* <Text style={styles.AddText}>Add Food</Text> */}
+        </TouchableOpacity>
     </SafeAreaView>
   );
 }
@@ -133,7 +137,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#3ECAB1',
   },
   container: {
-    paddingTop: 80,
+    paddingTop: 10,
     // flex: 1,
     backgroundColor: '#3ECAB1',
     flexDirection: 'row',
@@ -153,7 +157,7 @@ const styles = StyleSheet.create({
   },
   icon: {
     color: '#000',
-    fontSize: 26,
+    fontSize: 50,
     alignItems: 'center',
   },
   AddText: {
@@ -162,6 +166,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginLeft: 10,
   },
+  scrollViewStyle: {
+    flex: 1,
+  },
   button: {
     backgroundColor: '#BDFFBE',
     padding: 10,
@@ -169,6 +176,18 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
+  },
+  addButton: {
+    backgroundColor: '#BDFFBE',
+    // padding: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'absolute',
+    bottom: 20,
+    right: 20,
+    borderRadius: 40, 
+    width: 80, 
+    height: 80, 
   },
   // differentaddbuttons: {
   //   margin: 10,
