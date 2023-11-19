@@ -119,10 +119,10 @@ const HomeMain = () => {
       </Modal>
     </View>
     </ScrollView>
-    <TouchableOpacity style={[styles.button, styles.addButton]} onPress={handlePress}>
-          <Entypo name="plus" style={styles.icon} color={'#FFA197'} size={30} />
-          {/* <Text style={styles.AddText}>Add Food</Text> */}
-        </TouchableOpacity>
+              <TouchableOpacity style={[styles.button, styles.addButton]} onPress={handlePress}>
+                <Entypo name="plus" style={styles.icon} color={'#FFA197'} size={30} />
+                {/* <Text style={styles.AddText}>Add Food</Text> */}
+              </TouchableOpacity>
     </SafeAreaView>
   );
 }
