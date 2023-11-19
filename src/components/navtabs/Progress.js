@@ -2,6 +2,8 @@ import React from 'react';
 import { View, Text, SafeAreaView, StyleSheet, TouchableOpacity} from 'react-native';
 import { LineChart } from 'react-native-chart-kit';
 import { Dimensions } from 'react-native';
+import Test from './Foodcard';
+
 const screenWidth = Dimensions.get('window').width;
 
 const chartConfig = {
@@ -58,9 +60,9 @@ const Progress = () => {
     return (
         // <SafeAreaView style={styles.mainWrapper}>
     <View style={styles.mainWrapper}>
-       <View style={styles.container}>
-       <Text style={styles.text}>My Progress</Text>
-       </View>
+        <View style={styles.container}>
+            <Text style={styles.text}>My Progress</Text>
+        </View>
        <View>
         <Text>Trend of Tasks Completion</Text>
         <LineChart
@@ -71,6 +73,8 @@ const Progress = () => {
         />
         <Legend data={legendData} />
         </View>
+        <Test />
+        <Test />
     </View>
     )
 }
@@ -79,7 +83,7 @@ const styles = StyleSheet.create({
     mainWrapper: {
         flex: 1,
         backgroundColor: '#FA8072',
-        
+
       },
       container: {
         paddingTop: 80,

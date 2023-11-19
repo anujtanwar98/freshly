@@ -1,10 +1,12 @@
 import * as React from 'react';
-import { View, Text, SafeAreaView, TouchableOpacity, Modal } from 'react-native';
+import { View, Text, SafeAreaView, TouchableOpacity, Modal, ScrollView } from 'react-native';
 import { StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useState } from 'react';
 import * as ImagePicker from 'expo-image-picker';
 import { Image } from 'react-native';
+import { MaterialIcons } from '@expo/vector-icons';
+import Test from './Foodcard';
 
 
 const HomeMain = () => {
@@ -38,7 +40,8 @@ const HomeMain = () => {
     // Add your logic here for what should happen when the button is pressed
   };
   return (
-    // <SafeAreaView style={styles.mainWrapper}>
+    <SafeAreaView style={styles.safeareaWrapper}>
+    <ScrollView style={styles.scrollViewStyle}>
     <View style={styles.mainWrapper}>
       <View style={styles.container}>
         <Text style={styles.text}>My Groceries 🛒</Text>
@@ -46,6 +49,19 @@ const HomeMain = () => {
           <Ionicons style={styles.icon} name="add-circle" color={'#FFA197'} size={30} />
           <Text style={styles.AddText}>Add Food</Text>
         </TouchableOpacity>
+      </View>
+      <View style={styles.cardcontain}>
+        <Test />
+        <Test />
+        <Test />
+        <Test />
+        <Test />
+        <Test />
+        <Test />
+        <Test />
+        <Test />
+        <Test />
+        <Test />
       </View>
           <Modal
             animationType="slide"
@@ -86,35 +102,50 @@ const HomeMain = () => {
             <TouchableOpacity style={[styles.button, styles.buttonClose]} onPress={() => setModalVisible(!modalVisible)}>
               <Ionicons name="close-circle" size={30} color="black" />
             </TouchableOpacity>
-            <TouchableOpacity style={styles.button}>
+            <TouchableOpacity style={[styles.button, styles.differentaddbuttons,]}>
               <Ionicons name="ios-camera" size={40} color={'#00B076'} />
               <Text>Camera</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.button} onPress={handleUploadPress}>
+            <TouchableOpacity style={[styles.button, styles.differentaddbuttons,]} onPress={handleUploadPress}>
               <Ionicons name="ios-receipt" size={40} color="#00B076" />
               <Text style={styles.textStyle}>Upload</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={[styles.button, styles.differentaddbuttons,]}>
+              <MaterialIcons name="post-add"  size={40} color="#00B076" />
+              <Text style={styles.textStyle}>Add Item</Text>
             </TouchableOpacity>
           </View>
         </View>
       </Modal>
     </View>
-    // </SafeAreaView>
+    </ScrollView>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
+  safeareaWrapper: {
+    flex: 1,
+    backgroundColor: 'rgba(62, 202, 177, 0.9)',
+  },
   mainWrapper: {
     flex: 1,
+    backgroundColor: '#3ECAB1',
   },
   container: {
     paddingTop: 80,
-    flex: 1,
+    // flex: 1,
     backgroundColor: '#3ECAB1',
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'flex-start',
     paddingHorizontal: 20,
   },
+  // cardcontain: {
+  //   backgroundColor: '#3ECAB1',
+  //   justifyContent: 'center',
+  //   alignItems: 'center',
+  // },
   text: {
     color: '#fff',
     fontSize: 24,
@@ -139,6 +170,9 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
   },
+  // differentaddbuttons: {
+  //   margin: 10,
+  // },
   centeredView: {
     flex: 1,
     justifyContent: 'center',
@@ -146,14 +180,14 @@ const styles = StyleSheet.create({
     marginTop: 22,
   },
   modalView: {
-    width: '70%', 
-    height: '25%', 
+    width: '90%', 
+    height: '35%', 
     backgroundColor: '#00866E',
     borderRadius: 30,
     padding: 20,
     alignItems: 'center',
     justifyContent: 'space-between',
-    flexDirection: 'row', 
+    flexDirection: 'column', 
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
