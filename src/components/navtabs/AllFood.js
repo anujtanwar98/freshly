@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { View, Text, SafeAreaView, TouchableOpacity, Modal, ScrollView } from 'react-native';
 import { StyleSheet } from 'react-native';
-import { Ionicons, Entypo} from '@expo/vector-icons';
+import { Ionicons, Entypo, Feather } from '@expo/vector-icons';
 import { useState } from 'react';
 import * as ImagePicker from 'expo-image-picker';
 import { Image } from 'react-native';
@@ -107,7 +107,8 @@ const HomeMain = () => {
               <Text>Camera</Text>
             </TouchableOpacity>
             <TouchableOpacity style={[styles.button, styles.differentaddbuttons,]} onPress={handleUploadPress}>
-              <Ionicons name="ios-receipt" size={40} color="#00B076" />
+              {/* <Ionicons name="ios-receipt" size={40} color="#00B076" /> */}
+              <Feather name="upload" size={40} color="#00B076" />
               <Text style={styles.textStyle}>Upload</Text>
             </TouchableOpacity>
             <TouchableOpacity style={[styles.button, styles.differentaddbuttons,]}>
