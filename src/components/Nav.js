@@ -2,6 +2,7 @@ import React from "react";
 import HomeMain from "./navtabs/AllFood";
 import Progress from "./navtabs/Progress";
 import Leftover from "./navtabs/Leftover";
+import UploadReceiptScreen from "./navtabs/Receiptupload";
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Feather } from '@expo/vector-icons';
@@ -31,7 +32,7 @@ const Nav = () => {
             ),
             headerShown: false,
           }} />
-          <Tab.Screen name="Left Over" component={Leftover} options={{
+          <Tab.Screen name="Left Over" component={UploadReceiptScreen} options={{
             tabBarIcon: ({ focused }) => (
               <MaterialCommunityIcons name="food-takeout-box" color={focused ? '#FFA197' : '#C8C8C8'} size={25} />
             ),
