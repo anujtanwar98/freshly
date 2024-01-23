@@ -2,7 +2,7 @@ import React from "react";
 import HomeMain from "./navtabs/AllFood";
 import Progress from "./navtabs/Progress";
 import Leftover from "./navtabs/Leftover";
-import UploadReceiptScreen from "./navtabs/Receiptupload";
+import UploadReceiptScreen from "./navtabs/Test";
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Feather } from '@expo/vector-icons';
