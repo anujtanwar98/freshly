@@ -81,7 +81,10 @@ const UploadReceiptScreen = () => {
             <View key={index} style={styles.categoryContainer}>
                 <Text style={styles.categoryTitle}>{category}</Text>
                 {categorizedItems[category].map((item, itemIndex) => (
-                    <Text key={itemIndex} style={styles.itemText}>{item}</Text>
+                <View key={itemIndex} style={styles.itemContainer}>
+                    <Text style={styles.emojiText}>{item.emoji}</Text>
+                    <Text style={styles.itemText}>{item.item}</Text>
+                  </View>
                 ))}
             </View>
         ));
