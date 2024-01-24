@@ -101,15 +101,18 @@ const UploadReceiptScreen = () => {
             return (
             <View key={index} style={styles.categoryContainer}>
                 <Text style={styles.categoryTitle}>{category}</Text>
+                <View style={styles.itemsWrapper}>
                 {categorizedItems[category].map((item, itemIndex) => (
                 <View key={itemIndex} style={styles.itemContainer}>
                     <Text style={styles.emojiText}>{item.emoji}</Text>
                     <Text style={styles.itemText}>{item.item}</Text>
-                    <Text style={styles.freshnessText}>Fresh for: {typeof item.freshness_duration === 'object'
-                    ? `${item.freshness_duration.min}-${item.freshness_duration.max}`
-                        : item.freshness_duration} days</Text>
+                    {/* <Text style={styles.freshnessText}>Fresh for: {typeof item.freshness_duration === 'object'
+                    ? `${item.freshness_duration_min}-${item.freshness_duration_max}`
+                        : item.freshness_duration} days</Text> */}
+                        <Text style={styles.freshnessText}>Fresh for: {item.freshness_duration_min} - {item.freshness_duration_max} days</Text>
                 </View>
                 ))}
+                </View>
             </View>
             );
         }
@@ -154,6 +157,58 @@ const styles = StyleSheet.create({
     itemText: {
         marginLeft: 10,
     },
+    itemContainer: {
+        gap: 8,
+        height: 100,
+        marginTop: 15,
+        marginBottom: 20,
+        marginLeft: 10,
+        marginRight: 10,
+        padding: 10,
+        borderRadius: 10,
+        backgroundColor: '#ffffff',
+        maxWidth: 170,
+        minWidth: 170,
+        shadowColor: '#171717',
+        shadowOffset: {width: -2, height: 4},
+        shadowOpacity: 0.2,
+        shadowRadius: 3,
+    },
+    itemsWrapper: {
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        justifyContent: 'flex-start',
+        alignItems: 'flex-start',
+        paddingHorizontal: 8,
+        marginHorizontal: 10,
+    },
+    categoryContainer: {
+        backgroundColor: '#F3F3F3', 
+        margin: 8,
+        gap: 8,
+        minWidth: '100%',
+        // flex: 1,
+      },
+      categoryTitle: {
+        fontSize: 18,
+        fontWeight: 'bold',
+        marginBottom: 8, // Space below the title
+        color: '#20821E', // Dark text for better readability
+        marginLeft: 20,
+      },
+      emojiText: {
+        fontSize: 24, // Larger size for emoji for visibility
+        marginRight: 10, // Space after the emoji
+      },
+      itemText: {
+        flex: 1, // Takes up remaining space to push the freshness text to the end
+        fontSize: 16, // Readable text size
+        color: '#000000', // Dark text for better readability
+      },
+      freshnessText: {
+        fontSize: 14, // Slightly smaller text size
+        color: '#000000', // Lighter text color for secondary information
+      }
 });
 
 export default UploadReceiptScreen;
