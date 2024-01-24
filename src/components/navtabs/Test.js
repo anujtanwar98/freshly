@@ -96,7 +96,9 @@ const UploadReceiptScreen = () => {
             return <Text>Invalid data structure received.</Text>;
         }
 
-        return Object.keys(categorizedItems).map((category, index) => (
+        return Object.keys(categorizedItems).map((category, index) => {
+            if (categorizedItems[category].length > 0) {
+            return (
             <View key={index} style={styles.categoryContainer}>
                 <Text style={styles.categoryTitle}>{category}</Text>
                 {categorizedItems[category].map((item, itemIndex) => (
@@ -109,8 +111,11 @@ const UploadReceiptScreen = () => {
                 </View>
                 ))}
             </View>
-        ));
-    };
+            );
+        }
+        return null;
+      });
+    };    
 
     return (
         <SafeAreaView style={styles.safeArea}>
