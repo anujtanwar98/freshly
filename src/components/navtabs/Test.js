@@ -1,12 +1,28 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { SafeAreaView, View, Text, Button, StyleSheet, Image, ScrollView } from 'react-native';
 import axios from 'axios';
 import * as ImagePicker from 'expo-image-picker';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const UploadReceiptScreen = () => {
     const [receiptImage, setReceiptImage] = useState(null);
     const [categorizedItems, setCategorizedItems] = useState({});
     const [isLoading, setIsLoading] = useState(false);
+
+    useEffect(() => {
+        const loadCategorizedItems = async () => {
+            try {
+                const savedItems = await AsyncStorage.getItem('categorizedItems');
+                if (savedItems !== null) {
+                    setCategorizedItems(JSON.parse(savedItems));
+                }
+            } catch (error) {
+                console.error('Error loading categorized items:', error);
+            }
+        };
+
+        loadCategorizedItems();
+    }, []);
 
     const pickImage = async () => {
         // No permissions request is necessary for launching the image library
@@ -27,28 +43,30 @@ const UploadReceiptScreen = () => {
             alert('Please select an image first');
             return;
         }
-    
+        setCategorizedItems({});
+    try {
+        await AsyncStorage.removeItem('categorizedItems');
+    } catch (error) {
+        console.error('Error clearing previous items:', error);
+    }
         const formData = new FormData();
         formData.append('receipt', {
             uri: receiptImage.uri,
             name: 'receipt.jpg',
             type: 'image/jpeg', // or 'image/png'
         });
-    
+
         setIsLoading(true);
-    
+
         try {
             const response = await axios.post('http://127.0.0.1:5000/upload-receipt', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },
             });
-            console.log('Received data:', response.data); // Log the data
-            console.log('Type of received data:', typeof response.data); // Check the type
-    
+
             let data = response.data;
             if (typeof data === 'string') {
-                // Parse the string to JSON if necessary
                 try {
                     data = JSON.parse(data);
                 } catch (parseError) {
@@ -57,8 +75,9 @@ const UploadReceiptScreen = () => {
                     return;
                 }
             }
-    
+
             setCategorizedItems(data);
+            await AsyncStorage.setItem('categorizedItems', JSON.stringify(data));
         } catch (error) {
             console.error('Error uploading receipt: ', error);
             alert('Failed to upload receipt');
@@ -66,7 +85,7 @@ const UploadReceiptScreen = () => {
             setIsLoading(false);
         }
     };
-    
+
     const renderCategorizedItems = () => {
         const isValidDataStructure = Object.keys(categorizedItems).every(key => 
             Array.isArray(categorizedItems[key])
@@ -84,7 +103,10 @@ const UploadReceiptScreen = () => {
                 <View key={itemIndex} style={styles.itemContainer}>
                     <Text style={styles.emojiText}>{item.emoji}</Text>
                     <Text style={styles.itemText}>{item.item}</Text>
-                  </View>
+                    <Text style={styles.freshnessText}>Fresh for: {typeof item.freshness_duration === 'object'
+                    ? `${item.freshness_duration.min}-${item.freshness_duration.max}`
+                        : item.freshness_duration} days</Text>
+                </View>
                 ))}
             </View>
         ));
@@ -106,8 +128,10 @@ const UploadReceiptScreen = () => {
 };
 
 const styles = StyleSheet.create({
+    safeArea: {
+        flex: 1,
+    },
     container: {
-        // flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
     },
