@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { SafeAreaView, View, Text, Button, StyleSheet, Image, ScrollView } from 'react-native';
+import { TouchableOpacity, Modal, SafeAreaView, View, Text, Button, StyleSheet, Image, ScrollView } from 'react-native';
 import axios from 'axios';
 import * as ImagePicker from 'expo-image-picker';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { Ionicons, Entypo, Feather } from '@expo/vector-icons';
 
 const UploadReceiptScreen = () => {
     const [receiptImage, setReceiptImage] = useState(null);
     const [categorizedItems, setCategorizedItems] = useState({});
     const [isLoading, setIsLoading] = useState(false);
+    const [modalVisible, setModalVisible] = useState(false);
 
     useEffect(() => {
         const loadCategorizedItems = async () => {
@@ -35,6 +37,7 @@ const UploadReceiptScreen = () => {
 
         if (!result.cancelled) {
             setReceiptImage({ uri: result.uri });
+            setModalVisible(false);
         }
     };
 
@@ -123,14 +126,27 @@ const UploadReceiptScreen = () => {
     return (
         <SafeAreaView style={styles.safeArea}>
         <ScrollView contentContainerStyle={styles.container}>
+        <Text style={styles.text}>My Freshly Food 🛒</Text>
+        <Modal animationType="slide" transparent={true} visible={modalVisible} onRequestClose={() => { setModalVisible(!modalVisible); }} >
+            <View style={styles.centeredView}>
+                <View style={styles.modalView}>
+                    <Button title="Upload" onPress={pickImage} />
+                    {/* ...other buttons like 'Scan' can go here... */}
+                    <Button title="Close" onPress={() => setModalVisible(!modalVisible)} />
+                </View>
+            </View>
+        </Modal>
             {receiptImage && (
                 <Image source={receiptImage} style={styles.image} />
             )}
-            <Button title="Pick an Image" onPress={pickImage} />
+            {/* <Button title="Pick an Image" onPress={pickImage} /> */}
             <Button title="Upload Receipt" onPress={uploadReceipt} />
             {isLoading && <Text>Uploading...</Text>}
             {!isLoading && renderCategorizedItems()}
         </ScrollView>
+        <TouchableOpacity style={[styles.button, styles.addButton]} onPress={() => setModalVisible(true)}>
+            <Entypo name="plus" style={styles.icon} color={'#000000'} size={50} />
+        </TouchableOpacity>
         </SafeAreaView>
     );
 };
@@ -208,7 +224,60 @@ const styles = StyleSheet.create({
       freshnessText: {
         fontSize: 14, // Slightly smaller text size
         color: '#000000', // Lighter text color for secondary information
-      }
+      },
+      text: {
+        color: '#7CC106',
+        fontSize: 24,
+        fontWeight: 'bold',
+        flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'flex-start',
+      },
+      button: {
+        backgroundColor: '#BDFFBE',
+        padding: 10,
+        borderRadius: 20,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+      },
+      addButton: {
+        backgroundColor: '#BDFFBE',
+        padding: 10,
+        justifyContent: 'center',
+        alignItems: 'center',
+        position: 'absolute',
+        bottom: 20,
+        right: 20,
+        borderRadius: 40, 
+        width: 80, 
+        height: 80,
+        shadowColor: '#171717',
+        shadowOffset: {width: -2, height: 4},
+        shadowOpacity: 0.2,
+        shadowRadius: 3,
+      },
+      centeredView: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+        marginTop: 22
+    },
+    modalView: {
+        margin: 20,
+        backgroundColor: "white",
+        borderRadius: 20,
+        padding: 35,
+        alignItems: "center",
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 2
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 4,
+        elevation: 5
+    },
 });
 
 export default UploadReceiptScreen;
