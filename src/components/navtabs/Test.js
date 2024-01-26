@@ -176,7 +176,7 @@ const UploadReceiptScreen = () => {
             {!isLoading && renderCategorizedItems()}
         </ScrollView>
         <TouchableOpacity style={[styles.button, styles.addButton]} onPress={() => setModalVisible(true)}>
-            <Entypo name="plus" style={styles.icon} color={'#000000'} size={50} />
+            <Entypo name="plus" style={styles.icon} color={'#ffffff'} size={50} />
         </TouchableOpacity>
         </SafeAreaView>
     );
@@ -276,7 +276,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     addButton: {
-        backgroundColor: '#BDFFBE',
+        backgroundColor: '#7CC106',
         padding: 10,
         justifyContent: 'center',
         alignItems: 'center',
