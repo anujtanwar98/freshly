@@ -6,9 +6,10 @@ import UploadReceiptScreen from "./navtabs/Test";
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Feather } from '@expo/vector-icons';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
+// import FoodLogo from './assets/foodLogoSVG';
 
 const Tab = createBottomTabNavigator()
 
@@ -17,30 +18,31 @@ const Nav = () => {
     <NavigationContainer>
       <Tab.Navigator 
       screenOptions={{
-        tabBarActiveTintColor: '#FFA197',
-        tabBarInactiveTintColor: '#C8C8C8',
+        tabBarActiveTintColor: '#7CC106',
+        tabBarInactiveTintColor: '#808B9F',
         tabBarStyle: {
-          backgroundColor: '#820C00',
+          backgroundColor: '#ffffff',
         },
         tabBarLabelStyle: {
           fontSize: 14,
         },
         }}>
-          <Tab.Screen name="Groceries" component={HomeMain} options={{
+          <Tab.Screen name="My Food" component={HomeMain} options={{
             tabBarIcon: ({ focused  }) => (
-              <FontAwesome5 name="carrot" color={focused ? '#FFA197' : '#C8C8C8'} size={25} />
+              <FontAwesome5 name="carrot" color={focused ? '#7CC106' : '#808B9F'} size={25} />
+              // <FoodLogo size={24} color={focused ? '#7CC106' : '#808B9F'} />
             ),
             headerShown: false,
           }} />
-          <Tab.Screen name="Left Over" component={UploadReceiptScreen} options={{
+          <Tab.Screen name="Explore" component={UploadReceiptScreen} options={{
             tabBarIcon: ({ focused }) => (
-              <MaterialCommunityIcons name="food-takeout-box" color={focused ? '#FFA197' : '#C8C8C8'} size={25} />
+              <MaterialIcons name="explore" color={focused ? '#7CC106' : '#808B9F'} size={25} />
             ),
             headerShown: false,
           }} />
-          <Tab.Screen name="Progress" component={Progress} options={{
+          <Tab.Screen name="Recipes" component={Progress} options={{
             tabBarIcon: ({ focused }) => (
-              <MaterialCommunityIcons name="chart-line" color={focused ? '#FFA197' : '#C8C8C8'} size={25} />
+              <MaterialCommunityIcons name="chef-hat" color={focused ? '#7CC106' : '#808B9F'} size={25} />
             ),
             headerShown: false,
           }} />

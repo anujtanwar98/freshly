@@ -10,6 +10,7 @@ const UploadReceiptScreen = () => {
     const [categorizedItems, setCategorizedItems] = useState({});
     const [isLoading, setIsLoading] = useState(false);
     const [modalVisible, setModalVisible] = useState(false);
+    const [previewModalVisible, setPreviewModalVisible] = useState(false);
 
     useEffect(() => {
         const loadCategorizedItems = async () => {
@@ -38,6 +39,7 @@ const UploadReceiptScreen = () => {
         if (!result.cancelled) {
             setReceiptImage({ uri: result.uri });
             setModalVisible(false);
+            setPreviewModalVisible(true); // Open the image preview modal
         }
     };
 
@@ -86,6 +88,7 @@ const UploadReceiptScreen = () => {
             alert('Failed to upload receipt');
         } finally {
             setIsLoading(false);
+            setPreviewModalVisible(false); // Close the modal here
         }
     };
 
@@ -127,20 +130,48 @@ const UploadReceiptScreen = () => {
         <SafeAreaView style={styles.safeArea}>
         <ScrollView contentContainerStyle={styles.container}>
         <Text style={styles.text}>My Freshly Food 🛒</Text>
+        <Modal
+        animationType="slide"
+        transparent={true}
+        visible={previewModalVisible}
+        onRequestClose={() => {
+          setPreviewModalVisible(!previewModalVisible);
+        }}>
+            <View style={styles.centeredView}>
+                <View style={styles.previewModalView}>
+                    {receiptImage && (
+                    <Image source={receiptImage} style={styles.previewImage} />
+                    )}
+                {/* <Image source={{ uri: selectedImage }} style={styles.previewImage} /> */}
+                    <View style={styles.previewButtonContainer}>
+                    <TouchableOpacity style={styles.previewButtonCancel} onPress={() => setPreviewModalVisible(false)} >
+                        <Text style={styles.previewButtonCancelText}>Cancel</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.uploadReceiptButton} onPress={uploadReceipt} >
+                        <Text style={styles.uploadReceiptButtonText} >Upload Receipt</Text>
+                    </TouchableOpacity>
+                    </View>
+              </View>
+            </View>
+        </Modal>
         <Modal animationType="slide" transparent={true} visible={modalVisible} onRequestClose={() => { setModalVisible(!modalVisible); }} >
             <View style={styles.centeredView}>
                 <View style={styles.modalView}>
-                    <Button title="Upload" onPress={pickImage} />
-                    {/* ...other buttons like 'Scan' can go here... */}
-                    <Button title="Close" onPress={() => setModalVisible(!modalVisible)} />
+                    <TouchableOpacity style={styles.buttonClose} onPress={() => setModalVisible(!modalVisible)} >
+                        <Ionicons name="close-circle" size={30} color="black" />
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={pickImage} >
+                        <Feather name="upload" size={40} color="#00B076" />
+                        <Text style={styles.textStyle}>Upload</Text>
+                    </TouchableOpacity>
                 </View>
             </View>
         </Modal>
-            {receiptImage && (
+            {/* {receiptImage && (
                 <Image source={receiptImage} style={styles.image} />
-            )}
+            )} */}
             {/* <Button title="Pick an Image" onPress={pickImage} /> */}
-            <Button title="Upload Receipt" onPress={uploadReceipt} />
+            {/* <Button title="Upload Receipt" onPress={uploadReceipt} /> */}
             {isLoading && <Text>Uploading...</Text>}
             {!isLoading && renderCategorizedItems()}
         </ScrollView>
@@ -154,10 +185,12 @@ const UploadReceiptScreen = () => {
 const styles = StyleSheet.create({
     safeArea: {
         flex: 1,
+        backgroundColor: '#ffffff',
     },
     container: {
         justifyContent: 'center',
         alignItems: 'center',
+        backgroundColor: '#F3F3F3',
     },
     image: {
         width: 300,
@@ -230,18 +263,19 @@ const styles = StyleSheet.create({
         fontSize: 24,
         fontWeight: 'bold',
         flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'flex-start',
+        justifyContent: 'space-between',
+        alignItems: 'flex-start',
+        paddingTop: 10,
       },
-      button: {
+    button: {
         backgroundColor: '#BDFFBE',
         padding: 10,
         borderRadius: 20,
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-      },
-      addButton: {
+    },
+    addButton: {
         backgroundColor: '#BDFFBE',
         padding: 10,
         justifyContent: 'center',
@@ -256,12 +290,18 @@ const styles = StyleSheet.create({
         shadowOffset: {width: -2, height: 4},
         shadowOpacity: 0.2,
         shadowRadius: 3,
-      },
-      centeredView: {
+    },
+    centeredView: {
         flex: 1,
         justifyContent: "center",
         alignItems: "center",
         marginTop: 22
+    },
+    buttonClose: {
+        position: 'absolute',
+        top: 10,
+        right: 10,
+        backgroundColor: 'transparent',
     },
     modalView: {
         margin: 20,
@@ -277,6 +317,56 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.25,
         shadowRadius: 4,
         elevation: 5
+    },
+    previewImage: {
+        width: 400,
+        height: 600,
+        resizeMode: 'contain',
+    },
+    previewModalView: {
+        margin: 20,
+        backgroundColor: "#ffffff",
+        // borderRadius: 20,
+        padding: 35,
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        flexDirection: 'column', 
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 4,
+          },
+          shadowOpacity: 0.5,
+          shadowRadius: 10,
+        //   elevation: 5,
+    },
+    previewButtonContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        width: '100%',
+      },
+    previewButtonCancel: {
+        backgroundColor: "#808B9F",
+        padding: 10,
+        borderRadius: 20,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+    },
+    uploadReceiptButton: {
+        backgroundColor: '#7CC106', // Blue color
+        padding: 10,
+        borderRadius: 20,
+    },
+    uploadReceiptButtonText: {
+        color: '#ffffff',
+        fontSize: 16,
+        padding: 5,
+    },
+    previewButtonCancelText: {
+        color: '#ffffff',
+        fontSize: 16,
+        padding: 5,
     },
 });
 
