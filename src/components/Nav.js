@@ -1,5 +1,5 @@
 import React from "react";
-import HomeMain from "./navtabs/AllFood";
+import HomeMain from "./navtabs/HomeMain";
 import Progress from "./navtabs/Progress";
 import Leftover from "./navtabs/Leftover";
 import UploadReceiptScreen from "./navtabs/Test";
