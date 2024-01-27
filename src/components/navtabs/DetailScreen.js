@@ -1,7 +1,9 @@
 // DetailScreen.js
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { FontAwesome } from '@expo/vector-icons';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 const DetailScreen = ({ route }) => {
   const { itemId, category} = route.params;
@@ -53,25 +55,46 @@ const DetailScreen = ({ route }) => {
   const carbonImpactColor = getCarbonImpactColor(itemData.carbon_impact);
 
   return (
-    <View style={styles.container}>
-      <View style={styles.header}>
-        <Text style={styles.emoji}>{itemData.emoji}</Text>
-          <View style={styles.nameCategory}>
-            <Text style={styles.title}>{itemData.item}</Text>
-            <Text style={styles.category}>{category}</Text>
+    <ScrollView>
+      <View style={styles.container}>
+        <View style={styles.header}>
+          <Text style={styles.emoji}>{itemData.emoji}</Text>
+            <View style={styles.nameCategory}>
+              <Text style={styles.title}>{itemData.item}</Text>
+              <Text style={styles.category}>{category}</Text>
+            </View>
+        </View>
+        <View style={styles.details}>
+          <View style={styles.freshness}>
+            <Text style={styles.freshFor}>Fresh For: </Text>
+            <Text style={styles.freshForDays}>{itemData.freshness_duration_min} - {itemData.freshness_duration_max} days</Text>
           </View>
-      </View>
-      <View style={styles.details}>
-        <View style={styles.freshness}>
-          <Text style={styles.freshFor}>Fresh For: </Text>
-          <Text style={styles.freshForDays}>{itemData.freshness_duration_min} - {itemData.freshness_duration_max} days</Text>
+          <View style={styles.impact}>
+            <Text style={styles.carbonText}>Carbon Impact: </Text>
+            <Text style={[styles.carbonImpact, { color: carbonImpactColor }]}>{itemData.carbon_impact}</Text>
+          </View>
         </View>
-        <View style={styles.impact}>
-          <Text style={styles.carbonText}>Carbon Impact: </Text>
-          <Text style={[styles.carbonImpact, { color: carbonImpactColor }]}>{itemData.carbon_impact}</Text>
+        <View style={styles.storageTips}>
+          <Text style={styles.storageTipsTitle}>Storage Tips</Text>
+          <View style={styles.storageTipsFridge}>
+            <Text style={styles.storageTipsFridgeTitle}>
+            <MaterialCommunityIcons name="fridge-outline" size={24} color="black" /> Fridge
+            </Text>
+            <Text style={styles.storageTipsFridgeText}>
+              lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+            </Text>
+          </View>
+          <View style={styles.storageTipsFreezer}>
+            <Text style={styles.storageTipsFreezerTitle}>
+            <FontAwesome name="thermometer-quarter" size={24} color="black" /> Freezer
+            </Text>
+            <Text style={styles.storageTipsFreezerText}>
+              lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+            </Text>
+          </View>
         </View>
       </View>
-    </View>
+    </ScrollView>
   );
 };
 
@@ -168,6 +191,41 @@ const styles = StyleSheet.create({
     fontSize: 22,
     fontWeight: '600',
     color: '#7CC106',
+  },
+  storageTips: {
+    padding: 20,
+  },
+  storageTipsTitle: {
+    fontSize: 18,
+    fontWeight: 'semi-bold',
+  },
+  storageTipsFridge: {
+    backgroundColor: '#fff',
+    borderRadius: 20,
+    padding: 20,
+    marginTop: 10,
+  },
+  storageTipsFridgeTitle: {
+    fontSize: 18,
+    fontWeight: 'semi-bold',
+    paddingBottom: 10,
+  },
+  storageTipsFridgeText: {
+    fontSize: 16,
+  },
+  storageTipsFreezer: {
+    backgroundColor: '#fff',
+    borderRadius: 20,
+    padding: 20,
+    marginTop: 10,
+  },
+  storageTipsFreezerTitle: {
+    fontSize: 18,
+    fontWeight: 'semi-bold',
+    paddingBottom: 10,
+  },
+  storageTipsFreezerText: {
+    fontSize: 16,
   },
 });
 
