@@ -3,7 +3,7 @@ import { View, Text, SafeAreaView, StyleSheet, TouchableOpacity} from 'react-nat
 import { Ionicons } from '@expo/vector-icons';
 
 
-const Explore = () => {
+const Recipes = () => {
     return (
     <View style={styles.mainWrapper}>
       <View style={styles.container}>
@@ -38,4 +38,4 @@ const styles = StyleSheet.create({
   },
 })
 
-export default Explore;
+export default Recipes;

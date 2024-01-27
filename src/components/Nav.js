@@ -1,5 +1,5 @@
 import React from "react";
-import Progress from "./navtabs/Progress";
+import Recipes from "./navtabs/Recipes";
 import Explore from "./navtabs/Explore";
 import UploadReceiptScreen from "./navtabs/HomeMain";
 import { NavigationContainer } from '@react-navigation/native';
@@ -51,7 +51,7 @@ const Nav = () => {
             ),
             headerShown: false,
           }} />
-          <Tab.Screen name="Recipes" component={Progress} options={{
+          <Tab.Screen name="Recipes" component={Recipes} options={{
             tabBarIcon: ({ focused }) => (
               <MaterialCommunityIcons name="chef-hat" color={focused ? '#7CC106' : '#808B9F'} size={25} />
             ),
