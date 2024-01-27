@@ -215,7 +215,7 @@ const styles = StyleSheet.create({
     },
     itemContainer: {
         gap: 8,
-        height: 100,
+        height: 120,
         // marginTop: 15,
         marginBottom: 16,
         marginLeft: 10,

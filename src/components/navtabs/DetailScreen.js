@@ -119,7 +119,7 @@ const styles = StyleSheet.create({
   },
   freshness: {
     backgroundColor: '#fff',
-    alignItems: 'center',
+    alignItems: 'flex-start',
     width: 180,
     height: 100,
     borderRadius: 20,
@@ -127,10 +127,13 @@ const styles = StyleSheet.create({
     shadowOffset: {width: -2, height: 4},
     shadowOpacity: 0.2,
     shadowRadius: 3,
+    display: 'flex',
+    justifyContent: 'center',
+    paddingLeft: 20,
   },
   impact: {
     backgroundColor: '#fff',
-    alignItems: 'center',
+    alignItems: 'flex-start',
     width: 180,
     height: 100,
     borderRadius: 20,
@@ -138,14 +141,18 @@ const styles = StyleSheet.create({
     shadowOffset: {width: -2, height: 4},
     shadowOpacity: 0.2,
     shadowRadius: 3,
+    display: 'flex',
+    justifyContent: 'center',
+    paddingLeft: 20,
   },
   details: {
     flexDirection: 'row',
     justifyContent: 'space-around',
   },
   freshFor: {
-    fontSize: 16,
+    fontSize: 18,
     fontWeight: '600',
+    paddingBottom: 10,
   },
   freshForDays: {
     fontSize: 22,
@@ -153,8 +160,9 @@ const styles = StyleSheet.create({
     color: '#7CC106',
   },
   carbonText: {
-    fontSize: 16,
+    fontSize: 18,
     fontWeight: '600',
+    paddingBottom: 10,
   },
   carbonImpact: {
     fontSize: 22,
