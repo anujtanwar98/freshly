@@ -1,8 +1,7 @@
 import React from "react";
-import HomeMain from "./navtabs/HomeMain";
 import Progress from "./navtabs/Progress";
-import Leftover from "./navtabs/Leftover";
-import UploadReceiptScreen from "./navtabs/Test";
+import Explore from "./navtabs/Explore";
+import UploadReceiptScreen from "./navtabs/HomeMain";
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Feather } from '@expo/vector-icons';
@@ -39,14 +38,14 @@ const Nav = () => {
           fontSize: 14,
         },
         }}>
-          <Tab.Screen name="My Food" component={HomeMain} options={{
+          <Tab.Screen name="My Food" component={UploadReceiptStackScreen} options={{
             tabBarIcon: ({ focused  }) => (
               <FontAwesome5 name="carrot" color={focused ? '#7CC106' : '#808B9F'} size={25} />
               // <FoodLogo size={24} color={focused ? '#7CC106' : '#808B9F'} />
             ),
             headerShown: false,
           }} />
-          <Tab.Screen name="Explore" component={UploadReceiptStackScreen} options={{
+          <Tab.Screen name="Explore" component={Explore} options={{
             tabBarIcon: ({ focused }) => (
               <MaterialIcons name="explore" color={focused ? '#7CC106' : '#808B9F'} size={25} />
             ),
