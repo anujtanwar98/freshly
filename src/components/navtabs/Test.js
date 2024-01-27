@@ -4,6 +4,7 @@ import axios from 'axios';
 import * as ImagePicker from 'expo-image-picker';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Ionicons, Entypo, Feather } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
 
 const UploadReceiptScreen = () => {
     const [receiptImage, setReceiptImage] = useState(null);
@@ -11,6 +12,8 @@ const UploadReceiptScreen = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [modalVisible, setModalVisible] = useState(false);
     const [previewModalVisible, setPreviewModalVisible] = useState(false);
+
+    const navigation = useNavigation();
 
     useEffect(() => {
         const loadCategorizedItems = async () => {
@@ -109,7 +112,9 @@ const UploadReceiptScreen = () => {
                 <Text style={styles.categoryTitle}>{category}</Text>
                 <View style={styles.itemsWrapper}>
                 {categorizedItems[category].map((item, itemIndex) => (
+                <TouchableOpacity key={item.id} onPress={() => navigation.navigate('DetailScreen', { itemId: item.id })}>
                 <View key={itemIndex} style={styles.itemContainer}>
+                    {/* <Text style={styles.itemText}>{item.id}</Text> */}
                     <Text style={styles.emojiText}>{item.emoji}</Text>
                     <Text style={styles.itemText}>{item.item}</Text>
                     {/* <Text style={styles.freshnessText}>Fresh for: {typeof item.freshness_duration === 'object'
@@ -117,6 +122,7 @@ const UploadReceiptScreen = () => {
                         : item.freshness_duration} days</Text> */}
                         <Text style={styles.freshnessText}>Fresh for: {item.freshness_duration_min} - {item.freshness_duration_max} days</Text>
                 </View>
+                </TouchableOpacity>
                 ))}
                 </View>
             </View>

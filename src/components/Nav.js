@@ -10,8 +10,20 @@ import { MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
 // import FoodLogo from './assets/foodLogoSVG';
+import { createStackNavigator } from '@react-navigation/stack';
+import DetailScreen from "./navtabs/DetailScreen";
 
 const Tab = createBottomTabNavigator()
+const UploadReceiptStack = createStackNavigator();
+
+function UploadReceiptStackScreen() {
+  return (
+    <UploadReceiptStack.Navigator>
+      <UploadReceiptStack.Screen name="My Food" component={UploadReceiptScreen} options={{ headerShown: false }} />
+      <UploadReceiptStack.Screen name="DetailScreen" component={DetailScreen} options={{ headerTitle: '' }} />
+    </UploadReceiptStack.Navigator>
+  );
+}
 
 const Nav = () => {
   return (
@@ -34,7 +46,7 @@ const Nav = () => {
             ),
             headerShown: false,
           }} />
-          <Tab.Screen name="Explore" component={UploadReceiptScreen} options={{
+          <Tab.Screen name="Explore" component={UploadReceiptStackScreen} options={{
             tabBarIcon: ({ focused }) => (
               <MaterialIcons name="explore" color={focused ? '#7CC106' : '#808B9F'} size={25} />
             ),
