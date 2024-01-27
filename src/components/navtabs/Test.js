@@ -112,7 +112,7 @@ const UploadReceiptScreen = () => {
                 <Text style={styles.categoryTitle}>{category}</Text>
                 <View style={styles.itemsWrapper}>
                 {categorizedItems[category].map((item, itemIndex) => (
-                <TouchableOpacity key={item.id} onPress={() => navigation.navigate('DetailScreen', { itemId: item.id })}>
+                <TouchableOpacity key={item.id} onPress={() => navigation.navigate('DetailScreen', { itemId: item.id, category: category })}>
                 <View key={itemIndex} style={styles.itemContainer}>
                     {/* <Text style={styles.itemText}>{item.id}</Text> */}
                     <Text style={styles.emojiText}>{item.emoji}</Text>
