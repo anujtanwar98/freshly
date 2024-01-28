@@ -10,7 +10,7 @@ const Recipes = () => {
       <ScrollView>
         <View style={styles.mainWrapper}>
           <View style={styles.container}>
-            <Text style={styles.text}>What do you want to eat?</Text>
+            <Text style={styles.text}>What do you want to eat today?</Text>
           </View>
           <View style={styles.brocContainer}>
             <Text style={styles.brocTextContainer}>Select a meal type and tap generate to see what Broc can make from your food inventory!</Text>
