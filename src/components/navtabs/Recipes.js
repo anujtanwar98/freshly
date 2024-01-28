@@ -1,20 +1,20 @@
 import React from 'react';
-import { View, Text, SafeAreaView, StyleSheet, TouchableOpacity, ScrollView} from 'react-native';
+import { View, Text, SafeAreaView, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { Image } from 'react-native';
 
 
 const Recipes = () => {
-    return (
+  return (
     <SafeAreaView>
       <ScrollView>
         <View style={styles.mainWrapper}>
           <View style={styles.container}>
-            <Text style={styles.text}>What do you want to eat?</Text>
+            <Text style={styles.text}>What do you want to eat today?</Text>
           </View>
           <View style={styles.brocContainer}>
             <Text style={styles.brocTextContainer}>Select a meal type and tap generate to see what Broc can make from your food inventory!</Text>
-            <Image style={styles.brocImage} source={require('./../../../assets/broc.png')}/>
+            <Image style={styles.brocImage} source={require('./../../../assets/broc.png')} />
           </View>
           <View style={styles.mainCard}>
             <View style={styles.allCardContain}>
@@ -26,7 +26,7 @@ const Recipes = () => {
                 <Text style={styles.buttonEmojiText}>🥪</Text>
                 <Text style={styles.buttonText}>Lunch</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={[styles.dinnerButton , styles.foodButton]}>
+              <TouchableOpacity style={[styles.dinnerButton, styles.foodButton]}>
                 <Text style={styles.buttonEmojiText}>🍝</Text>
                 <Text style={styles.buttonText}>Dinner</Text>
               </TouchableOpacity>
@@ -40,13 +40,13 @@ const Recipes = () => {
               </TouchableOpacity>
             </View>
             <TouchableOpacity>
-                <Text>Generate Recipes</Text>
-              </TouchableOpacity>
+              <Text>Generate Recipes</Text>
+            </TouchableOpacity>
           </View>
         </View>
       </ScrollView>
     </SafeAreaView>
-);
+  );
 }
 
 const styles = StyleSheet.create({
