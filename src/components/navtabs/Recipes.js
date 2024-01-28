@@ -39,9 +39,9 @@ const Recipes = () => {
                 <Text style={styles.buttonText}>Dessert</Text>
               </TouchableOpacity>
             </View>
-            <TouchableOpacity>
-                <Text>Generate Recipes</Text>
-              </TouchableOpacity>
+            <TouchableOpacity style={styles.generateButton}>
+              <Text style={styles.generateButtonText}>Generate Recipes</Text>
+            </TouchableOpacity>
           </View>
         </View>
       </ScrollView>
