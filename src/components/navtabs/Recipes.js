@@ -127,6 +127,22 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: '500',
   },
+  generateButton: {
+    backgroundColor: '#E0E0E0',
+    padding: 10,
+    borderRadius: 50,
+    flexDirection: 'column',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    width: 300,
+    height: 50,
+    alignSelf: 'center',
+  },
+  generateButtonText: {
+    fontSize: 20,
+    fontWeight: '500',
+    color: '#fff',
+  },
 })
 
 export default Recipes;
