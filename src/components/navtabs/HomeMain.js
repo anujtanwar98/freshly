@@ -205,7 +205,7 @@ const UploadReceiptScreen = () => {
 const styles = StyleSheet.create({
     safeArea: {
         flex: 1,
-        backgroundColor: '#ffffff',
+        backgroundColor: '#D8D8D8',
     },
     container: {
         // justifyContent: 'center',

@@ -278,8 +278,8 @@ const styles = StyleSheet.create({
   helpEnvBox: {
     flex: 1,
     backgroundColor: '#F3F3F3',
-    marginTop: 10,
-    marginBottom: 10,
+    // marginTop: 10,
+    marginBottom: 20,
   },
 })
 
