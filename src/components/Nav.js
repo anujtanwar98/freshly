@@ -11,9 +11,11 @@ import { FontAwesome5 } from '@expo/vector-icons';
 // import FoodLogo from './assets/foodLogoSVG';
 import { createStackNavigator } from '@react-navigation/stack';
 import DetailScreen from "./navtabs/DetailScreen";
+import RecipeIdeas from "./navtabs/RecipeIdeas";
 
 const Tab = createBottomTabNavigator()
 const UploadReceiptStack = createStackNavigator();
+const RecipesStack = createStackNavigator();
 
 function UploadReceiptStackScreen() {
   return (
@@ -21,6 +23,15 @@ function UploadReceiptStackScreen() {
       <UploadReceiptStack.Screen name="My Food" component={UploadReceiptScreen} options={{ headerShown: false }} />
       <UploadReceiptStack.Screen name="DetailScreen" component={DetailScreen} options={{ headerTitle: '' }} />
     </UploadReceiptStack.Navigator>
+  );
+}
+
+function RecipesStackScreen() {
+  return (
+    <RecipesStack.Navigator>
+      <RecipesStack.Screen name="Recipes" component={Recipes} options={{ headerShown: false }} />
+      <RecipesStack.Screen name="RecipeIdeas" component={RecipeIdeas} options={{ headerTitle: 'Recipe Ideas' }} />
+    </RecipesStack.Navigator>
   );
 }
 
@@ -51,7 +62,7 @@ const Nav = () => {
             ),
             headerShown: false,
           }} />
-          <Tab.Screen name="Recipes" component={Recipes} options={{
+          <Tab.Screen name="Recipes" component={RecipesStackScreen} options={{
             tabBarIcon: ({ focused }) => (
               <MaterialCommunityIcons name="chef-hat" color={focused ? '#7CC106' : '#808B9F'} size={25} />
             ),

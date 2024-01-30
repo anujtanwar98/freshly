@@ -1,11 +1,33 @@
-import React from 'react';
-import { View, Text, SafeAreaView, StyleSheet, TouchableOpacity, ScrollView} from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, Text, SafeAreaView, StyleSheet, TouchableOpacity, ScrollView, ActivityIndicator } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { Image } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import axios from 'axios';
+import GenRec from './genRecipeSvg';
 
+const Recipes = () => {
+  const [selectedCategory, setSelectedCategory] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [recipe, setRecipe] = useState('');
 
-const Recipes = ({ navigation }) => {
+  const foodCategories = ['Breakfast', 'Lunch', 'Dinner', 'Snack', 'Dessert'];
+
+  const fetchRecipe = async (category) => {
+    setIsLoading(true);
+    setSelectedCategory(category);
+    setRecipe(''); // Clear previous recipe
+    try {
+      const response = await axios.post('http://127.0.0.1:5000/generate-recipe', {
+        category: category
+      });
+      setRecipe(response.data.recipe);
+    } catch (error) {
+      console.error('Error fetching recipe:', error);
+      // Handle the error (e.g., show an alert or a message)
+    } finally {
+      setIsLoading(false);
+    }
+  };
     return (
     <SafeAreaView>
       <ScrollView>
@@ -14,37 +36,54 @@ const Recipes = ({ navigation }) => {
             <Text style={styles.text}>What do you want to eat?</Text>
           </View>
           <View style={styles.brocContainer}>
-            <Text style={styles.brocTextContainer}>Select a meal type and tap generate to see what Broc can make from your food inventory!!</Text>
+            <Text style={styles.brocTextContainer}>Select a meal type and tap generate to see what Broc can make from your food inventory!</Text>
             <Image style={styles.brocImage} source={require('./../../../assets/broc.png')}/>
           </View>
           <View style={styles.mainCard}>
             <View style={styles.allCardContain}>
-              <TouchableOpacity style={[styles.breakfastButton, styles.foodButton]}>
+              <TouchableOpacity style={[ styles.breakfastButton, styles.foodButton, selectedCategory === 'Breakfast' && styles.selectedCategoryButton ]} onPress={() => fetchRecipe('Breakfast')}>
                 <Text style={styles.buttonEmojiText}>🍳</Text>
                 <Text style={styles.buttonText}>Breakfast</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={[styles.lunchButton, styles.foodButton]}>
+              <TouchableOpacity style={[ styles.lunchButton, styles.foodButton, selectedCategory === 'Lunch' && styles.selectedCategoryButton ]} onPress={() => fetchRecipe('Lunch')} >
                 <Text style={styles.buttonEmojiText}>🥪</Text>
                 <Text style={styles.buttonText}>Lunch</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={[styles.dinnerButton , styles.foodButton]}>
+              <TouchableOpacity style={[styles.dinnerButton , styles.foodButton, selectedCategory === 'dinner' && styles.selectedCategoryButton ]} onPress={() => fetchRecipe('Dinner')} >
                 <Text style={styles.buttonEmojiText}>🍝</Text>
                 <Text style={styles.buttonText}>Dinner</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={[styles.snackButton, styles.foodButton]}>
+              <TouchableOpacity style={[styles.snackButton, styles.foodButton, selectedCategory === 'Snack' && styles.selectedCategoryButton ]} onPress={() => fetchRecipe('Snack')} >
                 <Text style={styles.buttonEmojiText}>🥨</Text>
                 <Text style={styles.buttonText}>Snack</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={[styles.DessertButton, styles.foodButton]}>
+              <TouchableOpacity style={[styles.DessertButton, styles.foodButton, selectedCategory === 'Dessert' && styles.selectedCategoryButton ]} onPress={() => fetchRecipe('Dessert')} >
                 <Text style={styles.buttonEmojiText}>🍰</Text>
                 <Text style={styles.buttonText}>Dessert</Text>
               </TouchableOpacity>
             </View>
-            <TouchableOpacity style={styles.generateButton} onPress={() => navigation.navigate('RecipeIdeas')}>
-              <Text style={styles.generateButtonText}>Generate Recipes</Text>
+            <TouchableOpacity style={[ styles.generateButton, selectedCategory ? styles.generateButtonActive : styles.generateButtonInactive ]} onPress={() => {
+            if (selectedCategory) {
+              fetchRecipe(selectedCategory);
+            } else {
+              // Show an error message if no category is selected
+              alert('Please select a category first.');
+            } 
+            }} 
+            >
+              <Text style={styles.generateButtonText}><GenRec size={24} color="black" /> Generate Recipes</Text>
             </TouchableOpacity>
           </View>
         </View>
+        {/* {isLoading && <ActivityIndicator size="large" color="#0000ff" />}
+        {!isLoading && recipe && (
+          <View style={styles.recipeContainer}>
+            <Text style={styles.recipeText}>{recipe}</Text>
+          </View>
+        )} */}
+        <View style={styles.recipeContainer}>
+            <Text style={styles.recipeText}>{recipe}</Text>
+          </View>
       </ScrollView>
     </SafeAreaView>
 );
@@ -129,7 +168,7 @@ const styles = StyleSheet.create({
     fontWeight: '500',
   },
   generateButton: {
-    backgroundColor: '#E0E0E0',
+    // backgroundColor: '#E0E0E0',
     padding: 10,
     borderRadius: 50,
     flexDirection: 'column',
@@ -143,6 +182,17 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: '500',
     color: '#fff',
+  },
+  selectedCategoryButton: {
+    borderColor: '#7CC106',
+    borderWidth: 2,
+    backgroundColor: '#D9F2AF',
+  },
+  generateButtonActive: {
+    backgroundColor: '#7CC106', // Active color when a category is selected
+  },
+  generateButtonInactive: {
+    backgroundColor: '#E0E0E0',
   },
 })
 
