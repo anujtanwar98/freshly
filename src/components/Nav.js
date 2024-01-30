@@ -12,6 +12,7 @@ import { FontAwesome5 } from '@expo/vector-icons';
 import { createStackNavigator } from '@react-navigation/stack';
 import DetailScreen from "./navtabs/DetailScreen";
 import RecipeIdeas from "./navtabs/RecipeIdeas";
+import DetailRecipeScreen from "./navtabs/DetailRecipeScreen";
 
 const Tab = createBottomTabNavigator()
 const UploadReceiptStack = createStackNavigator();
@@ -31,6 +32,7 @@ function RecipesStackScreen() {
     <RecipesStack.Navigator>
       <RecipesStack.Screen name="Recipes" component={Recipes} options={{ headerShown: false }} />
       <RecipesStack.Screen name="RecipeIdeas" component={RecipeIdeas} options={{ headerTitle: 'Recipe Ideas' }} />
+      <RecipesStack.Screen name="DetailRecipeScreen" component={DetailRecipeScreen} options={{ headerTitle: '' }} />
     </RecipesStack.Navigator>
   );
 }

@@ -11,8 +11,8 @@ const RecipeIdeas = () => {
         <Text>Recipe Ideas Here</Text>
       </View>
       <TouchableOpacity
-        style={styles.generateButton} onPress={() => navigation.navigate('NewRecipeScreen')} >
-        <Text style={styles.generateButtonText}>Generate Recipes</Text>
+        style={styles.generateButton} onPress={() => navigation.navigate('DetailRecipeScreen')} >
+        <Text style={styles.generateButtonText}>detailed recipe</Text>
       </TouchableOpacity>
     </View>
   );

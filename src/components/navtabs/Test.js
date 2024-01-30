@@ -105,11 +105,24 @@ const UploadReceiptScreen = () => {
             return <Text>Invalid data structure received.</Text>;
         }
 
+        const categoryColors = {
+            "Fruits": "#F78908",
+            "Vegetables": "#20821E",
+            "Meat": "#E42828",
+            "Seafood": "#0066FF",
+            "Dairy": "#6FC0DA",
+            "Bakery": "#936420",
+            "Dry Goods and Pasta": "#B22B0A",
+            "Snacks": "#FF61A4",
+            "Sweets": "#FFC0CB", // Pink
+            "Beverages": "#ADD8E6" // Light Blue
+        };          
+
         return Object.keys(categorizedItems).map((category, index) => {
             if (categorizedItems[category].length > 0) {
             return (
             <View key={index} style={styles.categoryContainer}>
-                <Text style={styles.categoryTitle}>{category}</Text>
+                <Text style={[styles.categoryTitle, {color: categoryColors[category] || '#000'}]}>{category}</Text>
                 <View style={styles.itemsWrapper}>
                 {categorizedItems[category].map((item, itemIndex) => (
                 <TouchableOpacity key={item.id} onPress={() => navigation.navigate('DetailScreen', { itemId: item.id, category: category })}>
@@ -192,7 +205,7 @@ const UploadReceiptScreen = () => {
 const styles = StyleSheet.create({
     safeArea: {
         flex: 1,
-        backgroundColor: '#ffffff',
+        backgroundColor: '#D8D8D8',
     },
     container: {
         // justifyContent: 'center',
@@ -215,7 +228,7 @@ const styles = StyleSheet.create({
     },
     itemContainer: {
         gap: 8,
-        height: 100,
+        height: 120,
         // marginTop: 15,
         marginBottom: 16,
         marginLeft: 10,
