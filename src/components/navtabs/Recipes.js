@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, SafeAreaView, StyleSheet, TouchableOpacity, ScrollView} from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { Image } from 'react-native';
@@ -6,6 +6,8 @@ import { useNavigation } from '@react-navigation/native';
 
 
 const Recipes = ({ navigation }) => {
+  const [selectedCategory, setSelectedCategory] = useState(null);
+
     return (
     <SafeAreaView>
       <ScrollView>
@@ -19,28 +21,33 @@ const Recipes = ({ navigation }) => {
           </View>
           <View style={styles.mainCard}>
             <View style={styles.allCardContain}>
-              <TouchableOpacity style={[styles.breakfastButton, styles.foodButton]}>
+              <TouchableOpacity style={[ styles.breakfastButton, styles.foodButton, selectedCategory === 'Breakfast' && styles.selectedCategoryButton ]} onPress={() => setSelectedCategory('Breakfast')}>
                 <Text style={styles.buttonEmojiText}>🍳</Text>
                 <Text style={styles.buttonText}>Breakfast</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={[styles.lunchButton, styles.foodButton]}>
+              <TouchableOpacity style={[ styles.lunchButton, styles.foodButton, selectedCategory === 'Lunch' && styles.selectedCategoryButton ]} onPress={() => setSelectedCategory('Lunch')}>
                 <Text style={styles.buttonEmojiText}>🥪</Text>
                 <Text style={styles.buttonText}>Lunch</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={[styles.dinnerButton , styles.foodButton]}>
+              <TouchableOpacity style={[styles.dinnerButton , styles.foodButton, selectedCategory === 'Dinner' && styles.selectedCategoryButton ]} onPress={() => setSelectedCategory('Dinner')} >
                 <Text style={styles.buttonEmojiText}>🍝</Text>
                 <Text style={styles.buttonText}>Dinner</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={[styles.snackButton, styles.foodButton]}>
+              <TouchableOpacity style={[styles.snackButton, styles.foodButton, selectedCategory === 'Snack' && styles.selectedCategoryButton ]} onPress={() => setSelectedCategory('Snack')} >
                 <Text style={styles.buttonEmojiText}>🥨</Text>
                 <Text style={styles.buttonText}>Snack</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={[styles.DessertButton, styles.foodButton]}>
+              <TouchableOpacity style={[styles.DessertButton, styles.foodButton, selectedCategory === 'Dessert' && styles.selectedCategoryButton ]} onPress={() => setSelectedCategory('Dessert')} >
                 <Text style={styles.buttonEmojiText}>🍰</Text>
                 <Text style={styles.buttonText}>Dessert</Text>
               </TouchableOpacity>
             </View>
-            <TouchableOpacity style={styles.generateButton} onPress={() => navigation.navigate('RecipeIdeas')}>
+            <TouchableOpacity style={[ styles.generateButton, selectedCategory ? styles.generateButtonActive : styles.generateButtonInactive ]} onPress={() => { 
+              if (selectedCategory) { 
+                navigation.navigate('RecipeIdeas');
+              } else { 
+                alert ('Please select a category first.'); 
+            }}} >
               <Text style={styles.generateButtonText}>Generate Recipes</Text>
             </TouchableOpacity>
           </View>
@@ -143,6 +150,17 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: '500',
     color: '#fff',
+  },
+  selectedCategoryButton: {
+    borderColor: '#7CC106',
+    borderWidth: 2,
+    backgroundColor: '#D9F2AF',
+  },
+  generateButtonActive: {
+    backgroundColor: '#7CC106', // Active color when a category is selected
+  },
+  generateButtonInactive: {
+    backgroundColor: '#E0E0E0',
   },
 })
 
