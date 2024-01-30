@@ -13,7 +13,7 @@ const Recipes = () => {
             <Text style={styles.text}>What do you want to eat?</Text>
           </View>
           <View style={styles.brocContainer}>
-            <Text style={styles.brocTextContainer}>Select a meal type and tap generate to see what Broc can make from your food inventory!</Text>
+            <Text style={styles.brocTextContainer}>Select a meal type and tap generate to see what Broc can make from your food inventory!!</Text>
             <Image style={styles.brocImage} source={require('./../../../assets/broc.png')}/>
           </View>
           <View style={styles.mainCard}>
