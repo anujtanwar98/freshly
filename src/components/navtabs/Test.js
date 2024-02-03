@@ -279,7 +279,7 @@ const styles = StyleSheet.create({
         color: '#000000', // Lighter text color for secondary information
       },
       text: {
-        color: '#7CC106',
+        color: '#168715',
         fontSize: 24,
         fontWeight: 'bold',
         flexDirection: 'row',
@@ -297,7 +297,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     addButton: {
-        backgroundColor: '#7CC106',
+        backgroundColor: '#168715',
         padding: 10,
         justifyContent: 'center',
         alignItems: 'center',
