@@ -1,9 +1,11 @@
 // DetailScreen.js
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { FontAwesome } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
+import { Octicons } from '@expo/vector-icons';
 
 const DetailScreen = ({ route }) => {
   const { itemId, category} = route.params;
@@ -33,6 +35,23 @@ const DetailScreen = ({ route }) => {
 
     fetchItemData();
   }, [itemId]);
+
+  const navigation = useNavigation();
+  useEffect(() => {
+    if (itemData) {
+      navigation.setOptions({
+        headerRight: () => (
+          <TouchableOpacity
+            onPress={() => navigation.navigate('EditFoodScreen', { itemId: itemData.id, currentName: itemData.item })}
+            style={{ flexDirection: 'row', alignItems: 'center', paddingRight: 10 }}
+          >
+            <Octicons name="pencil" size={24} color="#168715" />
+            <Text style={{ marginLeft: 5, color: '#168715', fontSize: 16 }}>Edit</Text>
+          </TouchableOpacity>
+        ),
+      });
+    }
+  }, [navigation, itemData]);
 
   const getCarbonImpactColor = (carbonImpact) => {
     switch (carbonImpact.toLowerCase()) {

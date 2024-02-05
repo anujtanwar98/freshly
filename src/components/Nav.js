@@ -13,6 +13,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import DetailScreen from "./navtabs/DetailScreen";
 import RecipeIdeas from "./navtabs/RecipeIdeas";
 import DetailRecipeScreen from "./navtabs/DetailRecipeScreen";
+import EditFoodScreen from "./navtabs/EditFoodScreen";
 import { useFonts, PlusJakartaSans_700Bold, PlusJakartaSans_600SemiBold } from '@expo-google-fonts/plus-jakarta-sans';
 import { Text } from 'react-native';
 
@@ -25,6 +26,7 @@ function UploadReceiptStackScreen() {
     <UploadReceiptStack.Navigator>
       <UploadReceiptStack.Screen name="My Food" component={UploadReceiptScreen} options={{ headerShown: false }} />
       <UploadReceiptStack.Screen name="DetailScreen" component={DetailScreen} options={{ headerTitle: '' }} />
+      <UploadReceiptStack.Screen name="EditFoodScreen" component={EditFoodScreen} options={{ headerTitle: 'Edit Item' }} />
     </UploadReceiptStack.Navigator>
   );
 }
