@@ -13,6 +13,8 @@ import { createStackNavigator } from '@react-navigation/stack';
 import DetailScreen from "./navtabs/DetailScreen";
 import RecipeIdeas from "./navtabs/RecipeIdeas";
 import DetailRecipeScreen from "./navtabs/DetailRecipeScreen";
+import { useFonts, PlusJakartaSans_700Bold, PlusJakartaSans_600SemiBold } from '@expo-google-fonts/plus-jakarta-sans';
+import { Text } from 'react-native';
 
 const Tab = createBottomTabNavigator()
 const UploadReceiptStack = createStackNavigator();
@@ -38,9 +40,17 @@ function RecipesStackScreen() {
 }
 
 const Nav = () => {
+  let [fontsLoaded] = useFonts({
+    PlusJakartaSans_700Bold,
+    PlusJakartaSans_600SemiBold,
+  });
+  
+  if (!fontsLoaded) {
+    return null;
+  }
   return (
     <NavigationContainer>
-      <Tab.Navigator 
+      {/* <Tab.Navigator 
       screenOptions={{
         tabBarActiveTintColor: '#7CC106',
         tabBarInactiveTintColor: '#808B9F',
@@ -49,8 +59,22 @@ const Nav = () => {
         },
         tabBarLabelStyle: {
           fontSize: 14,
+          fontFamily: 'PlusJakartaSans_700Bold',
         },
-        }}>
+        }}> */}
+        <Tab.Navigator 
+        screenOptions={({ route }) => ({
+          tabBarActiveTintColor: '#7CC106',
+          tabBarInactiveTintColor: '#808B9F',
+          tabBarStyle: {
+            backgroundColor: '#ffffff',
+          },
+          tabBarLabel: ({ focused, color }) => {
+            const label = route.name;
+            const fontFamily = focused ? 'PlusJakartaSans_700Bold' : 'PlusJakartaSans_600SemiBold';
+            return <Text style={{ color, fontFamily, fontSize: 14 }}>{label}</Text>;
+          },
+        })}>
           <Tab.Screen name="My Food" component={UploadReceiptStackScreen} options={{
             tabBarIcon: ({ focused  }) => (
               <FontAwesome5 name="carrot" color={focused ? '#7CC106' : '#808B9F'} size={25} />
