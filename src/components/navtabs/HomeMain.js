@@ -5,6 +5,7 @@ import * as ImagePicker from 'expo-image-picker';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Ionicons, Entypo, Feather } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
+import { AntDesign, FontAwesome5, MaterialIcons } from '@expo/vector-icons';
 
 const UploadReceiptScreen = () => {
     const [receiptImage, setReceiptImage] = useState(null);
@@ -105,8 +106,38 @@ const UploadReceiptScreen = () => {
             return <Text>Invalid data structure received.</Text>;
         }
 
-               
-
+        // const getFreshnessColor = (minDays, maxDays) => {
+        //     // Assuming you want to base the color on the minimum freshness duration
+        //     if (minDays <= 3) {
+        //         return '#E41C1C'; // Red for 0-3 days
+        //     } else if (minDays <= 5) {
+        //         return '#F78908'; // Orange for 3-5 days
+        //     } else {
+        //         return '#168715'; // DarkGreen for above 5 days
+        //     }
+        // };               
+        const getFreshnessStatus = (minDays, maxDays) => {
+            if (minDays <= 3) {
+                return {
+                    iconComponent: MaterialIcons,
+                    iconName: 'error-outline',
+                    color: '#E41C1C', // Red
+                };
+            } else if (minDays <= 5) {
+                return {
+                    iconComponent: FontAwesome5,
+                    iconName: 'eye',
+                    color: '#F78908', // Orange
+                };
+            } else {
+                return {
+                    iconComponent: AntDesign,
+                    iconName: 'checkcircleo',
+                    color: '#168715', // DarkGreen
+                };
+            }
+        };
+        
         return Object.keys(categorizedItems).map((category, index) => {
             if (categorizedItems[category].length > 0) {
             return (
@@ -118,11 +149,20 @@ const UploadReceiptScreen = () => {
                 <View key={itemIndex} style={styles.itemContainer}>
                     {/* <Text style={styles.itemText}>{item.id}</Text> */}
                     <Text style={styles.emojiText}>{item.emoji}</Text>
-                    <Text style={styles.itemText}>{item.item}</Text>
+                    <Text style={styles.itemText} numberOfLines={1}>{item.item}</Text>
                     {/* <Text style={styles.freshnessText}>Fresh for: {typeof item.freshness_duration === 'object'
                     ? `${item.freshness_duration_min}-${item.freshness_duration_max}`
                         : item.freshness_duration} days</Text> */}
-                        <Text style={styles.freshnessText}>Fresh for: {item.freshness_duration_min} - {item.freshness_duration_max} days</Text>
+                    <View style={styles.iconAndFreshnessContainer}>
+                        {React.createElement(getFreshnessStatus(item.freshness_duration_min, item.freshness_duration_max).iconComponent, {
+                        name: getFreshnessStatus(item.freshness_duration_min, item.freshness_duration_max).iconName,
+                        size: 14,
+                        color: getFreshnessStatus(item.freshness_duration_min, item.freshness_duration_max).color,
+                        style: { marginRight: 5 },
+                    })}
+                    {/* <Text style={[styles.freshnessText, { color: getFreshnessColor(item.freshness_duration_min, item.freshness_duration_max) }]}></Text> */}
+                        <Text style={[styles.freshnessText, { color: getFreshnessStatus(item.freshness_duration_min, item.freshness_duration_max).color }]} numberOfLines={1} >Fresh for {item.freshness_duration_min}-{item.freshness_duration_max} days</Text>
+                    </View>
                 </View>
                 </TouchableOpacity>
                 ))}
@@ -217,7 +257,8 @@ const styles = StyleSheet.create({
     },
     itemContainer: {
         gap: 8,
-        height: 120,
+        // height: 120,
+        minHeight: 120,
         // marginTop: 15,
         marginBottom: 16,
         marginLeft: 10,
@@ -231,6 +272,12 @@ const styles = StyleSheet.create({
         shadowOffset: {width: -2, height: 4},
         shadowOpacity: 0.2,
         shadowRadius: 3,
+        display: 'flex',
+        flexDirection: 'column',
+    },
+    iconAndFreshnessContainer: {
+        flexDirection: 'row', // Align items in a row
+        alignItems: 'center', // Align items vertically in the center
     },
     itemsWrapper: {
         flexDirection: 'row',
@@ -262,10 +309,16 @@ const styles = StyleSheet.create({
         flex: 1, // Takes up remaining space to push the freshness text to the end
         fontSize: 16, // Readable text size
         color: '#000000', // Dark text for better readability
+        flexShrink: 1,
+        flexWrap: 'wrap', 
+        overflow: 'hidden',
       },
       freshnessText: {
         fontSize: 14, // Slightly smaller text size
         color: '#000000', // Lighter text color for secondary information
+        flexShrink: 1,
+        flexWrap: 'wrap', 
+        overflow: 'hidden',
       },
       text: {
         color: '#168715',
