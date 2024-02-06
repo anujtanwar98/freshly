@@ -26,6 +26,12 @@ const EditFoodScreen = ({ route, navigation }) => {
         // Save the updated categories back to AsyncStorage
         await AsyncStorage.setItem('categorizedItems', JSON.stringify(categories));
 
+        // navigation.goBack({
+        //   updatedItemId: itemId,
+        //   updatedItemName: name,
+        // });
+        navigation.navigate('DetailScreen', { updatedItemId: itemId, updatedItemName: name });
+
         // Optionally, show a success message or navigate back
         Alert.alert("Success", "Item name updated successfully");
         navigation.goBack(); // Go back to the previous screen

@@ -6,6 +6,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Ionicons, Entypo, Feather } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { AntDesign, FontAwesome5, MaterialIcons } from '@expo/vector-icons';
+import { useFocusEffect } from '@react-navigation/native';
 
 const UploadReceiptScreen = () => {
     const [receiptImage, setReceiptImage] = useState(null);
@@ -137,6 +138,23 @@ const UploadReceiptScreen = () => {
                 };
             }
         };
+
+        useFocusEffect(
+            React.useCallback(() => {
+              const loadCategorizedItems = async () => {
+                try {
+                  const savedItems = await AsyncStorage.getItem('categorizedItems');
+                  if (savedItems !== null) {
+                    setCategorizedItems(JSON.parse(savedItems));
+                  }
+                } catch (error) {
+                  console.error('Error loading categorized items:', error);
+                }
+              };
+          
+              loadCategorizedItems();
+            }, [])
+          );
         
         return Object.keys(categorizedItems).map((category, index) => {
             if (categorizedItems[category].length > 0) {
