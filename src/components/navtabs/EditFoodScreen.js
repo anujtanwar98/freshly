@@ -10,25 +10,26 @@ const EditFoodScreen = ({ route, navigation }) => {
   const [maxFreshness, setMaxFreshness] = useState(currentMaxFreshness ? currentMaxFreshness.toString() : '');
   const [category, setCategory] = useState(currentCategory);
 
+  // const categories = ["Fruits", "Vegetables", "Meat", "Seafood", "Dairy", "Bakery","Dry Goods and Pasta", "Snacks", "Sweets", "Beverages" ];
 
   const saveItemDetails = async () => {
     try {
       const storedData = await AsyncStorage.getItem('categorizedItems');
       if (storedData !== null) {
-        let categories = JSON.parse(storedData);
+        let allCategories = JSON.parse(storedData);
 
         // Loop through each category to find the item and update its name
-        Object.keys(categories).forEach(category => {
-          categories[category] = categories[category].map(item => {
+        Object.keys(allCategories).forEach(catKey => {
+          allCategories[catKey] = allCategories[catKey].map(item => {
             if (item.id === itemId) {
-              return { ...item, item: name, freshness_duration_min: parseInt(minFreshness, 10), freshness_duration_max: parseInt(maxFreshness, 10) };
+              return { ...item, item: name, category: category, freshness_duration_min: parseInt(minFreshness, 10), freshness_duration_max: parseInt(maxFreshness, 10) };
             }
             return item;
           });
         });
 
         // Save the updated categories back to AsyncStorage
-        await AsyncStorage.setItem('categorizedItems', JSON.stringify(categories));
+        await AsyncStorage.setItem('categorizedItems', JSON.stringify(allCategories));
 
         // navigation.goBack({
         //   updatedItemId: itemId,
@@ -79,12 +80,6 @@ const EditFoodScreen = ({ route, navigation }) => {
         onPress={saveItemDetails}
       />
     </View>
-
-    //   <Button
-    //     title="Save"
-    //     onPress={saveName}
-    //   />
-    // </View>
   );
 };
 

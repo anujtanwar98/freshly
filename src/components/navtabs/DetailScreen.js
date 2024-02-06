@@ -82,7 +82,7 @@ const DetailScreen = ({ route }) => {
           <Text style={styles.emoji}>{itemData.emoji}</Text>
             <View style={styles.nameCategory}>
               <Text style={styles.title}>{itemData.item}</Text>
-              <Text style={styles.category}>{category}</Text>
+              <Text style={styles.category}>{itemData.category}</Text>
             </View>
         </View>
         <View style={styles.details}>
