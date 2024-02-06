@@ -18,25 +18,28 @@ const EditFoodScreen = ({ route, navigation }) => {
       if (storedData !== null) {
         let allCategories = JSON.parse(storedData);
 
-        let updatedItem = false;
+        let itemUpdated = false;
 
         // Loop through each category to find the item and update its name
         Object.keys(allCategories).forEach(catKey => {
-          allCategories[catKey] = allCategories[catKey].filter(item => {
+          allCategories[catKey] = allCategories[catKey].map(item => {
             if (item.id === itemId) {
               if (item.category !== category) {
                 itemUpdated = { ...item, item: name, category: category, freshness_duration_min: parseInt(minFreshness, 10), freshness_duration_max: parseInt(maxFreshness, 10) };
-                return false; // Remove item from this category
+                return itemUpdated; // Update item with new values
               } else {
                 return { ...item, item: name, freshness_duration_min: parseInt(minFreshness, 10), freshness_duration_max: parseInt(maxFreshness, 10) };
               }
             }
-            return true; // Keep other items as is
+            return item; // Keep other items as is
           });
         });
 
-        // If the item was updated and removed from its original category, add it to the new category
+        // If the item was updated and removed from its original category, remove it from the old category
         if (itemUpdated) {
+          Object.keys(allCategories).forEach(catKey => {
+            allCategories[catKey] = allCategories[catKey].filter(item => item.id !== itemId);
+          });
           if (!allCategories[category]) {
             allCategories[category] = []; // Create the category if it doesn't exist
           }
