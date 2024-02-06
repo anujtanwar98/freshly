@@ -42,7 +42,7 @@ const DetailScreen = ({ route }) => {
       navigation.setOptions({
         headerRight: () => (
           <TouchableOpacity
-            onPress={() => navigation.navigate('EditFoodScreen', { itemId: itemData.id, currentName: itemData.item })}
+            onPress={() => navigation.navigate('EditFoodScreen', { itemId: itemData.id, currentName: itemData.item, currentMinFreshness: itemData.freshness_duration_min, currentMaxFreshness: itemData.freshness_duration_max })}
             style={{ flexDirection: 'row', alignItems: 'center', paddingRight: 10 }}
           >
             <Octicons name="pencil" size={24} color="#168715" />

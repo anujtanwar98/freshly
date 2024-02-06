@@ -4,10 +4,13 @@ import { View, Text, TextInput, Button, StyleSheet, Alert } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const EditFoodScreen = ({ route, navigation }) => {
-  const { itemId, currentName } = route.params;
+  const { itemId, currentName, currentMinFreshness, currentMaxFreshness } = route.params;
   const [name, setName] = useState(currentName);
+  const [minFreshness, setMinFreshness] = useState(currentMinFreshness ? currentMinFreshness.toString() : '');
+const [maxFreshness, setMaxFreshness] = useState(currentMaxFreshness ? currentMaxFreshness.toString() : '');
 
-  const saveName = async () => {
+
+  const saveItemDetails = async () => {
     try {
       const storedData = await AsyncStorage.getItem('categorizedItems');
       if (storedData !== null) {
@@ -17,7 +20,7 @@ const EditFoodScreen = ({ route, navigation }) => {
         Object.keys(categories).forEach(category => {
           categories[category] = categories[category].map(item => {
             if (item.id === itemId) {
-              return { ...item, item: name }; // Update the name of the item
+              return { ...item, item: name, freshness_duration_min: parseInt(minFreshness, 10), freshness_duration_max: parseInt(maxFreshness, 10) };
             }
             return item;
           });
@@ -50,11 +53,31 @@ const EditFoodScreen = ({ route, navigation }) => {
         onChangeText={setName}
         value={name}
       />
+      <Text style={styles.label}>Edit Min Freshness Duration:</Text>
+      <TextInput
+        style={styles.input}
+        onChangeText={setMinFreshness}
+        value={minFreshness}
+        keyboardType="numeric"
+      />
+      <Text style={styles.label}>Edit Max Freshness Duration:</Text>
+      <TextInput
+        style={styles.input}
+        onChangeText={setMaxFreshness}
+        value={maxFreshness}
+        keyboardType="numeric"
+      />
       <Button
         title="Save"
-        onPress={saveName}
+        onPress={saveItemDetails}
       />
     </View>
+
+    //   <Button
+    //     title="Save"
+    //     onPress={saveName}
+    //   />
+    // </View>
   );
 };
 
