@@ -14,6 +14,11 @@ const EditFoodScreen = ({ route, navigation }) => {
   const categories = ["Fruits", "Vegetables", "Meat", "Seafood", "Dairy", "Bakery","Dry Goods and Pasta", "Snacks", "Sweets", "Beverages" ];
 
   const saveItemDetails = async () => {
+    if (!category) {
+      // Display an error alert to the user
+      Alert.alert("Error", "Please select a category");
+      return; // Exit the function to prevent further execution
+    }
     try {
       const storedData = await AsyncStorage.getItem('categorizedItems');
       if (storedData !== null) {
