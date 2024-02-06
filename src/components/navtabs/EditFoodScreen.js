@@ -18,16 +18,30 @@ const EditFoodScreen = ({ route, navigation }) => {
       if (storedData !== null) {
         let allCategories = JSON.parse(storedData);
 
+        let updatedItem = false;
+
         // Loop through each category to find the item and update its name
         Object.keys(allCategories).forEach(catKey => {
-          allCategories[catKey] = allCategories[catKey].map(item => {
+          allCategories[catKey] = allCategories[catKey].filter(item => {
             if (item.id === itemId) {
-              return { ...item, item: name, category: category, freshness_duration_min: parseInt(minFreshness, 10), freshness_duration_max: parseInt(maxFreshness, 10) };
+              if (item.category !== category) {
+                itemUpdated = { ...item, item: name, category: category, freshness_duration_min: parseInt(minFreshness, 10), freshness_duration_max: parseInt(maxFreshness, 10) };
+                return false; // Remove item from this category
+              } else {
+                return { ...item, item: name, freshness_duration_min: parseInt(minFreshness, 10), freshness_duration_max: parseInt(maxFreshness, 10) };
+              }
             }
-            return item;
+            return true; // Keep other items as is
           });
         });
 
+        // If the item was updated and removed from its original category, add it to the new category
+        if (itemUpdated) {
+          if (!allCategories[category]) {
+            allCategories[category] = []; // Create the category if it doesn't exist
+          }
+          allCategories[category].push(itemUpdated);
+        }
         // Save the updated categories back to AsyncStorage
         await AsyncStorage.setItem('categorizedItems', JSON.stringify(allCategories));
 
