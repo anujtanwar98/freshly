@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet, Alert } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import RNPickerSelect from 'react-native-picker-select';
 
 const EditFoodScreen = ({ route, navigation }) => {
   const { itemId, currentName, currentCategory, currentMinFreshness, currentMaxFreshness } = route.params;
@@ -10,7 +11,7 @@ const EditFoodScreen = ({ route, navigation }) => {
   const [maxFreshness, setMaxFreshness] = useState(currentMaxFreshness ? currentMaxFreshness.toString() : '');
   const [category, setCategory] = useState(currentCategory);
 
-  // const categories = ["Fruits", "Vegetables", "Meat", "Seafood", "Dairy", "Bakery","Dry Goods and Pasta", "Snacks", "Sweets", "Beverages" ];
+  const categories = ["Fruits", "Vegetables", "Meat", "Seafood", "Dairy", "Bakery","Dry Goods and Pasta", "Snacks", "Sweets", "Beverages" ];
 
   const saveItemDetails = async () => {
     try {
@@ -73,11 +74,13 @@ const EditFoodScreen = ({ route, navigation }) => {
         value={name}
       />
       <Text style={styles.label}>Edit Category:</Text>
-      <TextInput
-        style={styles.input}
-        onChangeText={setCategory}
-        value={category}
-      />
+      <RNPickerSelect
+          onValueChange={(value) => setCategory(value)}
+          items={categories.map(cat => ({ label: cat, value: cat }))}
+          placeholder={{ label: 'Select a category...', value: null }}
+          style={pickerSelectStyles}
+          value={category} 
+        />
       <Text style={styles.label}>Edit Min Freshness Duration:</Text>
       <TextInput
         style={styles.input}
@@ -117,6 +120,34 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     marginBottom: 12,
     paddingHorizontal: 8,
+  },
+  picker: {
+    height: 50, // Make sure this height is enough
+    width: '100%',
+    backgroundColor: 'lightblue',
+    marginBottom: 12,
+  },
+});
+const pickerSelectStyles = StyleSheet.create({
+  inputIOS: {
+      fontSize: 16,
+      paddingVertical: 12,
+      paddingHorizontal: 10,
+      borderWidth: 1,
+      borderColor: 'gray',
+      borderRadius: 4,
+      color: 'black',
+      paddingRight: 30, // to ensure the text is never behind the icon
+  },
+  inputAndroid: {
+      fontSize: 16,
+      paddingHorizontal: 10,
+      paddingVertical: 8,
+      borderWidth: 0.5,
+      borderColor: 'purple',
+      borderRadius: 8,
+      color: 'black',
+      paddingRight: 30, // to ensure the text is never behind the icon
   },
 });
 
