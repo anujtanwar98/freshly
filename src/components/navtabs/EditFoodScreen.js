@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet, Alert } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import RNPickerSelect from 'react-native-picker-select';
+import { useFonts, PlusJakartaSans_500Medium, PlusJakartaSans_400Regular, PlusJakartaSans_600SemiBold } from '@expo-google-fonts/plus-jakarta-sans';
 
 const EditFoodScreen = ({ route, navigation }) => {
   const { itemId, currentName, currentCategory, currentMinFreshness, currentMaxFreshness } = route.params;
@@ -68,17 +69,28 @@ const EditFoodScreen = ({ route, navigation }) => {
       console.error('Error saving the updated name:', error);
       Alert.alert("Error", "Failed to update the item name");
     }
+
+  let [fontsLoaded] = useFonts({
+    PlusJakartaSans_500Medium,
+    PlusJakartaSans_400Regular,
+    PlusJakartaSans_600SemiBold,
+  });
+  
+  if (!fontsLoaded) {
+    return null;
+  }
+
   };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.label}>Edit Name:</Text>
+      <Text style={[styles.label, { fontFamily: 'PlusJakartaSans_600SemiBold' }]}>Edit Name:</Text>
       <TextInput
         style={styles.input}
         onChangeText={setName}
         value={name}
       />
-      <Text style={styles.label}>Edit Category:</Text>
+      <Text style={[styles.label, { fontFamily: 'PlusJakartaSans_600SemiBold' }]}>Edit Category:</Text>
       <RNPickerSelect
           onValueChange={(value) => setCategory(value)}
           items={categories.map(cat => ({ label: cat, value: cat }))}
@@ -86,14 +98,14 @@ const EditFoodScreen = ({ route, navigation }) => {
           style={pickerSelectStyles}
           value={category} 
         />
-      <Text style={styles.label}>Edit Min Freshness Duration:</Text>
+      <Text style={[styles.label, { fontFamily: 'PlusJakartaSans_600SemiBold' }]}>Edit Min Freshness Duration:</Text>
       <TextInput
         style={styles.input}
         onChangeText={setMinFreshness}
         value={minFreshness}
         keyboardType="numeric"
       />
-      <Text style={styles.label}>Edit Max Freshness Duration:</Text>
+      <Text style={[styles.label, { fontFamily: 'PlusJakartaSans_600SemiBold' }]}>Edit Max Freshness Duration:</Text>
       <TextInput
         style={styles.input}
         onChangeText={setMaxFreshness}
@@ -125,6 +137,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     marginBottom: 12,
     paddingHorizontal: 8,
+    fontFamily: 'PlusJakartaSans_500Medium',
   },
   picker: {
     height: 50, // Make sure this height is enough
@@ -143,6 +156,7 @@ const pickerSelectStyles = StyleSheet.create({
       borderRadius: 4,
       color: 'black',
       paddingRight: 30, // to ensure the text is never behind the icon
+      fontFamily: 'PlusJakartaSans_500Medium',
   },
   inputAndroid: {
       fontSize: 16,
