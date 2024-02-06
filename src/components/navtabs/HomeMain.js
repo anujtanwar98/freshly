@@ -17,6 +17,23 @@ const UploadReceiptScreen = () => {
 
     const navigation = useNavigation();
 
+    useFocusEffect(
+        React.useCallback(() => {
+          const loadCategorizedItems = async () => {
+            try {
+              const savedItems = await AsyncStorage.getItem('categorizedItems');
+              if (savedItems !== null) {
+                setCategorizedItems(JSON.parse(savedItems));
+              }
+            } catch (error) {
+              console.error('Error loading categorized items:', error);
+            }
+          };
+      
+          loadCategorizedItems();
+        }, [])
+      );
+
     useEffect(() => {
         const loadCategorizedItems = async () => {
             try {
@@ -139,22 +156,6 @@ const UploadReceiptScreen = () => {
             }
         };
 
-        useFocusEffect(
-            React.useCallback(() => {
-              const loadCategorizedItems = async () => {
-                try {
-                  const savedItems = await AsyncStorage.getItem('categorizedItems');
-                  if (savedItems !== null) {
-                    setCategorizedItems(JSON.parse(savedItems));
-                  }
-                } catch (error) {
-                  console.error('Error loading categorized items:', error);
-                }
-              };
-          
-              loadCategorizedItems();
-            }, [])
-          );
         
         return Object.keys(categorizedItems).map((category, index) => {
             if (categorizedItems[category].length > 0) {

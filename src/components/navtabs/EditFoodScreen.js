@@ -4,10 +4,11 @@ import { View, Text, TextInput, Button, StyleSheet, Alert } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const EditFoodScreen = ({ route, navigation }) => {
-  const { itemId, currentName, currentMinFreshness, currentMaxFreshness } = route.params;
+  const { itemId, currentName, currentCategory, currentMinFreshness, currentMaxFreshness } = route.params;
   const [name, setName] = useState(currentName);
   const [minFreshness, setMinFreshness] = useState(currentMinFreshness ? currentMinFreshness.toString() : '');
-const [maxFreshness, setMaxFreshness] = useState(currentMaxFreshness ? currentMaxFreshness.toString() : '');
+  const [maxFreshness, setMaxFreshness] = useState(currentMaxFreshness ? currentMaxFreshness.toString() : '');
+  const [category, setCategory] = useState(currentCategory);
 
 
   const saveItemDetails = async () => {
@@ -52,6 +53,12 @@ const [maxFreshness, setMaxFreshness] = useState(currentMaxFreshness ? currentMa
         style={styles.input}
         onChangeText={setName}
         value={name}
+      />
+      <Text style={styles.label}>Edit Category:</Text>
+      <TextInput
+        style={styles.input}
+        onChangeText={setCategory}
+        value={category}
       />
       <Text style={styles.label}>Edit Min Freshness Duration:</Text>
       <TextInput

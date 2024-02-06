@@ -12,6 +12,7 @@ const DetailScreen = ({ route }) => {
   const [itemData, setItemData] = useState(null);
 
   useEffect(() => {
+    console.log(itemData);
     const fetchItemData = async () => {
       try {
         const storedData = await AsyncStorage.getItem('categorizedItems');
@@ -26,6 +27,7 @@ const DetailScreen = ({ route }) => {
             }
           }
           setItemData(foundItem);
+          console.log(itemData);
         }
       } catch (error) {
         console.error('Error fetching item data:', error);
@@ -42,7 +44,7 @@ const DetailScreen = ({ route }) => {
       navigation.setOptions({
         headerRight: () => (
           <TouchableOpacity
-            onPress={() => navigation.navigate('EditFoodScreen', { itemId: itemData.id, currentName: itemData.item, currentMinFreshness: itemData.freshness_duration_min, currentMaxFreshness: itemData.freshness_duration_max })}
+            onPress={() => navigation.navigate('EditFoodScreen', { itemId: itemData.id, currentName: itemData.item, currentCategory: itemData.category, currentMinFreshness: itemData.freshness_duration_min, currentMaxFreshness: itemData.freshness_duration_max })}
             style={{ flexDirection: 'row', alignItems: 'center', paddingRight: 10 }}
           >
             <Octicons name="pencil" size={24} color="#168715" />
