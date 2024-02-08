@@ -4,9 +4,10 @@ import { View, Text, TextInput, Button, StyleSheet, Alert, TouchableOpacity, Saf
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import RNPickerSelect from 'react-native-picker-select';
 import { useFonts, PlusJakartaSans_500Medium, PlusJakartaSans_400Regular, PlusJakartaSans_600SemiBold } from '@expo-google-fonts/plus-jakarta-sans';
+import { Entypo } from '@expo/vector-icons';
 
 const EditFoodScreen = ({ route, navigation }) => {
-  const { itemId, currentName, currentCategory, currentMinFreshness, currentMaxFreshness } = route.params;
+  const { itemId, currentName, currentCategory, currentMinFreshness, currentMaxFreshness, currentEmoji } = route.params;
   const [name, setName] = useState(currentName);
   const [minFreshness, setMinFreshness] = useState(currentMinFreshness ? currentMinFreshness.toString() : '');
   const [maxFreshness, setMaxFreshness] = useState(currentMaxFreshness ? currentMaxFreshness.toString() : '');
@@ -110,6 +111,9 @@ const EditFoodScreen = ({ route, navigation }) => {
   return (
     <SafeAreaView style={[styles.safeView,{ flex: 1 }]}>
       <View style={styles.container}>
+        <View style={styles.editEmojiBox}>
+          <Text style={styles.emojiStyle}>{currentEmoji}</Text>
+        </View>
         <View style={styles.editNameBox}>
           <Text style={[styles.label, { fontFamily: 'PlusJakartaSans_600SemiBold' }]}>Item Name:</Text>
           <TextInput
@@ -175,7 +179,7 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    justifyContent: 'center',
+    // justifyContent: 'center',
     alignItems: 'center',
     padding: 16,
   },
@@ -267,6 +271,23 @@ const styles = StyleSheet.create({
     fontFamily: 'PlusJakartaSans_600SemiBold',
     textAlign: 'center',
     fontSize: 14,
+  },
+  editEmojiBox: {
+    // width: '100%',
+    marginBottom: 12,
+    backgroundColor: '#ffffff',
+    borderRadius: '50%',
+    borderWidth: 1,
+    borderColor: '#e9e9e9',
+    padding: 10,
+    height: 100,
+    width: 100,
+    justifyContent: 'center',
+  },
+  emojiStyle: {
+    fontSize: 60,
+    textAlign: 'center',
+    // margin: 10,
   },
 });
 const pickerSelectStyles = StyleSheet.create({
