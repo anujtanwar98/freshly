@@ -66,6 +66,18 @@ const DetailScreen = ({ route }) => {
         return '#F00000';
     }
   };
+
+  const getFreshnessColor = (minDays, maxDays) => {
+    // Assuming you want to base the color on the minimum freshness duration
+    if (maxDays <= 3) {
+        return '#E41C1C'; // Red for 0-3 days
+    } else if (maxDays <= 5) {
+        return '#F78908'; // Orange for 3-5 days
+    } else {
+        return '#168715'; // DarkGreen for above 5 days
+    }
+  };   
+
   let [fontsLoaded] = useFonts({
     PlusJakartaSans_500Medium,
     PlusJakartaSans_400Regular,
@@ -100,7 +112,8 @@ const DetailScreen = ({ route }) => {
         <View style={styles.details}>
           <View style={styles.freshness}>
             <Text style={styles.freshFor}>Fresh For: </Text>
-            <Text style={styles.freshForDays}>{itemData.freshness_duration_min} - {itemData.freshness_duration_max} days</Text>
+            <Text style={[styles.freshForDays, { color: getFreshnessColor(itemData.freshness_duration_min, itemData.freshness_duration_max) }]}>{itemData.freshness_duration_min} - {itemData.freshness_duration_max} days</Text>
+            {/* <Text style={[styles.freshnessText, { color: getFreshnessColor(item.freshness_duration_min, item.freshness_duration_max) }]}></Text> */}
           </View>
           <View style={styles.impact}>
             <Text style={styles.carbonText}>Carbon Impact: </Text>
