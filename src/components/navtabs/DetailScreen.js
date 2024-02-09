@@ -6,6 +6,7 @@ import { FontAwesome } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { Octicons } from '@expo/vector-icons';
+import { useFonts, PlusJakartaSans_500Medium, PlusJakartaSans_400Regular, PlusJakartaSans_600SemiBold, PlusJakartaSans_700Bold, PlusJakartaSans_800ExtraBold } from '@expo-google-fonts/plus-jakarta-sans';
 
 const DetailScreen = ({ route }) => {
   const { itemId, category} = route.params;
@@ -58,13 +59,24 @@ const DetailScreen = ({ route }) => {
   const getCarbonImpactColor = (carbonImpact) => {
     switch (carbonImpact.toLowerCase()) {
       case 'low':
-        return '#7CC106';
+        return '#168715';
       case 'medium':
         return '#FF8A00';
       case 'high':
         return '#F00000';
     }
   };
+  let [fontsLoaded] = useFonts({
+    PlusJakartaSans_500Medium,
+    PlusJakartaSans_400Regular,
+    PlusJakartaSans_600SemiBold,
+    PlusJakartaSans_700Bold,
+    PlusJakartaSans_800ExtraBold,
+  });
+
+  if (!fontsLoaded) {
+      return null;
+  }
 
   if (!itemData) {
     return (
@@ -102,7 +114,7 @@ const DetailScreen = ({ route }) => {
             <MaterialCommunityIcons name="fridge-outline" size={24} color="black" /> Fridge
             </Text>
             <Text style={styles.storageTipsFridgeText}>
-              lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+              {`1. lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud\n2. lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud `}
             </Text>
           </View>
           <View style={styles.storageTipsFreezer}>
@@ -110,7 +122,7 @@ const DetailScreen = ({ route }) => {
             <FontAwesome name="thermometer-quarter" size={24} color="black" /> Freezer
             </Text>
             <Text style={styles.storageTipsFreezerText}>
-              lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+            {`1. lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud\n2. lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud `}
             </Text>
           </View>
         </View>
@@ -149,17 +161,18 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 24,
-    fontWeight: 'bold',
+    fontFamily: 'PlusJakartaSans_600SemiBold',
   },
   category: {
-    color: 'green',
+    color: '#616774',
     backgroundColor: '#fff',
-    borderColor: 'green',
+    borderColor: '#616774',
     borderWidth: 1,
-    borderRadius: 10,
+    borderRadius: 20,
     padding: 10,
     marginTop: 10,
-    fontSize: 14,
+    fontSize: 12,
+    fontFamily: 'PlusJakartaSans_700Bold',
   },
   freshness: {
     backgroundColor: '#fff',
@@ -194,31 +207,33 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
   },
   freshFor: {
-    fontSize: 18,
-    fontWeight: '600',
+    fontSize: 14,
+    fontFamily: 'PlusJakartaSans_600SemiBold',
     paddingBottom: 10,
+    color: '#163C16',
   },
   freshForDays: {
     fontSize: 22,
     fontWeight: '600',
-    color: '#7CC106',
+    color: '#168715',
   },
   carbonText: {
-    fontSize: 18,
-    fontWeight: '600',
+    fontSize: 14,
+    fontFamily: 'PlusJakartaSans_600SemiBold',
     paddingBottom: 10,
+    color: '#163C16',
   },
   carbonImpact: {
     fontSize: 22,
-    fontWeight: '600',
-    color: '#7CC106',
+    fontFamily: 'PlusJakartaSans_600SemiBold',
+    color: '#168715',
   },
   storageTips: {
     padding: 20,
   },
   storageTipsTitle: {
     fontSize: 18,
-    fontWeight: 'semi-bold',
+    fontFamily: 'PlusJakartaSans_600SemiBold',
   },
   storageTipsFridge: {
     backgroundColor: '#fff',
@@ -227,12 +242,13 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   storageTipsFridgeTitle: {
-    fontSize: 18,
-    fontWeight: 'semi-bold',
+    fontSize: 16,
+    fontFamily: 'PlusJakartaSans_600SemiBold',
     paddingBottom: 10,
   },
   storageTipsFridgeText: {
-    fontSize: 16,
+    fontSize: 14,
+    fontFamily: 'PlusJakartaSans_400Regular',
   },
   storageTipsFreezer: {
     backgroundColor: '#fff',
@@ -241,12 +257,13 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   storageTipsFreezerTitle: {
-    fontSize: 18,
-    fontWeight: 'semi-bold',
+    fontSize: 16,
+    fontFamily: 'PlusJakartaSans_600SemiBold',
     paddingBottom: 10,
   },
   storageTipsFreezerText: {
-    fontSize: 16,
+    fontSize: 14,
+    fontFamily: 'PlusJakartaSans_400Regular',
   },
 });
 

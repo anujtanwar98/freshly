@@ -7,7 +7,7 @@ import { Ionicons, Entypo, Feather } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { AntDesign, FontAwesome5, MaterialIcons } from '@expo/vector-icons';
 import { useFocusEffect } from '@react-navigation/native';
-import { useFonts, PlusJakartaSans_500Medium, PlusJakartaSans_400Regular, PlusJakartaSans_600SemiBold } from '@expo-google-fonts/plus-jakarta-sans';
+import { useFonts, PlusJakartaSans_500Medium, PlusJakartaSans_400Regular, PlusJakartaSans_600SemiBold, PlusJakartaSans_800ExtraBold } from '@expo-google-fonts/plus-jakarta-sans';
 
 const UploadReceiptScreen = () => {
     const [receiptImage, setReceiptImage] = useState(null);
@@ -217,6 +217,7 @@ const UploadReceiptScreen = () => {
         PlusJakartaSans_500Medium,
         PlusJakartaSans_400Regular,
         PlusJakartaSans_600SemiBold,
+        PlusJakartaSans_800ExtraBold,
     });
 
     if (!fontsLoaded) {
@@ -409,6 +410,7 @@ const styles = StyleSheet.create({
         alignItems: 'flex-start',
         paddingTop: 16,
         paddingHorizontal: 20,
+        fontFamily: 'PlusJakartaSans_800ExtraBold',
     },
     button: {
         backgroundColor: '#BDFFBE',
