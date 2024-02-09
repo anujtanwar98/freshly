@@ -281,7 +281,7 @@ const UploadReceiptScreen = () => {
             </View>
         </Modal>
         <Modal animationType="slide" transparent={true} visible={modalVisible} onRequestClose={() => { setModalVisible(!modalVisible); }} >
-            <View style={styles.centeredView}>
+            <View style={styles.modalCenteredView}>
                 <View style={styles.modalView}>
                     <TouchableOpacity style={styles.buttonClose} onPress={() => setModalVisible(!modalVisible)} >
                         <Ionicons name="close-circle" size={30} color="black" />
@@ -442,6 +442,14 @@ const styles = StyleSheet.create({
         alignItems: "center",
         marginTop: 22
     },
+    modalCenteredView: {
+        position: 'absolute', // Position the view absolutely
+        bottom: 150, // Adjust this value as needed to position the modal above the button
+        right: 10, // Adjust this value as needed for horizontal alignment
+        justifyContent: "flex-end", // Align content at the bottom
+        alignItems: "flex-end", // Align content on the right
+        right: -20,
+    },
     buttonClose: {
         position: 'absolute',
         top: 10,
@@ -450,7 +458,7 @@ const styles = StyleSheet.create({
     },
     modalView: {
         margin: 20,
-        backgroundColor: "white",
+        // backgroundColor: "white",
         borderRadius: 20,
         padding: 35,
         alignItems: "center",
