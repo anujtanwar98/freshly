@@ -5,6 +5,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import RNPickerSelect from 'react-native-picker-select';
 import { useFonts, PlusJakartaSans_500Medium, PlusJakartaSans_400Regular, PlusJakartaSans_600SemiBold } from '@expo-google-fonts/plus-jakarta-sans';
 import { Entypo } from '@expo/vector-icons';
+import EmojiSelector, { Categories } from 'react-native-emoji-selector';
 
 const EditFoodScreen = ({ route, navigation }) => {
   const { itemId, currentName, currentCategory, currentMinFreshness, currentMaxFreshness, currentEmoji } = route.params;
@@ -12,6 +13,8 @@ const EditFoodScreen = ({ route, navigation }) => {
   const [minFreshness, setMinFreshness] = useState(currentMinFreshness ? currentMinFreshness.toString() : '');
   const [maxFreshness, setMaxFreshness] = useState(currentMaxFreshness ? currentMaxFreshness.toString() : '');
   const [category, setCategory] = useState(currentCategory);
+  const [emojiSelectorVisible, setEmojiSelectorVisible] = useState(false);
+  const [emoji, setEmoji] = useState(currentEmoji);
 
   const categories = ["Fruits", "Vegetables", "Meat", "Seafood", "Dairy", "Bakery","Dry Goods and Pasta", "Snacks", "Sweets", "Beverages" ];
 
@@ -36,7 +39,7 @@ const EditFoodScreen = ({ route, navigation }) => {
                 itemUpdated = { ...item, item: name, category: category, emoji: emoji, freshness_duration_min: parseInt(minFreshness, 10), freshness_duration_max: parseInt(maxFreshness, 10) };
                 return itemUpdated; // Update item with new values
               } else {
-                return { ...item, item: name, freshness_duration_min: parseInt(minFreshness, 10), freshness_duration_max: parseInt(maxFreshness, 10) };
+                return { ...item, item: name, freshness_duration_min: parseInt(minFreshness, 10), freshness_duration_max: parseInt(maxFreshness, 10), emoji: emoji };
               }
             }
             return item; // Keep other items as is
@@ -113,10 +116,23 @@ const EditFoodScreen = ({ route, navigation }) => {
       <View style={styles.container}>
         <View style={styles.editEmojiContainer}>
           <View style={styles.editEmojiBox}>
-            <Text style={styles.emojiStyle}>{currentEmoji}</Text>
+            {/* <Text style={styles.emojiStyle}>{currentEmoji}</Text> */}
+            <Text style={styles.emojiStyle}>{emoji}</Text>
           </View>
           <View style={styles.editEmojiButton}>
+          <TouchableOpacity onPress={() => setEmojiSelectorVisible(!emojiSelectorVisible)}>
             <Text style={styles.editEmojiText}>Change Emoji</Text>
+          </TouchableOpacity>
+          {emojiSelectorVisible && (
+          <EmojiSelector
+            onEmojiSelected={emoji => {
+              setEmoji(emoji);
+              setEmojiSelectorVisible(false);
+            }}
+            // showSearchBar={false}
+            category={Categories.food}
+          />
+            )}
           </View>
         </View>
         <View style={styles.editNameBox}>
@@ -277,6 +293,9 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 14,
   },
+  editEmojiContainer: {
+    alignItems: 'center',
+  },
   editEmojiBox: {
     // width: '100%',
     marginBottom: 12,
@@ -288,6 +307,7 @@ const styles = StyleSheet.create({
     height: 100,
     width: 100,
     justifyContent: 'center',
+    alignItems: 'center',
   },
   emojiStyle: {
     fontSize: 60,
@@ -300,6 +320,9 @@ const styles = StyleSheet.create({
     fontSize: 14,
     textAlign: 'center',
     fontFamily: 'PlusJakartaSans_600SemiBold',
+  },
+  emojiSelector: {
+    height: 100,
   },
 });
 const pickerSelectStyles = StyleSheet.create({
