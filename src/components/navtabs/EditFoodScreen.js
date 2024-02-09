@@ -33,7 +33,7 @@ const EditFoodScreen = ({ route, navigation }) => {
           allCategories[catKey] = allCategories[catKey].map(item => {
             if (item.id === itemId) {
               if (item.category !== category) {
-                itemUpdated = { ...item, item: name, category: category, freshness_duration_min: parseInt(minFreshness, 10), freshness_duration_max: parseInt(maxFreshness, 10) };
+                itemUpdated = { ...item, item: name, category: category, emoji: emoji, freshness_duration_min: parseInt(minFreshness, 10), freshness_duration_max: parseInt(maxFreshness, 10) };
                 return itemUpdated; // Update item with new values
               } else {
                 return { ...item, item: name, freshness_duration_min: parseInt(minFreshness, 10), freshness_duration_max: parseInt(maxFreshness, 10) };
@@ -111,8 +111,13 @@ const EditFoodScreen = ({ route, navigation }) => {
   return (
     <SafeAreaView style={[styles.safeView,{ flex: 1 }]}>
       <View style={styles.container}>
-        <View style={styles.editEmojiBox}>
-          <Text style={styles.emojiStyle}>{currentEmoji}</Text>
+        <View style={styles.editEmojiContainer}>
+          <View style={styles.editEmojiBox}>
+            <Text style={styles.emojiStyle}>{currentEmoji}</Text>
+          </View>
+          <View style={styles.editEmojiButton}>
+            <Text style={styles.editEmojiText}>Change Emoji</Text>
+          </View>
         </View>
         <View style={styles.editNameBox}>
           <Text style={[styles.label, { fontFamily: 'PlusJakartaSans_600SemiBold' }]}>Item Name:</Text>
@@ -288,6 +293,13 @@ const styles = StyleSheet.create({
     fontSize: 60,
     textAlign: 'center',
     // margin: 10,
+  },
+  editEmojiText: {
+    marginBottom: 8,
+    color: '#007AFF',
+    fontSize: 14,
+    textAlign: 'center',
+    fontFamily: 'PlusJakartaSans_600SemiBold',
   },
 });
 const pickerSelectStyles = StyleSheet.create({
