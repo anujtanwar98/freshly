@@ -7,6 +7,7 @@ import { Ionicons, Entypo, Feather } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { AntDesign, FontAwesome5, MaterialIcons } from '@expo/vector-icons';
 import { useFocusEffect } from '@react-navigation/native';
+import { useFonts, PlusJakartaSans_500Medium, PlusJakartaSans_400Regular, PlusJakartaSans_600SemiBold } from '@expo-google-fonts/plus-jakarta-sans';
 
 const UploadReceiptScreen = () => {
     const [receiptImage, setReceiptImage] = useState(null);
@@ -200,7 +201,17 @@ const UploadReceiptScreen = () => {
         }
         return null;
       });
-    };    
+    };
+    
+    let [fontsLoaded] = useFonts({
+        PlusJakartaSans_500Medium,
+        PlusJakartaSans_400Regular,
+        PlusJakartaSans_600SemiBold,
+    });
+
+    if (!fontsLoaded) {
+        return null;
+    }
 
     return (
         <SafeAreaView style={styles.safeArea}>
@@ -208,14 +219,17 @@ const UploadReceiptScreen = () => {
         <ScrollView style={styles.container}>
         <Text style={styles.text}>My Freshly Food</Text>
         <View style={styles.filterContainer}>
+            <ScrollView horizontal showsHorizontalScrollIndicator={false}>
             {categories.map((category, index) => (
                 <TouchableOpacity 
                     key={index} 
                     style={[styles.filterButton, selectedCategory === category && styles.selectedFilterButton]} 
                     onPress={() => filterByCategory(category)}>
-                    <Text style={styles.filterButtonText}>{category}</Text>
+                    {/* <Text style={styles.filterButtonText}>{category}</Text> */}
+                    <Text style={[styles.filterButtonText, selectedCategory === category && styles.selectedFilterButtonText]}>{category}</Text>
                 </TouchableOpacity>
             ))}
+            </ScrollView>
         </View>
         <Modal
         animationType="slide"
@@ -468,6 +482,28 @@ const styles = StyleSheet.create({
         color: '#ffffff',
         fontSize: 16,
         padding: 5,
+    },
+    filterContainer: {
+        paddingVertical: 10,
+        paddingHorizontal: 5,
+    },
+    filterButton: {
+        backgroundColor: '#ffffff',
+        paddingVertical: 8,
+        paddingHorizontal: 12,
+        borderRadius: 14,
+        marginHorizontal: 5,
+    },
+    filterButtonText: {
+        color: '#163C16',
+        fontSize: 14,
+        fontFamily: 'PlusJakartaSans_600SemiBold',
+    },
+    selectedFilterButton: {
+        backgroundColor: '#168715', // Green background color for selected button
+    },
+    selectedFilterButtonText: {
+        color: '#ffffff', // Light green text color for selected button
     },
 });
 
