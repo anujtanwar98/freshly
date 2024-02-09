@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { TouchableOpacity, Modal, SafeAreaView, View, Text, Button, StyleSheet, Image, ScrollView } from 'react-native';
+import { TouchableOpacity, Modal, SafeAreaView, View, Text, Button, StyleSheet, Image, ScrollView, ActivityIndicator } from 'react-native';
 import axios from 'axios';
 import * as ImagePicker from 'expo-image-picker';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -251,10 +251,21 @@ const UploadReceiptScreen = () => {
         }}>
             <View style={styles.centeredView}>
                 <View style={styles.previewModalView}>
+                    {/* {isLoading ? (
+                        <View style={styles.uploadingContainer}>
+                        <ActivityIndicator size="large" color="#168715" />
+                    </View>    
+                    ) : (
+                        <> */}
                     {receiptImage && (
                     <Image source={receiptImage} style={styles.previewImage} />
                     )}
                 {/* <Image source={{ uri: selectedImage }} style={styles.previewImage} /> */}
+                {isLoading ? (
+                        <View style={styles.uploadingContainer}>
+                        <ActivityIndicator size="large" color="#168715" />
+                    </View>    
+                    ) : (
                     <View style={styles.previewButtonContainer}>
                     <TouchableOpacity style={styles.previewButtonCancel} onPress={() => setPreviewModalVisible(false)} >
                         <Text style={styles.previewButtonCancelText}>Cancel</Text>
@@ -263,6 +274,8 @@ const UploadReceiptScreen = () => {
                         <Text style={styles.uploadReceiptButtonText} >Upload Receipt</Text>
                     </TouchableOpacity>
                     </View>
+                    // </>
+                )}
               </View>
             </View>
         </Modal>
@@ -284,7 +297,7 @@ const UploadReceiptScreen = () => {
             )} */}
             {/* <Button title="Pick an Image" onPress={pickImage} /> */}
             {/* <Button title="Upload Receipt" onPress={uploadReceipt} /> */}
-            {isLoading && <Text>Uploading...</Text>}
+            {/* {isLoading && <Text>Uploading...</Text>} */}
             {!isLoading && renderCategorizedItems()}
         </ScrollView>
         <TouchableOpacity style={[styles.button, styles.addButton]} onPress={() => setModalVisible(true)}>
@@ -370,20 +383,22 @@ const styles = StyleSheet.create({
         marginTop: 10,
     },
     itemText: {
-        flex: 1, // Takes up remaining space to push the freshness text to the end
-        fontSize: 16, // Readable text size
-        color: '#000000', // Dark text for better readability
+        // flex: 1,
+        fontSize: 14,
+        color: '#000000',
         flexShrink: 1,
         flexWrap: 'wrap', 
         overflow: 'hidden',
-        marginTop: 5,
+        // marginTop: 5,
+        fontFamily: 'PlusJakartaSans_600SemiBold',
     },
     freshnessText: {
-        fontSize: 14, // Slightly smaller text size
-        color: '#000000', // Lighter text color for secondary information
+        fontSize: 12,
+        color: '#000000',
         flexShrink: 1,
         flexWrap: 'wrap', 
         overflow: 'hidden',
+        fontFamily: 'PlusJakartaSans_600SemiBold',
     },
     text: {
         color: '#168715',
