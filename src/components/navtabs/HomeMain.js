@@ -14,6 +14,8 @@ const UploadReceiptScreen = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [modalVisible, setModalVisible] = useState(false);
     const [previewModalVisible, setPreviewModalVisible] = useState(false);
+    const [selectedCategory, setSelectedCategory] = useState('All');
+    const categories = ["All", "Fruits", "Vegetables", "Meat", "Seafood", "Dairy", "Bakery","Dry Goods and Pasta", "Snacks", "Sweets", "Beverages"];
 
     const navigation = useNavigation();
 
@@ -114,6 +116,9 @@ const UploadReceiptScreen = () => {
         }
     };
 
+    const filterByCategory = (category) => {
+        setSelectedCategory(category);
+    };
     const renderCategorizedItems = () => {
         const isValidDataStructure = Object.keys(categorizedItems).every(key => 
             Array.isArray(categorizedItems[key])
@@ -157,8 +162,12 @@ const UploadReceiptScreen = () => {
         };
 
         
-        return Object.keys(categorizedItems).map((category, index) => {
-            if (categorizedItems[category].length > 0) {
+    const filteredItems = selectedCategory === 'All' ? categorizedItems : { [selectedCategory]: categorizedItems[selectedCategory] };
+
+        return Object.keys(filteredItems).map((category, index) => {
+            if (filteredItems[category].length > 0) {
+        // return Object.keys(categorizedItems).map((category, index) => {
+        //     if (categorizedItems[category].length > 0) {
             return (
             <View key={index} style={styles.categoryContainer}>
                 <Text style={[styles.categoryTitle,]}>{category}</Text>
@@ -198,6 +207,16 @@ const UploadReceiptScreen = () => {
         {/* <ScrollView contentContainerStyle={styles.container}> */}
         <ScrollView style={styles.container}>
         <Text style={styles.text}>My Freshly Food</Text>
+        <View style={styles.filterContainer}>
+            {categories.map((category, index) => (
+                <TouchableOpacity 
+                    key={index} 
+                    style={[styles.filterButton, selectedCategory === category && styles.selectedFilterButton]} 
+                    onPress={() => filterByCategory(category)}>
+                    <Text style={styles.filterButtonText}>{category}</Text>
+                </TouchableOpacity>
+            ))}
+        </View>
         <Modal
         animationType="slide"
         transparent={true}
