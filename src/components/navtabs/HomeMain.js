@@ -198,6 +198,12 @@ const UploadReceiptScreen = () => {
                 </View>
             </View>
             );
+            } else {
+            return (
+                <View key={index} style={styles.noItemContainer}>
+                    <Text style={styles.noItemMessage}>No food item in {category} category...</Text>
+                </View>
+            );
         }
         return null;
       });
@@ -316,7 +322,7 @@ const styles = StyleSheet.create({
         marginLeft: 10,
         marginRight: 10,
         padding: 10,
-        borderRadius: 10,
+        borderRadius: 20,
         backgroundColor: '#ffffff',
         maxWidth: 170,
         minWidth: 170,
@@ -354,8 +360,9 @@ const styles = StyleSheet.create({
         marginLeft: 20,
       },
       emojiText: {
-        fontSize: 24, // Larger size for emoji for visibility
+        fontSize: 30, // Larger size for emoji for visibility
         marginRight: 10, // Space after the emoji
+        marginTop: 10,
       },
       itemText: {
         flex: 1, // Takes up remaining space to push the freshness text to the end
@@ -364,6 +371,7 @@ const styles = StyleSheet.create({
         flexShrink: 1,
         flexWrap: 'wrap', 
         overflow: 'hidden',
+        marginTop: 5,
       },
       freshnessText: {
         fontSize: 14, // Slightly smaller text size
@@ -506,6 +514,17 @@ const styles = StyleSheet.create({
     },
     selectedFilterButtonText: {
         color: '#ffffff', // Light green text color for selected button
+    },
+    noItemContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignContent: 'center',
+        alignItems: 'center',
+    },
+    noItemMessage: {
+        color: '#000000',
+        fontSize: 16,
+        fontFamily: 'PlusJakartaSans_600SemiBold',
     },
 });
 
