@@ -141,13 +141,13 @@ const UploadReceiptScreen = () => {
         //     }
         // };               
         const getFreshnessStatus = (minDays, maxDays) => {
-            if (minDays <= 3) {
+            if (maxDays <= 3) {
                 return {
                     iconComponent: MaterialIcons,
                     iconName: 'error-outline',
                     color: '#E41C1C', // Red
                 };
-            } else if (minDays <= 5) {
+            } else if (maxDays <= 5) {
                 return {
                     iconComponent: FontAwesome5,
                     iconName: 'eye',
@@ -198,7 +198,7 @@ const UploadReceiptScreen = () => {
                 </View>
             </View>
             );
-            } else {
+            } else if (selectedCategory !== 'All') {
             return (
                 <View key={index} style={styles.noItemContainer}>
                     <Text style={styles.noItemMessage}>No food item in {category} category...</Text>
