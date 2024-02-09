@@ -20,6 +20,10 @@ const UploadReceiptScreen = () => {
 
     const navigation = useNavigation();
 
+    const hasItems = () => {
+        return Object.values(categorizedItems).some(categoryItems => categoryItems.length > 0);
+      };      
+
     useFocusEffect(
         React.useCallback(() => {
           const loadCategorizedItems = async () => {
@@ -230,9 +234,10 @@ const UploadReceiptScreen = () => {
                 <TouchableOpacity 
                     key={index} 
                     style={[styles.filterButton, selectedCategory === category && styles.selectedFilterButton]} 
-                    onPress={() => filterByCategory(category)}>
+                    onPress={() => hasItems() && filterByCategory(category)}
+                    disabled={!hasItems()}>
                     {/* <Text style={styles.filterButtonText}>{category}</Text> */}
-                    <Text style={[styles.filterButtonText, selectedCategory === category && styles.selectedFilterButtonText]}>{category}</Text>
+                    <Text style={[styles.filterButtonText, selectedCategory === category && styles.selectedFilterButtonText, !hasItems() && styles.disabledFilterButtonText]}>{category}</Text>
                 </TouchableOpacity>
             ))}
             </ScrollView>
@@ -352,19 +357,19 @@ const styles = StyleSheet.create({
         minWidth: '100%',
         // flex: 1,
       },
-      categoryTitle: {
+    categoryTitle: {
         fontSize: 18,
         fontWeight: 'bold',
         marginBottom: 8, // Space below the title
         color: '#000000', // Dark text for better readability
         marginLeft: 20,
-      },
+    },
       emojiText: {
         fontSize: 30, // Larger size for emoji for visibility
         marginRight: 10, // Space after the emoji
         marginTop: 10,
-      },
-      itemText: {
+    },
+    itemText: {
         flex: 1, // Takes up remaining space to push the freshness text to the end
         fontSize: 16, // Readable text size
         color: '#000000', // Dark text for better readability
@@ -372,15 +377,15 @@ const styles = StyleSheet.create({
         flexWrap: 'wrap', 
         overflow: 'hidden',
         marginTop: 5,
-      },
-      freshnessText: {
+    },
+    freshnessText: {
         fontSize: 14, // Slightly smaller text size
         color: '#000000', // Lighter text color for secondary information
         flexShrink: 1,
         flexWrap: 'wrap', 
         overflow: 'hidden',
-      },
-      text: {
+    },
+    text: {
         color: '#168715',
         fontSize: 24,
         fontWeight: 'bold',
@@ -389,7 +394,7 @@ const styles = StyleSheet.create({
         alignItems: 'flex-start',
         paddingTop: 16,
         paddingHorizontal: 20,
-      },
+    },
     button: {
         backgroundColor: '#BDFFBE',
         padding: 10,
@@ -526,6 +531,13 @@ const styles = StyleSheet.create({
         fontSize: 16,
         fontFamily: 'PlusJakartaSans_600SemiBold',
     },
+    disabledFilterButton: {
+        backgroundColor: '#e0e0e0', // Example disabled background color
+        borderColor: '#cccccc', // Example disabled border color
+    },
+    disabledFilterButtonText: {
+        color: '#a0a0a0', // Example disabled text color
+    },   
 });
 
 export default UploadReceiptScreen;
