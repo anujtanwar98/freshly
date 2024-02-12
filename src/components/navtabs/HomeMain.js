@@ -7,7 +7,7 @@ import { Ionicons, Entypo, Feather } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { AntDesign, FontAwesome5, MaterialIcons } from '@expo/vector-icons';
 import { useFocusEffect } from '@react-navigation/native';
-import { useFonts, PlusJakartaSans_500Medium, PlusJakartaSans_400Regular, PlusJakartaSans_600SemiBold, PlusJakartaSans_800ExtraBold } from '@expo-google-fonts/plus-jakarta-sans';
+import { useFonts, PlusJakartaSans_500Medium, PlusJakartaSans_400Regular, PlusJakartaSans_600SemiBold, PlusJakartaSans_700Bold, PlusJakartaSans_800ExtraBold } from '@expo-google-fonts/plus-jakarta-sans';
 
 const UploadReceiptScreen = () => {
     const [receiptImage, setReceiptImage] = useState(null);
@@ -217,6 +217,7 @@ const UploadReceiptScreen = () => {
         PlusJakartaSans_500Medium,
         PlusJakartaSans_400Regular,
         PlusJakartaSans_600SemiBold,
+        PlusJakartaSans_700Bold,
         PlusJakartaSans_800ExtraBold,
     });
 
@@ -228,7 +229,7 @@ const UploadReceiptScreen = () => {
         <SafeAreaView style={styles.safeArea}>
         {/* <ScrollView contentContainerStyle={styles.container}> */}
         <ScrollView style={styles.container}>
-        <Text style={styles.text}>My Freshly Food</Text>
+        <Text style={styles.text}>My Freshly Fridge</Text>
         <View style={styles.filterContainer}>
             <ScrollView horizontal showsHorizontalScrollIndicator={false}>
             {categories.map((category, index) => (
@@ -242,6 +243,16 @@ const UploadReceiptScreen = () => {
                 </TouchableOpacity>
             ))}
             </ScrollView>
+        </View>
+        <View style={styles.eatSoonBox}>
+            <View style={styles.eatSoonBoxTitle}>
+                <Text style={styles.eatSoonTitle}>Eat Soon</Text>
+            </View>
+            <View style={styles.eatSoonSeeAll}>
+                <TouchableOpacity  onPress={() => navigation.navigate('EatSoon')}>
+                    <Text style={styles.eatSoonSeeAllTitle}>See All <AntDesign name="right" size={16} color="#616774" /></Text>
+                </TouchableOpacity>
+            </View>
         </View>
         <Modal
         animationType="slide"
@@ -562,7 +573,23 @@ const styles = StyleSheet.create({
     },
     disabledFilterButtonText: {
         color: '#a0a0a0', // Example disabled text color
-    },   
+    }, 
+    eatSoonBox: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        marginHorizontal: 10,
+        marginTop: 20,
+    },
+    eatSoonTitle: {
+        fontSize: 16,
+        fontFamily: 'PlusJakartaSans_700Bold',
+    },
+    eatSoonSeeAllTitle: {
+        fontSize: 16,
+        fontFamily: 'PlusJakartaSans_600SemiBold',
+        color: '#616774',
+    },  
 });
 
 export default UploadReceiptScreen;

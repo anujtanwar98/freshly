@@ -14,6 +14,7 @@ import DetailScreen from "./navtabs/DetailScreen";
 import RecipeIdeas from "./navtabs/RecipeIdeas";
 import DetailRecipeScreen from "./navtabs/DetailRecipeScreen";
 import EditFoodScreen from "./navtabs/EditFoodScreen";
+import EatSoon from "./navtabs/EatSoon";
 import { useFonts, PlusJakartaSans_700Bold, PlusJakartaSans_600SemiBold } from '@expo-google-fonts/plus-jakarta-sans';
 import { Text } from 'react-native';
 
@@ -24,9 +25,10 @@ const RecipesStack = createStackNavigator();
 function UploadReceiptStackScreen() {
   return (
     <UploadReceiptStack.Navigator>
-      <UploadReceiptStack.Screen name="My Food" component={UploadReceiptScreen} options={{ headerShown: false }} />
+      <UploadReceiptStack.Screen name="My Fridge" component={UploadReceiptScreen} options={{ headerShown: false }} />
       <UploadReceiptStack.Screen name="DetailScreen" component={DetailScreen} options={{ headerTitle: '' }} />
       <UploadReceiptStack.Screen name="EditFoodScreen" component={EditFoodScreen} options={{ headerTitle: 'Edit Item' }} />
+      <UploadReceiptStack.Screen name="EatSoon" component={EatSoon} options={{ headerTitle: 'Eat Soon' }} />
     </UploadReceiptStack.Navigator>
   );
 }
@@ -77,7 +79,7 @@ const Nav = () => {
             return <Text style={{ color, fontFamily, fontSize: 14 }}>{label}</Text>;
           },
         })}>
-          <Tab.Screen name="My Food" component={UploadReceiptStackScreen} options={{
+          <Tab.Screen name="My Fridge" component={UploadReceiptStackScreen} options={{
             tabBarIcon: ({ focused  }) => (
               <FontAwesome5 name="carrot" color={focused ? '#7CC106' : '#808B9F'} size={25} />
               // <FoodLogo size={24} color={focused ? '#7CC106' : '#808B9F'} />
