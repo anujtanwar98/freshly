@@ -16,7 +16,7 @@ const Recipes = ({ navigation }) => {
             <Text style={styles.text}>What do you want to eat?</Text>
           </View>
           <View style={styles.brocContainer}>
-            <Text style={styles.brocTextContainer}>Select a meal type and tap generate to see what Broc can make from your food inventory!!</Text>
+            <Text style={styles.brocTextContainer}>Select a meal type and tap generate to see what Broc can make from your fridge items!</Text>
             <Image style={styles.brocImage} source={require('./../../../assets/broc.png')}/>
           </View>
           <View style={styles.mainCard}>
@@ -48,7 +48,8 @@ const Recipes = ({ navigation }) => {
               } else { 
                 alert ('Please select a category first.'); 
             }}} >
-              <Text style={styles.generateButtonText}>Generate Recipes</Text>
+                          <Image style={styles.generateIcon} source={require('./../../../assets/generate-icon.svg')}/>
+              <Text style={styles.generateButtonText}>Generate recipes!</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -70,7 +71,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
   text: {
-    color: '#7CC106',
+    color: '#168715',
     fontSize: 24,
     fontWeight: 'bold',
   },
@@ -85,21 +86,21 @@ const styles = StyleSheet.create({
     display: 'flex',
     alignItems: 'center',
     flexDirection: 'row',
-    justifyContent: 'space-around',
-    marginLeft: 20,
+    justifyContent: 'space-between',
+    marginLeft: 24,
     marginTop: 20,
     borderTopLeftRadius: 20,
     borderBottomLeftRadius: 20,
-    // height: 120,
   },
   brocTextContainer: {
-    color: '#000000',
-    fontSize: 14,
+    color: '#163C16',
+    fontSize: 16,
     fontWeight: '500',
-    marginLeft: 20,
+    lineHeight: 20.8,
+    marginLeft: 24,
     alignItems: 'center',
     justifyContent: 'center',
-    maxWidth: 300,
+    maxWidth: 256,
   },
   mainCard: {
     height: 800,
@@ -110,54 +111,64 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     justifyContent: 'space-around',
     alignItems: 'flex-start',
-    paddingHorizontal: 8,
-    marginHorizontal: 10,
+    paddingHorizontal: 12,
+    marginHorizontal: 12,
     marginTop: 20,
     marginBottom: 20,
-    marginLeft: 20,
-    marginRight: 20,
-    gap: 20,
+    gap: 14,
   },
   foodButton: {
     backgroundColor: '#fff',
-    padding: 10,
+    padding: 24,
     borderRadius: 20,
     flexDirection: 'column',
     justifyContent: 'space-around',
     alignItems: 'center',
-    width: 170,
-    height: 150,
+    width: 163,
+    height: 141,
+    borderColor: '#f0f0f0',
+    borderWidth: 2,
+    shadowColor: '#000000',
+    shadowOffset: {width: 0, height: 4.02},
+    shadowOpacity: .05,
+    shadowRadius: 5.36,
   },
   buttonEmojiText: {
-    fontSize: 50,
+    fontSize: 48,
   },
   buttonText: {
-    fontSize: 20,
+    fontSize: 16,
     fontWeight: '500',
+    color: '#163c16'
   },
   generateButton: {
-    backgroundColor: '#E0E0E0',
+    backgroundColor: '#168715',
     padding: 10,
     borderRadius: 50,
-    flexDirection: 'column',
-    justifyContent: 'space-around',
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
     alignItems: 'center',
     width: 300,
     height: 50,
     alignSelf: 'center',
   },
+  generateIcon: {
+    width: 33.76,
+    height: 30.14,
+  },
   generateButtonText: {
-    fontSize: 20,
+    fontSize: 16,
+    lineHeight: 18,
     fontWeight: '500',
     color: '#fff',
   },
   selectedCategoryButton: {
-    borderColor: '#7CC106',
+    borderColor: '#168715',
     borderWidth: 2,
     backgroundColor: '#D9F2AF',
   },
   generateButtonActive: {
-    backgroundColor: '#7CC106', // Active color when a category is selected
+    backgroundColor: '#168715', // Active color when a category is selected
   },
   generateButtonInactive: {
     backgroundColor: '#E0E0E0',

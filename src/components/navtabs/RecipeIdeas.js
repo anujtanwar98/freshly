@@ -57,6 +57,10 @@ const RecipeIdeas = () => {
                   <Text style={styles.foodText}>Mushroom Risotto with Parmesan Crisps</Text>
                 </TouchableOpacity>
               </View>
+              <TouchableOpacity style={[ styles.generateButton, styles.generateButtonActive ]} onPress={() => { 
+              }} >
+              <Text style={styles.generateButtonText}>Regenerate!</Text>
+            </TouchableOpacity>
             </View>
           </View>
         </View>
@@ -75,15 +79,20 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   generateButton: {
-    backgroundColor: '#7CC106',
+    backgroundColor: '#E0E0E0',
     padding: 10,
-    borderRadius: 10,
-    margin: 10,
+    borderRadius: 50,
+    flexDirection: 'column',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    width: 300,
+    height: 50,
+    alignSelf: 'center',
   },
   generateButtonText: {
-    color: 'white',
-    textAlign: 'center',
     fontSize: 20,
+    fontWeight: '500',
+    color: '#fff',
   },
   brocContainer: {
     flex: 1,
@@ -91,20 +100,21 @@ const styles = StyleSheet.create({
     display: 'flex',
     alignItems: 'center',
     flexDirection: 'row',
-    justifyContent: 'space-around',
-    marginLeft: 20,
+    justifyContent: 'space-between',
+    marginLeft: 24,
     marginTop: 20,
     borderTopLeftRadius: 20,
     borderBottomLeftRadius: 20,
   },
   brocTextContainer: {
-    color: '#000000',
-    fontSize: 14,
+    color: '#163C16',
+    fontSize: 16,
     fontWeight: '500',
-    marginLeft: 20,
+    lineHeight: 20.8,
+    marginLeft: 24,
     alignItems: 'center',
     justifyContent: 'center',
-    maxWidth: 300,
+    maxWidth: 256,
   },
   allCardContain: {
     display: 'flex',
@@ -134,14 +144,18 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 20,
   },
   foodText: {
-    fontSize: 16,
-    color: '#7CC106',
+    fontSize: 14,
+    color: '#163C16',
     textAlign: 'space-around',
     flexShrink: 1,
     paddingLeft: 10,
     paddingRight: 10,
     paddingTop: 10,
+    lineHeight: 18,
     paddingBottom: 30,
+  },
+  generateButtonActive: {
+    backgroundColor: '#168715', // Active color when a category is selected
   },
 });
 
