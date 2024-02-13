@@ -225,6 +225,34 @@ const UploadReceiptScreen = () => {
         return null;
     }
 
+    // const getEatSoonItems = () => {
+    //     const eatSoonItems = [];
+    //     Object.values(categorizedItems).forEach(categoryItems => {
+    //       categoryItems.forEach(item => {
+    //         if (item.freshness_duration_max <= 5) {
+    //           eatSoonItems.push(item);
+    //         }
+    //       });
+    //     });
+    //     return eatSoonItems.slice(0, 3); // Returns only the first 3 items
+    //   };      
+
+    const getEatSoonItems = (getAll = false) => {
+        const eatSoonItems = [];
+        Object.values(categorizedItems).forEach(categoryItems => {
+          categoryItems.forEach(item => {
+            if (item.freshness_duration_max <= 5) {
+              eatSoonItems.push(item);
+            }
+          });
+        });
+      
+        // This returns 3 first 3 items
+        // return getAll ? eatSoonItems : eatSoonItems.slice(0, 3);
+        // this returns all the items 
+        return eatSoonItems;
+    };      
+
     return (
         <SafeAreaView style={styles.safeArea}>
         {/* <ScrollView contentContainerStyle={styles.container}> */}
@@ -249,11 +277,19 @@ const UploadReceiptScreen = () => {
                 <Text style={styles.eatSoonTitle}>Eat Soon</Text>
             </View>
             <View style={styles.eatSoonSeeAll}>
-                <TouchableOpacity  onPress={() => navigation.navigate('EatSoon')}>
+            <TouchableOpacity onPress={() => navigation.navigate('EatSoon', { eatSoonItems: getEatSoonItems(true) })}>
                     <Text style={styles.eatSoonSeeAllTitle}>See All <AntDesign name="right" size={16} color="#616774" /></Text>
                 </TouchableOpacity>
             </View>
         </View>
+        {getEatSoonItems().map((item, index) => (
+            // <Text key={index}>{item.item} - {item.freshness_duration_max} days left</Text>
+            <View key={index}>
+                <Text>{item.emoji}</Text>
+                <Text numberOfLines={1}>{item.item}</Text>
+                <Text>Fresh for: {item.freshness_duration_min}-{item.freshness_duration_max} days</Text>
+            </View>
+        ))}
         <Modal
         animationType="slide"
         transparent={true}
