@@ -35,32 +35,45 @@ const RecipeIdeas = () => {
             <View style={styles.allCardContain}>
               <View style={styles.cardFood}>
                 <TouchableOpacity style={styles.foodButton} onPress={() => navigation.navigate('DetailRecipeScreen')}>
-                  <Image style={styles.foodImage} source={require('./../../../assets/foodimage1.png')}/>
+                  <Image style={styles.foodImage} source={require('./../../../assets/food-image1.png')}/>
+                  <View style={styles.timeTextBox}>
+                    <Text style={styles.timeText}>35 min</Text>
+                  </View>
                   <Text style={styles.foodText}>Honey Garlic Shrimp and Broccoli</Text>
                 </TouchableOpacity>
               </View>
               <View style={styles.cardFood}>
                 <TouchableOpacity style={styles.foodButton} onPress={() => navigation.navigate('DetailRecipeScreen')}>
-                  <Image style={styles.foodImage} source={require('./../../../assets/foodimage2.png')}/>
+                  <Image style={styles.foodImage} source={require('./../../../assets/food-image2.png')}/>
+                  <View style={styles.timeTextBox}>
+                    <Text style={styles.timeText}>50 min</Text>
+                  </View>
                   <Text style={styles.foodText}>Vegetarian Quinoa Stuffed Bell Peppers</Text>
                 </TouchableOpacity>
               </View>
               <View style={styles.cardFood}>
                 <TouchableOpacity style={styles.foodButton} onPress={() => navigation.navigate('DetailRecipeScreen')}>
-                  <Image style={styles.foodImage} source={require('./../../../assets/foodimage3.png')}/>
+                  <Image style={styles.foodImage} source={require('./../../../assets/food-image3.png')}/>
+                  <View style={styles.timeTextBox}>
+                    <Text style={styles.timeText}>80 min</Text>
+                  </View>
                   <Text style={styles.foodText}>Teriyaki Glazed Tofu Stir-Fry</Text>
                 </TouchableOpacity>
               </View>
               <View style={styles.cardFood}>
                 <TouchableOpacity style={styles.foodButton} onPress={() => navigation.navigate('DetailRecipeScreen')}>
-                  <Image style={styles.foodImage} source={require('./../../../assets/foodimage4.png')}/>
+                  <Image style={styles.foodImage} source={require('./../../../assets/food-image4.png')}/>
+                  <View style={styles.timeTextBox}>
+                    <Text style={styles.timeText}>55 min</Text>
+                  </View>
                   <Text style={styles.foodText}>Mushroom Risotto with Parmesan Crisps</Text>
                 </TouchableOpacity>
               </View>
               <TouchableOpacity style={[ styles.generateButton, styles.generateButtonActive ]} onPress={() => { 
               }} >
-              <Text style={styles.generateButtonText}>Regenerate!</Text>
-            </TouchableOpacity>
+                <Image style={styles.generateIcon} source={require('./../../../assets/generate-icon.svg')}/>
+                <Text style={styles.generateButtonText}>Regenerate!</Text>
+              </TouchableOpacity>
             </View>
           </View>
         </View>
@@ -72,27 +85,15 @@ const RecipeIdeas = () => {
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
+    backgroundColor: '#FBFBFB',
   },
   loaderContainer: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
   },
-  generateButton: {
-    backgroundColor: '#E0E0E0',
-    padding: 10,
-    borderRadius: 50,
-    flexDirection: 'column',
-    justifyContent: 'space-around',
-    alignItems: 'center',
-    width: 300,
-    height: 50,
-    alignSelf: 'center',
-  },
-  generateButtonText: {
-    fontSize: 20,
-    fontWeight: '500',
-    color: '#fff',
+  mainWrapper: {
+    backgroundColor: '#FBFBFB',
   },
   brocContainer: {
     flex: 1,
@@ -102,7 +103,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginLeft: 24,
-    marginTop: 20,
+    marginTop: 0,
     borderTopLeftRadius: 20,
     borderBottomLeftRadius: 20,
   },
@@ -119,40 +120,103 @@ const styles = StyleSheet.create({
   allCardContain: {
     display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'space-evenly',
-    alignItems: 'center',
     flexWrap: 'wrap',
+    justifyContent: 'space-around',
+    alignItems: 'flex-start',
+    paddingHorizontal: 12,
+    marginHorizontal: 12,
     marginTop: 20,
+    marginBottom: 0,
+    gap: 18,
   },
   cardFood: {
-    backgroundColor: '#ffffff',
+    // backgroundColor: '#fff',
+    // padding: 24,
+    // borderRadius: 20,
+    // flexDirection: 'column',
+    // justifyContent: 'space-around',
+    // alignItems: 'center',
+    // width: 162,
+    // height: 215,
+    // borderColor: '#f0f0f0',
+    // borderWidth: 2,
+    // shadowColor: '#000000',
+    // shadowOffset: {width: 0, height: 3},
+    // shadowOpacity: 0.06,
+    // shadowRadius: 9,
+  },
+  foodButton: {
+    backgroundColor: '#fff',
+    padding: 0,
     borderRadius: 20,
-    margin: 15,
-    width: 180,
-    shadowColor: '#171717',
-    shadowOffset: {width: -2, height: 4},
-    shadowOpacity: 0.2,
-    shadowRadius: 3,
-    marginBottom: 20,
-    
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    width: 162,
+    height: 215,
+    borderColor: '#f0f0f0',
+    borderWidth: 2,
+    shadowColor: '#000000',
+    shadowOffset: {width: 0, height: 3},
+    shadowOpacity: .06,
+    shadowRadius: 9,
   },
   foodImage: {
-    width: '100%',
-    height: 180,
-    resizeMode: 'cover',
+    width: 162,
+    height: 122,
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
+    resizeMode: 'cover',
+  },
+  timeTextBox: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: 53,
+    height: 24,
+    borderColor: '#168715',
+    borderWidth: 1,
+    borderRadius: 29,
+    position: 'absolute',
+    right: 12,
+    top: 110,
+    backgroundColor: '#FFFFFF',
+  },
+  timeText: {
+    fontSize: 12,
+    color: '#20821E',
+    fontWeight: '600',
   },
   foodText: {
+    width: '100%',
     fontSize: 14,
-    color: '#163C16',
-    textAlign: 'space-around',
-    flexShrink: 1,
-    paddingLeft: 10,
-    paddingRight: 10,
-    paddingTop: 10,
+    fontWeight: '600',
     lineHeight: 18,
-    paddingBottom: 30,
+    color: '#163C16',
+    paddingLeft: 16,
+    paddingRight: 18,
+    paddingTop: 18.5,
+  },
+  generateButton: {
+    backgroundColor: '#168715',
+    padding: 10,
+    borderRadius: 44,
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
+    alignItems: 'center',
+    width: 287,
+    height: 53,
+    alignSelf: 'center',
+  },
+  generateIcon: {
+    width: 33.76,
+    height: 30.14,
+  },
+  generateButtonText: {
+    fontSize: 16,
+    lineHeight: 18,
+    fontWeight: '600',
+    color: '#fff',
   },
   generateButtonActive: {
     backgroundColor: '#168715', // Active color when a category is selected
