@@ -17,6 +17,7 @@ import EditFoodScreen from "./navtabs/EditFoodScreen";
 import EatSoon from "./navtabs/EatSoon";
 import { useFonts, PlusJakartaSans_700Bold, PlusJakartaSans_600SemiBold } from '@expo-google-fonts/plus-jakarta-sans';
 import { Text } from 'react-native';
+import { Iconify } from 'react-native-iconify';
 
 const Tab = createBottomTabNavigator()
 const UploadReceiptStack = createStackNavigator();
@@ -81,20 +82,24 @@ const Nav = () => {
         })}>
           <Tab.Screen name="My Fridge" component={UploadReceiptStackScreen} options={{
             tabBarIcon: ({ focused  }) => (
-              <FontAwesome5 name="carrot" color={focused ? '#7CC106' : '#808B9F'} size={25} />
+              // <FontAwesome5 name="carrot" color={focused ? '#7CC106' : '#808B9F'} size={25} />
+              <Iconify icon="fluent:food-carrot-24-regular" color={focused ? '#7CC106' : '#808B9F'} size={25}/>
               // <FoodLogo size={24} color={focused ? '#7CC106' : '#808B9F'} />
             ),
             headerShown: false,
           }} />
           <Tab.Screen name="Explore" component={Explore} options={{
             tabBarIcon: ({ focused }) => (
-              <MaterialIcons name="explore" color={focused ? '#7CC106' : '#808B9F'} size={25} />
+              // <MaterialIcons name="explore" color={focused ? '#7CC106' : '#808B9F'} size={25} />
+              // <Iconify icon="mdi:learn-outline" color={focused ? '#7CC106' : '#808B9F'} size={25} />
+              <Iconify icon="nimbus:university" color={focused ? '#7CC106' : '#808B9F'} size={25} />
             ),
             headerShown: false,
           }} />
           <Tab.Screen name="Recipes" component={RecipesStackScreen} options={{
             tabBarIcon: ({ focused }) => (
-              <MaterialCommunityIcons name="chef-hat" color={focused ? '#7CC106' : '#808B9F'} size={25} />
+              // <MaterialCommunityIcons name="chef-hat" color={focused ? '#7CC106' : '#808B9F'} size={25} />
+              <Iconify icon="solar:chef-hat-outline" color={focused ? '#7CC106' : '#808B9F'} size={25} />
             ),
             headerShown: false,
           }} />
