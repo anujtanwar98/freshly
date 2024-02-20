@@ -88,7 +88,7 @@ const Nav = () => {
             ),
             headerShown: false,
           }} />
-          <Tab.Screen name="Explore" component={Explore} options={{
+          <Tab.Screen name="Learn" component={Explore} options={{
             tabBarIcon: ({ focused }) => (
               // <MaterialIcons name="explore" color={focused ? '#7CC106' : '#808B9F'} size={25} />
               // <Iconify icon="mdi:learn-outline" color={focused ? '#7CC106' : '#808B9F'} size={25} />

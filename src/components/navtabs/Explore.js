@@ -4,48 +4,61 @@ import { Ionicons } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
 import { Image } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
+import { useFonts, PlusJakartaSans_500Medium, PlusJakartaSans_400Regular, PlusJakartaSans_600SemiBold, PlusJakartaSans_700Bold, PlusJakartaSans_800ExtraBold } from '@expo-google-fonts/plus-jakarta-sans';
 
 
-const Explore = () => {
-    return (
+
+const Learn = () => {
+  let [fontsLoaded] = useFonts({
+    PlusJakartaSans_500Medium,
+    PlusJakartaSans_400Regular,
+    PlusJakartaSans_600SemiBold,
+    PlusJakartaSans_700Bold,
+    PlusJakartaSans_800ExtraBold,
+  });
+  if (!fontsLoaded) {
+    return null;
+  }  
+  
+  return (
     <SafeAreaView>
       <ScrollView>
         <View style={styles.mainWrapper}>
           <View style={styles.container}>
-            <Text style={styles.text}>Explore</Text>
+            <Text style={styles.text}>Learn</Text>
           </View>
           <View style={styles.searchContainer}>
-            <Text style={styles.searchTextContainer}><FontAwesome name="search" size={16} color="#8B8B8B" />   Search a food item....</Text>
+            <Text style={styles.searchTextContainer}><FontAwesome name="search" size={16} color="#8B8B8B" />    search any food item to learn more </Text>
           </View>
           <View style={styles.recentContain}>
-            <Text style={styles.recentContainText}>Recent Items</Text>
+            <Text style={styles.recentContainText}>Recent Searches</Text>
           </View>
           <View style={styles.allCardContain}>
             <TouchableOpacity style={styles.searchItemButton}>
-              <MaterialIcons name="history" size={20} color="#7CC106" style={styles.searchItemIcon} />
+              <MaterialIcons name="history" size={20} color="#168715" style={styles.searchItemIcon} />
               <Text style={styles.buttonText}>Carrots</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.searchItemButton}>
-              <MaterialIcons name="history" size={20} color="#7CC106" style={styles.searchItemIcon} />
+              <MaterialIcons name="history" size={20} color="#168715" style={styles.searchItemIcon} />
               <Text style={styles.buttonText}>Bread</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.searchItemButton}>
-              <MaterialIcons name="history" size={20} color="#7CC106" style={styles.searchItemIcon} />
+              <MaterialIcons name="history" size={20} color="#168715" style={styles.searchItemIcon} />
               <Text style={styles.buttonText}>Eggs</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.searchItemButton}>
-              <MaterialIcons name="history" size={20} color="#7CC106" style={styles.searchItemIcon} />
+              <MaterialIcons name="history" size={20} color="#168715" style={styles.searchItemIcon} />
               <Text style={styles.buttonText}>Cheese</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.searchItemButton}>
-              <MaterialIcons name="history" size={20} color="#7CC106" style={styles.searchItemIcon} />
+              <MaterialIcons name="history" size={20} color="#168715" style={styles.searchItemIcon} />
               <Text style={styles.buttonText}>Watermelon</Text>
             </TouchableOpacity>
           </View>
           <View style={styles.emptyBoxLine}></View>
           <View style={styles.mainContain}>
             <View style={styles.recentContain}>
-              <Text style={styles.recentContainText}>✏️Tip of the day</Text>
+              <Text style={styles.recentContainText}>✏️   Tip of the day</Text>
             </View>
             <View style={styles.tipContain}>
               <View style={styles.tipContainTitleBoxFirst}>
@@ -60,7 +73,7 @@ const Explore = () => {
           <View style={styles.emptyBoxLine}></View>
           <View style={styles.helpEnvBox}>
             <View style={styles.helpTitleContain}>
-              <Text style={styles.helpTitleText}>🌏Help the Environment</Text>
+              <Text style={styles.helpTitleText}>🌏   Help the Environment</Text>
             </View>
             <View style={styles.allImages}>
               <View style={styles.imageOneHelp}>
@@ -97,13 +110,13 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
   text: {
-    color: '#7CC106',
+    color: '#168715',
     fontSize: 24,
-    fontWeight: 'bold',
+    fontFamily: 'PlusJakartaSans_800ExtraBold',
   },
   searchContainer: {
     flex: 1,
-    backgroundColor: '#D8D8D8',
+    backgroundColor: '#ededed',
     display: 'flex',
     alignItems: 'center',
     flexDirection: 'row',
@@ -116,7 +129,7 @@ const styles = StyleSheet.create({
   searchTextContainer: {
     color: '#8B8B8B',
     fontSize: 16,
-    fontWeight: '500',
+    fontFamily: 'PlusJakartaSans_500Medium',
     maxWidth: 300,
     padding: 10,
     marginLeft: 10,
@@ -126,13 +139,13 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'flex-start',
-    paddingHorizontal: 20,
-    marginTop: 20,
+    paddingHorizontal: 24,
+    marginTop: 24,
   },
   recentContainText: {
-    color: '#000',
+    color: '#163C16',
     fontSize: 16,
-    fontWeight: '500',
+    fontFamily: 'PlusJakartaSans_700Bold',
   },
   allCardContain: {
     display: 'flex',
@@ -145,50 +158,55 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     marginLeft: 20,
     marginRight: 20,
-    gap: 20,
   },
   searchItemButton: {
     backgroundColor: '#fff',
     borderRadius: 30,
     flexDirection: 'row',
     alignItems: 'center',
-    padding: 10,
-    borderColor: '#7CC106',
+    paddingHorizontal: 12,
+    paddingVertical: 8,
+    marginBottom: 12,
+    marginRight: 8,
+    borderColor: '#168715',
     borderWidth: 1,
     // width: 100,
   },
   emptyBoxLine : {
-    borderBottomColor: '#D8D8D8',
+    borderBottomColor: '#ededed',
     borderBottomWidth: 10,
   },
   mainContain: {
     flex: 1,
     backgroundColor: '#F3F3F3',
-    marginTop: 10,
-    marginBottom: 10,
+    // marginTop: 10,
+    // marginBottom: 10,
   },
   searchItemIcon: {
-    marginRight: 10,
+    marginRight: 8,
   },
   buttonText: {
-    color: '#7CC106',
+    color: '#168715',
     fontSize: 16,
-    fontWeight: '500',
+    fontFamily: 'PlusJakartaSans_500Medium',
   },
   tipContain: {
     borderRadius: 30,
     flexDirection: 'column',
     alignItems: 'flex-start',
     padding: 10,
+    marginTop: 8,
     marginLeft: 20,
     marginRight: 20,
-    marginBottom: 20,
+    marginBottom: 24,
   },
   tipContainTitleBoxFirst: {
-    backgroundColor: '#7CC106',
+    backgroundColor: '#168715',
     flexDirection: 'row',
     alignItems: 'center',
-    padding: 10,
+    paddingLeft: 22,
+    paddingTop: 18,
+    paddingBottom: 16,
     width: '100%',
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
@@ -196,43 +214,49 @@ const styles = StyleSheet.create({
   tipContainTitle: {
     color: '#F7FCEE',
     fontSize: 16,
-    fontWeight: '700',
+    fontFamily: 'PlusJakartaSans_700Bold',
   },
   tipContainTextBoxSecond: {
     backgroundColor: '#fff',
     flexDirection: 'column',
     alignItems: 'flex-start',
-    padding: 10,
+    paddingTop: 16,
+    paddingLeft: 24,
+    paddingRight: 24,
+    paddingBottom: 20,
     width: '100%',
     borderBottomLeftRadius: 20,
     borderBottomRightRadius: 20,
+    borderColor: '#f0f0f0',
+    borderWidth: 1,
+    shadowColor: '#000000',
+    shadowOffset: {width: 0, height: 4.02},
+    shadowOpacity: .05,
+    shadowRadius: 5.36,
   },
   tipOneText: {
-    color: '#000',
-    fontSize: 16,
-    fontWeight: '500',
-    marginTop: 10,
-    marginBottom: 10,
+    color: '#163C16',
+    fontSize: 14,
+    fontFamily: 'PlusJakartaSans_500Medium',
+    marginBottom: 16,
   },
   tipTwoText: {
-    color: '#000',
-    fontSize: 16,
-    fontWeight: '500',
-    marginTop: 10,
-    marginBottom: 10,
+    color: '#163C16',
+    fontSize: 14,
+    fontFamily: 'PlusJakartaSans_500Medium',
   },
   helpTitleContain: {
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'flex-start',
-    paddingHorizontal: 20,
-    marginTop: 20,
+    paddingHorizontal: 24,
+    marginTop: 24,
   },
   helpTitleText: {
-    color: '#000',
+    color: '#163C16',
     fontSize: 16,
-    fontWeight: '500',
+    fontFamily: 'PlusJakartaSans_700Bold',
   },
   allImages: {
     display: 'flex',
@@ -267,10 +291,10 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   imageText: {
-    color: '#000',
+    color: '#163C16',
     fontSize: 16,
-    fontWeight: '500',
-    marginTop: 10,
+    marginTop: 16,
+    fontFamily: 'PlusJakartaSans_600SemiBold',
   },
   imageTextBox: {
     marginBottom: 100,
@@ -283,4 +307,4 @@ const styles = StyleSheet.create({
   },
 })
 
-export default Explore;
+export default Learn;
