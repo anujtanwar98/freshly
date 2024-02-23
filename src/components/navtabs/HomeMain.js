@@ -272,6 +272,8 @@ const UploadReceiptScreen = () => {
             ))}
             </ScrollView>
         </View>
+        {hasItems() && (
+                <>
         <View style={styles.eatSoonBox}>
             <View style={styles.eatSoonBoxTitle}>
                 <Text style={styles.eatSoonTitle}>Eat Soon</Text>
@@ -290,6 +292,15 @@ const UploadReceiptScreen = () => {
                 <Text>Fresh for: {item.freshness_duration_min}-{item.freshness_duration_max} days</Text>
             </View>
         ))}
+        </>
+        )}
+        {!hasItems() && (
+            <View style={styles.noItemContainer}>
+                <Image source={require('../../../assets/fridge_empty.png')} />
+                <Text style={styles.noItemMessage}>Fridge Empty</Text>
+                <Text style={styles.noItemSecondMessage}>After your next grocery trip, add your receipt to fill your freshly fridge!</Text>
+            </View>
+        )}
         <Modal
         animationType="slide"
         transparent={true}
@@ -625,7 +636,26 @@ const styles = StyleSheet.create({
         fontSize: 16,
         fontFamily: 'PlusJakartaSans_600SemiBold',
         color: '#616774',
-    },  
+    },
+    noItemContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginHorizontal: 20,
+    },
+    noItemMessage: {
+        fontSize: 18,
+        fontFamily: 'PlusJakartaSans_700Bold',
+        color: '#163C16',
+    },
+    noItemSecondMessage: {
+        fontSize: 16,
+        fontFamily: 'PlusJakartaSans_500Medium',
+        color: '#163C16',
+        textAlign: 'center',
+        maxWidth: 300,
+        marginTop: 10,
+    },
 });
 
 export default UploadReceiptScreen;

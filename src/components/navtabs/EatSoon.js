@@ -124,6 +124,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#E9E9E9',
     position: 'relative',
+    marginTop: 5,
   },
   eat_soon_emoji: {
     // width: 50,
@@ -147,7 +148,7 @@ const styles = StyleSheet.create({
     fontFamily: 'PlusJakartaSans_600SemiBold',
   },
   eat_soon_mainText: {
-    marginTop: 15,
+    marginTop: 5,
     fontSize: 14,
     color: '#000',
     fontFamily: 'PlusJakartaSans_600SemiBold',
