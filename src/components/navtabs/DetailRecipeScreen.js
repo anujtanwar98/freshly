@@ -122,6 +122,12 @@ const DetailRecipeScreen = () => {
             <Text style={styles.stepText}>• Add the shrimp and toss to coat.</Text>
           </View>
         </View>
+        <View style={styles.brocImageBox}>
+          <Image style={styles.brocImage} source={require('./../../../assets/brocEndFood.png')}/>
+        </View>
+        <View style={styles.endTextBox}>
+          <Text style={styles.endText}>You made it to the end, enjoy your food! 😋</Text>
+        </View>
       </View>
       </ScrollView>
     </SafeAreaView>
@@ -235,5 +241,18 @@ const styles = StyleSheet.create({
   stepText: {
     fontFamily: 'PlusJakartaSans_400Regular',
     fontSize: 14,
+  },
+  brocImageBox: {
+    alignItems: 'center',
+    marginTop: 20,
+  },
+  endTextBox: {
+    alignItems: 'center',
+    marginTop: -30,
+    marginBottom: 40,
+  },
+  endText: {
+    fontFamily: 'PlusJakartaSans_500Medium',
+    fontSize: 16,
   },
 });
