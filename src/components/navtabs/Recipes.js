@@ -10,7 +10,7 @@ const Recipes = ({ navigation }) => {
 
     return (
     <SafeAreaView>
-      <ScrollView>
+      <ScrollView style={styles.scrollViewBox}>
         <View style={styles.mainWrapper}>
           <View style={styles.container}>
             <Text style={styles.text}>What do you want to eat?</Text>
@@ -59,12 +59,15 @@ const Recipes = ({ navigation }) => {
 }
 
 const styles = StyleSheet.create({
+  scrollViewBox: {
+    backgroundColor: '#FBFBFB',
+  },
   mainWrapper: {
     flex: 1,
   },
   container: {
     flex: 1,
-    backgroundColor: '#F3F3F3',
+    backgroundColor: '#FBFBFB',
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'flex-start',
