@@ -8,6 +8,8 @@ import { useNavigation } from '@react-navigation/native';
 import { AntDesign, FontAwesome5, MaterialIcons } from '@expo/vector-icons';
 import { useFocusEffect } from '@react-navigation/native';
 import { useFonts, PlusJakartaSans_500Medium, PlusJakartaSans_400Regular, PlusJakartaSans_600SemiBold, PlusJakartaSans_700Bold, PlusJakartaSans_800ExtraBold } from '@expo-google-fonts/plus-jakarta-sans';
+import { Iconify } from 'react-native-iconify';
+import { BlurView } from 'expo-blur';
 
 const UploadReceiptScreen = () => {
     const [receiptImage, setReceiptImage] = useState(null);
@@ -339,6 +341,7 @@ const UploadReceiptScreen = () => {
             </View>
         </Modal>
         <Modal animationType="slide" transparent={true} visible={modalVisible} onRequestClose={() => { setModalVisible(!modalVisible); }} >
+        <BlurView intensity={10} style={[StyleSheet.absoluteFill, { backgroundColor: 'rgba(16, 20, 15, 0.1)' }]}>
             <View style={styles.modalCenteredView}>
                 <View style={styles.modalView}>
                     <TouchableOpacity style={styles.buttonClose} onPress={() => setModalVisible(!modalVisible)} >
@@ -348,8 +351,13 @@ const UploadReceiptScreen = () => {
                         <Feather name="upload" size={40} color="#00B076" />
                         <Text style={styles.textStyle}>Upload</Text>
                     </TouchableOpacity>
+                    <TouchableOpacity >
+                        <Iconify icon="icon-park-outline:scanning-two" size={40} color='#00B076' />
+                        <Text style={styles.textStyle}>Scan</Text>
+                    </TouchableOpacity>
                 </View>
             </View>
+        </BlurView>
         </Modal>
             {/* {receiptImage && (
                 <Image source={receiptImage} style={styles.image} />
