@@ -69,7 +69,7 @@ const Nav = () => {
         }}> */}
         <Tab.Navigator 
         screenOptions={({ route }) => ({
-          tabBarActiveTintColor: '#7CC106',
+          tabBarActiveTintColor: '#168715',
           tabBarInactiveTintColor: '#808B9F',
           tabBarStyle: {
             backgroundColor: '#ffffff',
@@ -83,7 +83,7 @@ const Nav = () => {
           <Tab.Screen name="My Fridge" component={UploadReceiptStackScreen} options={{
             tabBarIcon: ({ focused  }) => (
               // <FontAwesome5 name="carrot" color={focused ? '#7CC106' : '#808B9F'} size={25} />
-              <Iconify icon="fluent:food-carrot-24-regular" color={focused ? '#7CC106' : '#808B9F'} size={25}/>
+              <Iconify icon="fluent:food-carrot-24-regular" color={focused ? '#168715' : '#808B9F'} size={25}/>
               // <FoodLogo size={24} color={focused ? '#7CC106' : '#808B9F'} />
             ),
             headerShown: false,
@@ -92,14 +92,14 @@ const Nav = () => {
             tabBarIcon: ({ focused }) => (
               // <MaterialIcons name="explore" color={focused ? '#7CC106' : '#808B9F'} size={25} />
               // <Iconify icon="mdi:learn-outline" color={focused ? '#7CC106' : '#808B9F'} size={25} />
-              <Iconify icon="nimbus:university" color={focused ? '#7CC106' : '#808B9F'} size={25} />
+              <Iconify icon="nimbus:university" color={focused ? '#168715' : '#808B9F'} size={25} />
             ),
             headerShown: false,
           }} />
           <Tab.Screen name="Recipes" component={RecipesStackScreen} options={{
             tabBarIcon: ({ focused }) => (
               // <MaterialCommunityIcons name="chef-hat" color={focused ? '#7CC106' : '#808B9F'} size={25} />
-              <Iconify icon="solar:chef-hat-outline" color={focused ? '#7CC106' : '#808B9F'} size={25} />
+              <Iconify icon="solar:chef-hat-outline" color={focused ? '#168715' : '#808B9F'} size={25} />
             ),
             headerShown: false,
           }} />
