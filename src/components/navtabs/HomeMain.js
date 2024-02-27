@@ -350,6 +350,7 @@ const UploadReceiptScreen = () => {
             </View>
         </Modal>
         <Modal animationType="slide" transparent={true} visible={modalVisible} onRequestClose={() => { setModalVisible(!modalVisible); }} >
+        <BlurView intensity={10} style={[StyleSheet.absoluteFill, { backgroundColor: 'rgba(16, 20, 15, 0.1)' }]}>
             <View style={styles.modalCenteredView}>
                 <View style={styles.modalView}>
                     {/* <TouchableOpacity style={styles.buttonClose} onPress={() => setModalVisible(!modalVisible)} >
@@ -376,6 +377,7 @@ const UploadReceiptScreen = () => {
                     <Ionicons name="close" style={styles.icon} color={'#ffffff'} size={50} />
                 </TouchableOpacity>
             </View>
+            </BlurView>
         </Modal>
             {/* {receiptImage && (
                 <Image source={receiptImage} style={styles.image} />
@@ -384,10 +386,10 @@ const UploadReceiptScreen = () => {
             {/* <Button title="Upload Receipt" onPress={uploadReceipt} /> */}
             {/* {isLoading && <Text>Uploading...</Text>} */}
             {!isLoading && renderCategorizedItems()}
-        {modalVisible && (
+        {/* {modalVisible && (
             <BlurView intensity={10} style={[StyleSheet.absoluteFill, { backgroundColor: 'rgba(16, 20, 15, 0.1)' }]}>
             </BlurView>
-        )}
+        )} */}
         </ScrollView>
         {!modalVisible && (
         <TouchableOpacity style={[styles.button, styles.addButton]} onPress={() => setModalVisible(true)}>
