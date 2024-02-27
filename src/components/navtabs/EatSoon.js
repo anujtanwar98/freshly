@@ -164,7 +164,7 @@ const styles = StyleSheet.create({
   eat_soon_mainText: {
     marginTop: 5,
     fontSize: 14,
-    color: '#000',
+    color: '#163C16',
     fontFamily: 'PlusJakartaSans_600SemiBold',
     marginBottom: 10,
     maxWidth: 100,

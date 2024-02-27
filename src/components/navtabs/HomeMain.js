@@ -418,9 +418,6 @@ const styles = StyleSheet.create({
     categoryContainer: {
         marginTop: 20,
     },
-    categoryTitle: {
-        fontWeight: 'bold',
-    },
     itemText: {
         marginLeft: 10,
     },
@@ -453,8 +450,8 @@ const styles = StyleSheet.create({
         flexWrap: 'wrap',
         justifyContent: 'flex-start',
         alignItems: 'flex-start',
-        paddingHorizontal: 8,
-        marginHorizontal: 10,
+        // paddingHorizontal: 8,
+        // marginHorizontal: 10,
     },
     categoryContainer: {
         backgroundColor: '#FBFBFB', 
@@ -464,11 +461,11 @@ const styles = StyleSheet.create({
         // flex: 1,
       },
     categoryTitle: {
-        fontSize: 18,
-        fontWeight: 'bold',
-        marginBottom: 8, // Space below the title
-        color: '#000000', // Dark text for better readability
-        marginLeft: 20,
+        fontSize: 16,
+        marginBottom: 8,
+        color: '#163C16',
+        marginLeft: 10,
+        fontFamily: 'PlusJakartaSans_700Bold',
     },
       emojiText: {
         fontSize: 30, // Larger size for emoji for visibility
@@ -662,10 +659,12 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         marginHorizontal: 10,
         marginTop: 20,
+        marginBottom: 10,
     },
     eatSoonTitle: {
         fontSize: 16,
         fontFamily: 'PlusJakartaSans_700Bold',
+        color: '#163C16',
     },
     eatSoonSeeAllTitle: {
         fontSize: 16,
@@ -795,7 +794,7 @@ const styles = StyleSheet.create({
     eat_soon_mainText: {
         marginTop: 5,
         fontSize: 14,
-        color: '#000',
+        color: '#163C16',
         fontFamily: 'PlusJakartaSans_600SemiBold',
         marginBottom: 10,
         maxWidth: 100,
