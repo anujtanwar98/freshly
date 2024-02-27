@@ -19,30 +19,34 @@ const DetailRecipeScreen = () => {
     <SafeAreaView style={styles.safeArea}>
       <ScrollView style={styles.mainContainer}>
       <View style={styles.mainWrapper}>
-        <View style={styles.foodImageContainer}>
-          <Image style={styles.foodImage} source={require('./../../../assets/food-image1.png')}/>
-        </View>
-        <View style={styles.foodTextContainer}>
-          <Text style={styles.foodText}>Honey Garlic Shrimp and Broccoli</Text>
-          <View style={styles.foodTime}>
-            <Text style={styles.foodTimeText}>35 minutes</Text>
+        <View style={styles.mainImageTextContainer}>
+          <View style={styles.foodImageContainer}>
+            <Image style={styles.foodImage} source={require('./../../../assets/food-image1.png')}/>
+          </View>
+          <View style={styles.foodTextContainer}>
+            <Text style={styles.foodText}>Honey Garlic Shrimp and Broccoli</Text>
+            <View style={styles.foodTime}>
+              <Text style={styles.foodTimeText}>35 minutes</Text>
+            </View>
           </View>
         </View>
         <View style={styles.numberServing}>
           <Text style={styles.numberServingText}>Number of Servings</Text>
         </View>
-        <View style={styles.servingContainer}>
-          <View style={[styles.servingButton, styles.servingButtonSelected]}>
-            <Text style={[styles.servingText, styles.servingTextSelected]}>1</Text>
-          </View>
-          <View style={styles.servingButton}>
-            <Text style={styles.servingText}>2</Text>
-          </View>
-          <View style={styles.servingButton}>
-            <Text style={styles.servingText}>3</Text>
-          </View>
-          <View style={styles.servingButton}>
-            <Text style={styles.servingText}>4</Text>
+        <View style={styles.mainImageTextContainer}>
+          <View style={styles.servingContainer}>
+            <View style={[styles.servingButton, styles.servingButtonSelected]}>
+              <Text style={[styles.servingText, styles.servingTextSelected]}>1</Text>
+            </View>
+            <View style={styles.servingButton}>
+              <Text style={styles.servingText}>2</Text>
+            </View>
+            <View style={styles.servingButton}>
+              <Text style={styles.servingText}>3</Text>
+            </View>
+            <View style={styles.servingButton}>
+              <Text style={styles.servingText}>4</Text>
+            </View>
           </View>
         </View>
         <View style={styles.whatNeedBox}>
@@ -199,13 +203,18 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#FBFBFB',
   },
+  mainImageTextContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   foodImageContainer: {
-
+    marginTop: 10,
   },
   foodImage: {
     height: 259,
     width: 342,
-    left: 24,
+    // left: 24,
   },
   foodTextContainer: {
     flex: 1,
@@ -261,7 +270,7 @@ const styles = StyleSheet.create({
   servingContainer: {
     width: 342,
     height: 53,
-    marginLeft: 24,
+    // marginLeft: 24,
     borderColor: '#F0F0F0',
     borderWidth: 1,
     borderRadius: 50,
@@ -356,7 +365,7 @@ const styles = StyleSheet.create({
     paddingTop: 20,
     // paddingBottom: 12,
     paddingLeft: 24,
-    // paddingRight: 20,
+    paddingRight: 24,
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'flex-start',
