@@ -360,7 +360,7 @@ const UploadReceiptScreen = () => {
                             <Text style={styles.textStyle}>Upload</Text>
                         </View>
                         <View style={styles.mainFileIcon}>
-                            <Feather name="upload" size={40} color="#168715" />
+                            <Feather name="upload" size={30} color="#168715" />
                         </View>
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.file} >
@@ -368,7 +368,7 @@ const UploadReceiptScreen = () => {
                             <Text style={styles.textStyle}>Scan</Text>
                         </View>
                         <View style={styles.mainFileIcon}>
-                            <Iconify icon="icon-park-outline:scanning-two" size={40} color='#168715' />
+                            <Iconify icon="icon-park-outline:scanning-two" size={30} color='#168715' />
                         </View>
                     </TouchableOpacity>
                 </View>
@@ -675,11 +675,13 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         marginHorizontal: 20,
+        marginTop: 90,
     },
     noItemMessage: {
         fontSize: 18,
         fontFamily: 'PlusJakartaSans_700Bold',
         color: '#163C16',
+        letterSpacing: .2,
     },
     noItemSecondMessage: {
         fontSize: 16,
@@ -687,7 +689,9 @@ const styles = StyleSheet.create({
         color: '#163C16',
         textAlign: 'center',
         maxWidth: 300,
-        marginTop: 10,
+        marginTop: 24,
+        lineHeight: 24,
+        letterSpacing: .2,
     },
     closeModalButton: {
         backgroundColor: '#BDFFBE',
@@ -743,8 +747,8 @@ const styles = StyleSheet.create({
         backgroundColor: '#ffffff',
         // padding: 10,
         borderRadius: 100,
-        width: 80,
-        height: 80,
+        width: 72,
+        height: 72,
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
