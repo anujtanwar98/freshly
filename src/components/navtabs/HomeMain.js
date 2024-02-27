@@ -286,14 +286,23 @@ const UploadReceiptScreen = () => {
                 </TouchableOpacity>
             </View>
         </View>
+        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
         {getEatSoonItems().map((item, index) => (
             // <Text key={index}>{item.item} - {item.freshness_duration_max} days left</Text>
-            <View key={index}>
-                <Text>{item.emoji}</Text>
-                <Text numberOfLines={1}>{item.item}</Text>
-                <Text>Fresh for: {item.freshness_duration_min}-{item.freshness_duration_max} days</Text>
+            // <View key={index}>
+            //     <Text>{item.emoji}</Text>
+            //     <Text numberOfLines={1}>{item.item}</Text>
+            //     <Text>Fresh for: {item.freshness_duration_min}-{item.freshness_duration_max} days</Text>
+            // </View>
+            <View key={index} style={styles.eat_soon_container}>
+            <View style={styles.eat_soon_circle}>
+              <Text style={styles.eat_soon_emoji}>{item.emoji}</Text>
+              <Text style={styles.eat_soon_subText_Red}>{item.freshness_duration_min}-{item.freshness_duration_max} days</Text>
             </View>
+            <Text numberOfLines={1} style={styles.eat_soon_mainText}>{item.item}</Text>
+          </View>
         ))}
+        </ScrollView>
         </>
         )}
         {!hasItems() && (
@@ -748,6 +757,42 @@ const styles = StyleSheet.create({
           },
           shadowOpacity: 0.5,
           shadowRadius: 10,
+    },
+    eat_soon_container: {
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    eat_soon_circle: {
+        width: 120,
+        height: 120,
+        borderRadius: 100,
+        backgroundColor: '#ffffff',
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderWidth: 1,
+        borderColor: '#E9E9E9',
+        position: 'relative',
+        marginTop: 5,
+        marginRight: 10,
+        marginLeft: 10,
+    },
+    eat_soon_emoji: {
+        fontSize: 30,
+    },
+    eat_soon_subText_Red: {
+        position: 'absolute',
+        bottom: 10,
+        fontSize: 16,
+        color: '#E41C1C',
+        fontFamily: 'PlusJakartaSans_600SemiBold',
+    },
+    eat_soon_mainText: {
+        marginTop: 5,
+        fontSize: 14,
+        color: '#000',
+        fontFamily: 'PlusJakartaSans_600SemiBold',
+        marginBottom: 10,
+        maxWidth: 100,
     },
 });
 
