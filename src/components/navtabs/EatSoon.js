@@ -115,8 +115,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   eat_soon_circle: {
-    width: 120,
-    height: 120,
+    width: 109,
+    height: 109,
     borderRadius: 100,
     backgroundColor: '#ffffff',
     justifyContent: 'center',
