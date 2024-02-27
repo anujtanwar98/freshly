@@ -343,18 +343,29 @@ const UploadReceiptScreen = () => {
         <Modal animationType="slide" transparent={true} visible={modalVisible} onRequestClose={() => { setModalVisible(!modalVisible); }} >
             <View style={styles.modalCenteredView}>
                 <View style={styles.modalView}>
-                    <TouchableOpacity style={styles.buttonClose} onPress={() => setModalVisible(!modalVisible)} >
+                    {/* <TouchableOpacity style={styles.buttonClose} onPress={() => setModalVisible(!modalVisible)} >
                         <Ionicons name="close-circle" size={30} color="black" />
+                    </TouchableOpacity> */}
+                    <TouchableOpacity style={styles.file} onPress={pickImage} >
+                        <View style={styles.mainFileText}>
+                            <Text style={styles.textStyle}>Upload</Text>
+                        </View>
+                        <View style={styles.mainFileIcon}>
+                            <Feather name="upload" size={40} color="#168715" />
+                        </View>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={pickImage} >
-                        <Feather name="upload" size={40} color="#00B076" />
-                        <Text style={styles.textStyle}>Upload</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity >
-                        <Iconify icon="icon-park-outline:scanning-two" size={40} color='#00B076' />
-                        <Text style={styles.textStyle}>Scan</Text>
+                    <TouchableOpacity style={styles.file} >
+                        <View style={styles.mainFileText}>
+                            <Text style={styles.textStyle}>Scan</Text>
+                        </View>
+                        <View style={styles.mainFileIcon}>
+                            <Iconify icon="icon-park-outline:scanning-two" size={40} color='#168715' />
+                        </View>
                     </TouchableOpacity>
                 </View>
+                <TouchableOpacity style={[styles.closeModalButton, styles.closeButton]} onPress={() => setModalVisible(!modalVisible)}>
+                    <Ionicons name="close" style={styles.icon} color={'#ffffff'} size={50} />
+                </TouchableOpacity>
             </View>
         </Modal>
             {/* {receiptImage && (
@@ -369,9 +380,11 @@ const UploadReceiptScreen = () => {
             </BlurView>
         )}
         </ScrollView>
+        {!modalVisible && (
         <TouchableOpacity style={[styles.button, styles.addButton]} onPress={() => setModalVisible(true)}>
             <Entypo name="plus" style={styles.icon} color={'#ffffff'} size={50} />
         </TouchableOpacity>
+        )}
         </SafeAreaView>
     );
 };
@@ -537,7 +550,8 @@ const styles = StyleSheet.create({
         },
         shadowOpacity: 0.25,
         shadowRadius: 4,
-        elevation: 5
+        elevation: 5,
+        right: -20,
     },
     previewImage: {
         width: 400,
@@ -665,6 +679,75 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         maxWidth: 300,
         marginTop: 10,
+    },
+    closeModalButton: {
+        backgroundColor: '#BDFFBE',
+        padding: 10,
+        borderRadius: 20,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+    },
+    closeButton: {
+        backgroundColor: '#168715',
+        padding: 10,
+        justifyContent: 'center',
+        alignItems: 'center',
+        position: 'absolute',
+        bottom: -50,
+        right: 40,
+        borderRadius: 40, 
+        width: 80, 
+        height: 80,
+        shadowColor: '#171717',
+        shadowOffset: {width: -2, height: 4},
+        shadowOpacity: 0.2,
+        shadowRadius: 3,
+    },
+    file: {
+        // backgroundColor: '#ffffff',
+        // padding: 10,
+        borderRadius: 20,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        // margin: 10,
+    },
+    textStyle: {
+        color: '#163C16',
+        fontSize: 16,
+        fontFamily: 'PlusJakartaSans_600SemiBold',
+        minWidth: 80,
+        padding: 5,
+    },
+    mainFileText: {
+        backgroundColor: '#ffffff',
+        padding: 10,
+        borderRadius: 6,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        marginTop: 20,
+        marginRight: -10,
+    },
+    mainFileIcon: {
+        backgroundColor: '#ffffff',
+        // padding: 10,
+        borderRadius: 100,
+        width: 80,
+        height: 80,
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: 20,
+        right: 10,
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 4,
+          },
+          shadowOpacity: 0.5,
+          shadowRadius: 10,
     },
 });
 
