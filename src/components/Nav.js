@@ -27,9 +27,9 @@ function UploadReceiptStackScreen() {
   return (
     <UploadReceiptStack.Navigator>
       <UploadReceiptStack.Screen name="My Fridge" component={UploadReceiptScreen} options={{ headerShown: false }} />
-      <UploadReceiptStack.Screen name="DetailScreen" component={DetailScreen} options={{ headerTitle: '' }} />
-      <UploadReceiptStack.Screen name="EditFoodScreen" component={EditFoodScreen} options={{ headerTitle: 'Edit Item' }} />
-      <UploadReceiptStack.Screen name="EatSoon" component={EatSoon} options={{ headerTitle: 'Eat Soon' }} />
+      <UploadReceiptStack.Screen name="DetailScreen" component={DetailScreen} options={{ headerTitle: '', headerTitleStyle: { color: '#163C16' }, headerStyle: { backgroundColor: '#FBFBFB' }, headerTintColor: '#616774', }} />
+      <UploadReceiptStack.Screen name="EditFoodScreen" component={EditFoodScreen} options={{ headerTitle: 'Edit Item', headerTitleStyle: { color: '#163C16' }, headerStyle: { backgroundColor: '#FBFBFB' }, headerTintColor: '#616774', }} />
+      <UploadReceiptStack.Screen name="EatSoon" component={EatSoon} options={{ headerTitle: 'Eat Soon', headerTitleStyle: { color: '#163C16' }, headerStyle: { backgroundColor: '#FBFBFB' }, headerTintColor: '#616774', }} />
     </UploadReceiptStack.Navigator>
   );
 }
@@ -38,8 +38,8 @@ function RecipesStackScreen() {
   return (
     <RecipesStack.Navigator>
       <RecipesStack.Screen name="Recipes" component={Recipes} options={{ headerShown: false }} />
-      <RecipesStack.Screen name="RecipeIdeas" component={RecipeIdeas} options={{ headerTitle: 'Recipe Ideas' }} />
-      <RecipesStack.Screen name="DetailRecipeScreen" component={DetailRecipeScreen} options={{ headerTitle: '' }} />
+      <RecipesStack.Screen name="RecipeIdeas" component={RecipeIdeas} options={{ headerTitle: 'Recipe Ideas', headerTitleStyle: { color: '#163C16' }, headerStyle: { backgroundColor: '#FBFBFB' }, headerTintColor: '#616774', }} />
+      <RecipesStack.Screen name="DetailRecipeScreen" component={DetailRecipeScreen} options={{ headerTitle: '', headerTintColor: '#616774', headerStyle: { backgroundColor: '#FBFBFB' }, }} />
     </RecipesStack.Navigator>
   );
 }

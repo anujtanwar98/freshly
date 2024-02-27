@@ -195,7 +195,7 @@ const EditFoodScreen = ({ route, navigation }) => {
 
 const styles = StyleSheet.create({
   safeView: {
-    // backgroundColor: '#FBFBFB',
+    backgroundColor: '#FBFBFB',
     flex: 1,
   },
   container: {

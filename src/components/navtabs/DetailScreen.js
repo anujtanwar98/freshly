@@ -100,7 +100,7 @@ const DetailScreen = ({ route }) => {
   const carbonImpactColor = getCarbonImpactColor(itemData.carbon_impact);
 
   return (
-    <ScrollView>
+    <ScrollView style={styles.mainContainer}>
       <View style={styles.container}>
         <View style={styles.header}>
           <Text style={styles.emoji}>{itemData.emoji}</Text>
@@ -145,10 +145,14 @@ const DetailScreen = ({ route }) => {
 };
 
 const styles = StyleSheet.create({
+  mainContainer: {
+    backgroundColor: '#FBFBFB',
+  },
   container: {
     flex: 1,
     // justifyContent: 'center',
     // alignItems: 'center',
+    backgroundColor: '#FBFBFB',
   },
   header: {
     alignItems: 'center',
@@ -157,7 +161,7 @@ const styles = StyleSheet.create({
   nameCategory: {
     backgroundColor: '#fff',
     alignItems: 'center',
-    width: 400,
+    width: 350,
     height: 150,
     display: 'flex',
     justifyContent: 'center',
@@ -190,7 +194,7 @@ const styles = StyleSheet.create({
   freshness: {
     backgroundColor: '#fff',
     alignItems: 'flex-start',
-    width: 180,
+    width: 160,
     height: 100,
     borderRadius: 20,
     shadowColor: '#171717',
@@ -204,7 +208,7 @@ const styles = StyleSheet.create({
   impact: {
     backgroundColor: '#fff',
     alignItems: 'flex-start',
-    width: 180,
+    width: 160,
     height: 100,
     borderRadius: 20,
     shadowColor: '#171717',
@@ -249,10 +253,16 @@ const styles = StyleSheet.create({
     fontFamily: 'PlusJakartaSans_600SemiBold',
   },
   storageTipsFridge: {
-    backgroundColor: '#fff',
+    backgroundColor: '#ffffff',
     borderRadius: 20,
     padding: 20,
     marginTop: 10,
+    borderWidth: 1,
+    borderColor: '#F0F0F0',
+    shadowColor: '#171717',
+    shadowOffset: {width: -2, height: 4},
+    shadowOpacity: 0.2,
+    shadowRadius: 3,
   },
   storageTipsFridgeTitle: {
     fontSize: 16,
@@ -264,10 +274,16 @@ const styles = StyleSheet.create({
     fontFamily: 'PlusJakartaSans_400Regular',
   },
   storageTipsFreezer: {
-    backgroundColor: '#fff',
+    backgroundColor: '#ffffff',
     borderRadius: 20,
     padding: 20,
     marginTop: 10,
+    borderWidth: 1,
+    borderColor: '#F0F0F0',
+    shadowColor: '#171717',
+    shadowOffset: {width: -2, height: 4},
+    shadowOpacity: 0.2,
+    shadowRadius: 3,
   },
   storageTipsFreezerTitle: {
     fontSize: 16,

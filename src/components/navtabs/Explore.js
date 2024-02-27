@@ -21,8 +21,8 @@ const Learn = () => {
   }  
   
   return (
-    <SafeAreaView>
-      <ScrollView>
+    <SafeAreaView style={styles.SafeAreaViewMain}>
+      <ScrollView style={styles.mainContainer}>
         <View style={styles.mainWrapper}>
           <View style={styles.container}>
             <Text style={styles.text}>Learn</Text>
@@ -98,12 +98,19 @@ const Learn = () => {
 }
 
 const styles = StyleSheet.create({
+  SafeAreaViewMain: {
+    flex: 1,
+    backgroundColor: '#FBFBFB',
+  },
+  mainContainer: {
+    backgroundColor: '#FBFBFB',
+  },
   mainWrapper: {
     flex: 1,
   },
   container: {
     flex: 1,
-    backgroundColor: '#F3F3F3',
+    // backgroundColor: '#F3F3F3',
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'flex-start',
@@ -116,7 +123,7 @@ const styles = StyleSheet.create({
   },
   searchContainer: {
     flex: 1,
-    backgroundColor: '#ededed',
+    backgroundColor: '#D8D8D8',
     display: 'flex',
     alignItems: 'center',
     flexDirection: 'row',
@@ -173,12 +180,12 @@ const styles = StyleSheet.create({
     // width: 100,
   },
   emptyBoxLine : {
-    borderBottomColor: '#ededed',
+    borderBottomColor: '#F5F5F5',
     borderBottomWidth: 10,
   },
   mainContain: {
     flex: 1,
-    backgroundColor: '#F3F3F3',
+    // backgroundColor: '#F3F3F3',
     // marginTop: 10,
     // marginBottom: 10,
   },
@@ -301,7 +308,7 @@ const styles = StyleSheet.create({
   },
   helpEnvBox: {
     flex: 1,
-    backgroundColor: '#F3F3F3',
+    // backgroundColor: '#F3F3F3',
     // marginTop: 10,
     marginBottom: 20,
   },

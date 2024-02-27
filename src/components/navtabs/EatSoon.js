@@ -20,7 +20,7 @@ const EatSoon = ({ route }) => {
     }
 
     return (
-      <SafeAreaView>
+      <SafeAreaView style={styles.safeArea}>
         <ScrollView style={styles.container}>
           <View style={styles.all_items}>
             <Text style={styles.main_eat_soon_title}>Eat Soon</Text>
@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   container: {
-    backgroundColor: '#F3F3F3',
+    backgroundColor: '#FBFBFB',
   },
   main_eat_soon_title: {
     fontSize: 24,

@@ -9,7 +9,7 @@ const Recipes = ({ navigation }) => {
   const [selectedCategory, setSelectedCategory] = useState(null);
 
     return (
-    <SafeAreaView>
+    <SafeAreaView style={styles.SafeAreaViewMain}>
       <ScrollView style={styles.scrollViewBox}>
         <View style={styles.mainWrapper}>
           <View style={styles.container}>
@@ -59,6 +59,10 @@ const Recipes = ({ navigation }) => {
 }
 
 const styles = StyleSheet.create({
+  SafeAreaViewMain: {
+    flex: 1,
+    backgroundColor: '#FBFBFB',
+  },
   scrollViewBox: {
     backgroundColor: '#FBFBFB',
   },

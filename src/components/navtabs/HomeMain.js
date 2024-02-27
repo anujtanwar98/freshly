@@ -403,12 +403,12 @@ const UploadReceiptScreen = () => {
 const styles = StyleSheet.create({
     safeArea: {
         flex: 1,
-        backgroundColor: '#D8D8D8',
+        backgroundColor: '#FBFBFB',
     },
     container: {
         // justifyContent: 'center',
         // alignItems: 'center',
-        backgroundColor: '#F3F3F3',
+        backgroundColor: '#FBFBFB',
     },
     image: {
         width: 300,
@@ -457,7 +457,7 @@ const styles = StyleSheet.create({
         marginHorizontal: 10,
     },
     categoryContainer: {
-        backgroundColor: '#F3F3F3', 
+        backgroundColor: '#FBFBFB', 
         margin: 8,
         gap: 8,
         minWidth: '100%',
