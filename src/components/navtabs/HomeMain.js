@@ -254,6 +254,13 @@ const UploadReceiptScreen = () => {
         // this returns all the items 
         return eatSoonItems;
     };      
+    const getFreshnessColor = (minDays, maxDays) => {
+        if (maxDays <= 2) {
+            return '#E41C1C'; // Red for less than 2 days
+        } else {
+            return '#F78908'; // Orange for 3-5 days
+        }
+    };
 
     return (
         <SafeAreaView style={styles.safeArea}>
@@ -297,7 +304,7 @@ const UploadReceiptScreen = () => {
             <View key={index} style={styles.eat_soon_container}>
             <View style={styles.eat_soon_circle}>
               <Text style={styles.eat_soon_emoji}>{item.emoji}</Text>
-              <Text style={styles.eat_soon_subText_Red}>{item.freshness_duration_min}-{item.freshness_duration_max} days</Text>
+              <Text style={[styles.eat_soon_subText_Red,  { color: getFreshnessColor(item.freshness_duration_min, item.freshness_duration_max) }]}>{item.freshness_duration_min}-{item.freshness_duration_max} days</Text>
             </View>
             <Text numberOfLines={1} style={styles.eat_soon_mainText}>{item.item}</Text>
           </View>
