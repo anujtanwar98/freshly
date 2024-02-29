@@ -1,16 +1,18 @@
 // DetailScreen.js
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Modal } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { FontAwesome } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { Octicons } from '@expo/vector-icons';
 import { useFonts, PlusJakartaSans_500Medium, PlusJakartaSans_400Regular, PlusJakartaSans_600SemiBold, PlusJakartaSans_700Bold, PlusJakartaSans_800ExtraBold } from '@expo-google-fonts/plus-jakarta-sans';
+import { AntDesign } from '@expo/vector-icons';
 
 const DetailScreen = ({ route }) => {
   const { itemId, category} = route.params;
   const [itemData, setItemData] = useState(null);
+  const [isModalVisible, setIsModalVisible] = useState(false);
 
   useEffect(() => {
     console.log(itemData);
@@ -55,6 +57,10 @@ const DetailScreen = ({ route }) => {
       });
     }
   }, [navigation, itemData]);
+
+  const toggleModal = () => {
+    setIsModalVisible(!isModalVisible);
+  };  
 
   const getCarbonImpactColor = (carbonImpact) => {
     switch (carbonImpact.toLowerCase()) {
@@ -117,7 +123,32 @@ const DetailScreen = ({ route }) => {
           </View>
           <View style={styles.impact}>
             <Text style={styles.carbonText}>Carbon Impact: </Text>
-            <Text style={[styles.carbonImpact, { color: carbonImpactColor }]}>{itemData.carbon_impact}</Text>
+            <View style={styles.carbonIcon}>
+              <Text style={[styles.carbonImpact, { color: carbonImpactColor }]}>{itemData.carbon_impact}</Text>
+              <TouchableOpacity style={styles.impactIcon} onPress={toggleModal}>
+                <AntDesign name="questioncircleo" size={20} color="#616774" />
+              </TouchableOpacity>
+            </View>
+            <Modal animationType="slide" transparent={true} visible={isModalVisible} onRequestClose={toggleModal}>
+              <View style={styles.centeredView}>
+                <View style={styles.modalView}>
+                  <View style={styles.paraG}>
+                    <Text style={styles.modalTextTitle}>What is Carbon Impact?</Text>
+                    <Text style={styles.modalText}>Some foods, like red meat, produce more greenhouse gases. We've simplified it: 
+                    <Text style={[styles.coloredText, {color: getCarbonImpactColor('low')}]}> Low</Text>,
+                    <Text style={[styles.coloredText, {color: getCarbonImpactColor('medium')}]}> Medium</Text>, or
+                    <Text style={[styles.coloredText, {color: getCarbonImpactColor('high')}]}> High</Text> - so you can make better food choices for the planet! 🌍 </Text>
+                  </View>
+                  <Text style={styles.modalTextTitle}>What Can I Do?</Text>
+                  <Text style={styles.modalText}>Take note of your food's carbon impact and choose more “
+                  <Text style={[styles.coloredText, {color: getCarbonImpactColor('low')}]}>Low</Text>” options like veggies and chicken, or go organic for a chemical-free sustainable impact. Your plate has power - make it a force for good! 🍽️✨</Text>
+                  <TouchableOpacity style={[styles.button, styles.buttonClose]} onPress={toggleModal}>
+                    <Text style={styles.textStyle}>Ok, thanks!</Text>
+                  </TouchableOpacity>
+                  <Text style={styles.learnText}>Learn More</Text>
+                </View>
+              </View>
+            </Modal>
           </View>
         </View>
         <View style={styles.storageTips}>
@@ -207,7 +238,7 @@ const styles = StyleSheet.create({
   },
   impact: {
     backgroundColor: '#fff',
-    alignItems: 'flex-start',
+    // alignItems: 'flex-start',
     width: 160,
     height: 100,
     borderRadius: 20,
@@ -293,6 +324,76 @@ const styles = StyleSheet.create({
   storageTipsFreezerText: {
     fontSize: 14,
     fontFamily: 'PlusJakartaSans_400Regular',
+  },
+  centeredView: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+  },
+  modalView: {
+    margin: 20,
+    backgroundColor: "#ffffff",
+    borderRadius: 20,
+    padding: 35,
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2
+    },
+    shadowOpacity: 0.55,
+    shadowRadius: 4,
+    elevation: 5,
+  },
+  button: {
+    borderRadius: 50,
+    padding: 10,
+    elevation: 2,
+    width: 200,
+  },
+  buttonClose: {
+    backgroundColor: "#168715",
+  },
+  textStyle: {
+    color: "#ffffff",
+    fontFamily: 'PlusJakartaSans_600SemiBold',
+    fontSize: 16,
+    textAlign: "center"
+  },
+  modalTextTitle: {
+    marginBottom: 15,
+    textAlign: "center",
+    fontFamily: 'PlusJakartaSans_700Bold',
+    fontSize: 16,
+    color: '#163C16',
+  },
+  modalText: {
+    marginBottom: 15,
+    textAlign: "center",
+    color: '#163C16',
+    fontFamily: 'PlusJakartaSans_400Regular',
+    fontSize: 14,
+  },
+  learnText: {
+    color: '#616774',
+    fontFamily: 'PlusJakartaSans_500Medium',
+    fontSize: 14,
+    marginTop: 10,
+  },
+  coloredText: {
+    fontFamily: 'PlusJakartaSans_700Bold',
+  },
+  carbonIcon: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  impactIcon: {
+    marginRight: 15,
+  },
+  paraG: {
+    marginBottom: 20,
   },
 });
 
