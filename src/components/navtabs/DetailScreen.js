@@ -1,6 +1,6 @@
 // DetailScreen.js
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Modal } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Modal, Image } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { FontAwesome } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
@@ -115,6 +115,15 @@ const DetailScreen = ({ route }) => {
               <Text style={styles.category}>{itemData.category}</Text>
             </View>
         </View>
+        {itemData.freshness_duration_max <= 3 && (
+        <View style={styles.brocContainer}>
+          <Image style={styles.brocImage} source={require('./../../../assets/brocRight.png')}/>
+          <View style={styles.brocTextBox}>
+            <Text style={styles.brocText}>⚠️ Check before you eat!</Text>
+            <Text style={styles.brocTextContainer}>Based on Broc's calculation of average freshness ranges, this item may not be fresh any longer.</Text>
+          </View>
+        </View>
+        )}
         <View style={styles.details}>
           <View style={styles.freshness}>
             <Text style={styles.freshFor}>Fresh For: </Text>
@@ -394,6 +403,45 @@ const styles = StyleSheet.create({
   },
   paraG: {
     marginBottom: 20,
+  },
+  brocContainer: {
+    backgroundColor: '#ffffff',
+    padding: 10,
+    borderRadius: 20,
+    marginLeft: 20,
+    marginRight: 20,
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingBottom: 20,
+    marginBottom: 20,
+    borderWidth: 1,
+    borderColor: '#F0F0F0',
+    shadowColor: '#171717',
+    shadowOffset: {width: -2, height: 4},
+    shadowOpacity: 0.2,
+    shadowRadius: 3,
+  },
+  brocImage: {
+    width: 50,
+    marginLeft: -10,
+  },
+  brocText: {
+    color: '#163C16',
+    fontSize: 12,
+    fontFamily: 'PlusJakartaSans_700Bold',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginLeft: 20,
+  },
+  brocTextContainer: {
+    color: '#163C16',
+    fontSize: 10,
+    fontFamily: 'PlusJakartaSans_500Medium',
+    alignItems: 'center',
+    justifyContent: 'center',
+    maxWidth: 260,
+    marginLeft: 20,
+    marginTop: 10,
   },
 });
 
