@@ -75,8 +75,8 @@ const DetailScreen = ({ route }) => {
 
   const getFreshnessColor = (minDays, maxDays) => {
     // Assuming you want to base the color on the minimum freshness duration
-    if (maxDays <= 3) {
-        return '#E41C1C'; // Red for 0-3 days
+    if (maxDays <= 2) {
+        return '#E41C1C'; // Red for 0-2 days
     } else if (maxDays <= 5) {
         return '#F78908'; // Orange for 3-5 days
     } else {
@@ -115,7 +115,7 @@ const DetailScreen = ({ route }) => {
               <Text style={styles.category}>{itemData.category}</Text>
             </View>
         </View>
-        {itemData.freshness_duration_max <= 3 && (
+        {itemData.freshness_duration_max <= 2 && (
         <View style={styles.brocContainer}>
           <Image style={styles.brocImage} source={require('./../../../assets/brocRight.png')}/>
           <View style={styles.brocTextBox}>
@@ -202,7 +202,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     width: 350,
-    height: 150,
+    height: 130,
     display: 'flex',
     justifyContent: 'center',
     borderRadius: 20,
@@ -219,6 +219,8 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 24,
     fontFamily: 'PlusJakartaSans_600SemiBold',
+    marginTop: 15,
+    marginBottom: 10,
   },
   category: {
     color: '#616774',

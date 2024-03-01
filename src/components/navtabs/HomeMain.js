@@ -147,7 +147,7 @@ const UploadReceiptScreen = () => {
         //     }
         // };               
         const getFreshnessStatus = (minDays, maxDays) => {
-            if (maxDays <= 3) {
+            if (maxDays <= 2) {
                 return {
                     iconComponent: MaterialIcons,
                     iconName: 'error-outline',
