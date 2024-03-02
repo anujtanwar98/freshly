@@ -18,6 +18,7 @@ import EatSoon from "./navtabs/EatSoon";
 import { useFonts, PlusJakartaSans_700Bold, PlusJakartaSans_600SemiBold } from '@expo-google-fonts/plus-jakarta-sans';
 import { Text } from 'react-native';
 import { Iconify } from 'react-native-iconify';
+import MyChef from '../../assets/chefhat';
 
 const Tab = createBottomTabNavigator()
 const UploadReceiptStack = createStackNavigator();
@@ -98,8 +99,7 @@ const Nav = () => {
           }} />
           <Tab.Screen name="Recipes" component={RecipesStackScreen} options={{
             tabBarIcon: ({ focused }) => (
-              // <MaterialCommunityIcons name="chef-hat" color={focused ? '#7CC106' : '#808B9F'} size={25} />
-              <Iconify icon="solar:chef-hat-outline" color={focused ? '#168715' : '#808B9F'} size={25} />
+              <MyChef focused={focused}/>
             ),
             headerShown: false,
           }} />

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, SafeAreaView, ScrollView, Image, ActivityIndicator } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import MyIdeaIcon from '../../../assets/genideaicon';
 
 const RecipeIdeas = () => {
   const navigation = useNavigation(); // Initialize the navigation hook
@@ -71,7 +72,7 @@ const RecipeIdeas = () => {
               </View>
               <TouchableOpacity style={[ styles.generateButton, styles.generateButtonActive ]} onPress={() => { 
               }} >
-                <Image style={styles.generateIcon} source={require('./../../../assets/generate-icon.svg')}/>
+                <MyIdeaIcon style={styles.generateIcon} />
                 <Text style={styles.generateButtonText}>Regenerate!</Text>
               </TouchableOpacity>
             </View>

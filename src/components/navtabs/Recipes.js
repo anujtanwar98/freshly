@@ -3,6 +3,7 @@ import { View, Text, SafeAreaView, StyleSheet, TouchableOpacity, ScrollView} fro
 import { Ionicons } from '@expo/vector-icons';
 import { Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import MyGen from '../../../assets/genicon';
 
 
 const Recipes = ({ navigation }) => {
@@ -48,8 +49,8 @@ const Recipes = ({ navigation }) => {
               } else { 
                 alert ('Please select a category first.'); 
             }}} >
-                          <Image style={styles.generateIcon} source={require('./../../../assets/generate-icon.svg')}/>
-              <Text style={styles.generateButtonText}>Generate recipes!</Text>
+              <MyGen focused={!!selectedCategory} style={styles.generateIcon} />
+              <Text style={[styles.generateButtonText, { color: selectedCategory ? '#FFFFFF' : '#616774' }]}>Generate recipes!</Text>
             </TouchableOpacity>
           </View>
         </View>
