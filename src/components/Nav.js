@@ -19,6 +19,7 @@ import { useFonts, PlusJakartaSans_700Bold, PlusJakartaSans_600SemiBold } from '
 import { Text } from 'react-native';
 import { Iconify } from 'react-native-iconify';
 import MyChef from '../../assets/chefhat';
+import MyLearnIcon from '../../assets/learnicon';
 
 const Tab = createBottomTabNavigator()
 const UploadReceiptStack = createStackNavigator();
@@ -91,9 +92,8 @@ const Nav = () => {
           }} />
           <Tab.Screen name="Learn" component={Explore} options={{
             tabBarIcon: ({ focused }) => (
-              // <MaterialIcons name="explore" color={focused ? '#7CC106' : '#808B9F'} size={25} />
-              // <Iconify icon="mdi:learn-outline" color={focused ? '#7CC106' : '#808B9F'} size={25} />
-              <Iconify icon="nimbus:university" color={focused ? '#168715' : '#808B9F'} size={25} />
+              // <Iconify icon="nimbus:university" color={focused ? '#168715' : '#808B9F'} size={25} />
+              <MyLearnIcon focused={focused} strokeWidth={1.75} />
             ),
             headerShown: false,
           }} />

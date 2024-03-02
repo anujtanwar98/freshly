@@ -167,7 +167,8 @@ const DetailScreen = ({ route }) => {
             <MaterialCommunityIcons name="fridge-outline" size={24} color="black" /> Fridge
             </Text>
             <Text style={styles.storageTipsFridgeText}>
-              {`1. lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud\n2. lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud `}
+              {`1. Use the Crisper Drawer: Store apples in the crisper drawer of your fridge in a perforated bag for optimal humidity.
+              \n2. Separate from Other Produce: Keep apples away from other fruits and vegetables to prevent them from ripening too quickly due to ethylene gas.`}
             </Text>
           </View>
           <View style={styles.storageTipsFreezer}>
@@ -175,7 +176,8 @@ const DetailScreen = ({ route }) => {
             <FontAwesome name="thermometer-quarter" size={24} color="black" /> Freezer
             </Text>
             <Text style={styles.storageTipsFreezerText}>
-            {`1. lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud\n2. lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud `}
+            {`1. Freeze Individually: Wash, slice, and freeze apple slices on a tray before transferring to freezer bags to prevent sticking. 
+            \n2. Airtight Bags: Pack slices in airtight freezer bags, removing excess air, to avoid freezer burn.`}
             </Text>
           </View>
         </View>
