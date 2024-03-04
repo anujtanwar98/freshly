@@ -38,7 +38,14 @@ function UploadReceiptStackScreen() {
 
 function RecipesStackScreen() {
   return (
-    <RecipesStack.Navigator>
+    <RecipesStack.Navigator
+    screenOptions={{
+      gestureEnabled: true,
+      transitionSpec: {
+        open: { animation: 'timing', config: { duration: 500 } },
+        close: { animation: 'timing', config: { duration: 500 } },
+      },
+    }}>
       <RecipesStack.Screen name="Recipes" component={Recipes} options={{ headerShown: false }} />
       <RecipesStack.Screen name="RecipeIdeas" component={RecipeIdeas} options={{ headerTitle: 'Recipe Ideas', headerTitleStyle: { color: '#163C16' }, headerStyle: { backgroundColor: '#FBFBFB' }, headerTintColor: '#616774', }} />
       <RecipesStack.Screen name="DetailRecipeScreen" component={DetailRecipeScreen} options={{ headerTitle: '', headerTintColor: '#616774', headerStyle: { backgroundColor: '#FBFBFB' }, }} />
