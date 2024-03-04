@@ -8,6 +8,8 @@ import { useNavigation } from '@react-navigation/native';
 import { Octicons } from '@expo/vector-icons';
 import { useFonts, PlusJakartaSans_500Medium, PlusJakartaSans_400Regular, PlusJakartaSans_600SemiBold, PlusJakartaSans_700Bold, PlusJakartaSans_800ExtraBold } from '@expo-google-fonts/plus-jakarta-sans';
 import { AntDesign } from '@expo/vector-icons';
+import MyFreezeTempIcon from './../../../assets/freezetemp';
+import { Iconify } from 'react-native-iconify';
 
 const DetailScreen = ({ route }) => {
   const { itemId, category} = route.params;
@@ -163,18 +165,29 @@ const DetailScreen = ({ route }) => {
         <View style={styles.storageTips}>
           <Text style={styles.storageTipsTitle}>Storage Tips</Text>
           <View style={styles.storageTipsFridge}>
-            <Text style={styles.storageTipsFridgeTitle}>
-            <MaterialCommunityIcons name="fridge-outline" size={24} color="black" /> Fridge
-            </Text>
+            <View style={styles.storageTipsFridgeBox}>
+              <View style={styles.storageTipsFridgeIcon}>
+                <Iconify icon="mdi:fridge-outline" size={24} color="#163C16"/>
+              </View>
+              <Text style={styles.storageTipsFridgeTitle}>
+                Fridge
+                {/* <MaterialCommunityIcons name="fridge-outline" size={24} color="#163C16" /> Fridge */}
+              </Text>
+            </View>
             <Text style={styles.storageTipsFridgeText}>
               {`1. Use the Crisper Drawer: Store apples in the crisper drawer of your fridge in a perforated bag for optimal humidity.
               \n2. Separate from Other Produce: Keep apples away from other fruits and vegetables to prevent them from ripening too quickly due to ethylene gas.`}
             </Text>
           </View>
           <View style={styles.storageTipsFreezer}>
-            <Text style={styles.storageTipsFreezerTitle}>
-            <FontAwesome name="thermometer-quarter" size={24} color="black" /> Freezer
-            </Text>
+            <View style={styles.storageTipsFreezerBox}>
+              <View style={styles.storageTipsFreezerIcon}>
+                <MyFreezeTempIcon size={24} color="#163C16" />
+              </View>
+              <Text style={styles.storageTipsFreezerTitle}>
+                Freezer
+              </Text>
+            </View>
             <Text style={styles.storageTipsFreezerText}>
             {`1. Freeze Individually: Wash, slice, and freeze apple slices on a tray before transferring to freezer bags to prevent sticking. 
             \n2. Airtight Bags: Pack slices in airtight freezer bags, removing excess air, to avoid freezer burn.`}
@@ -308,10 +321,17 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.2,
     shadowRadius: 3,
   },
+  storageTipsFridgeBox: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingBottom: 10,
+  },
   storageTipsFridgeTitle: {
     fontSize: 16,
     fontFamily: 'PlusJakartaSans_600SemiBold',
-    paddingBottom: 10,
+    paddingLeft: 5,
+    color: '#163C16',
+    // paddingBottom: 10,
   },
   storageTipsFridgeText: {
     fontSize: 14,
@@ -329,10 +349,21 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.2,
     shadowRadius: 3,
   },
+  storageTipsFreezerBox: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingBottom: 10,
+  },
   storageTipsFreezerTitle: {
     fontSize: 16,
     fontFamily: 'PlusJakartaSans_600SemiBold',
-    paddingBottom: 10,
+    paddingLeft: 10,
+    color: '#163C16',
+    // paddingBottom: 10,
+  },
+  storageTipsFridgeIcon: {
+    // backgroundColor: '#168715',
+    marginLeft: -5,
   },
   storageTipsFreezerText: {
     fontSize: 14,
