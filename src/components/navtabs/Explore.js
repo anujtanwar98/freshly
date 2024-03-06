@@ -5,6 +5,7 @@ import { FontAwesome } from '@expo/vector-icons';
 import { Image } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import { useFonts, PlusJakartaSans_500Medium, PlusJakartaSans_400Regular, PlusJakartaSans_600SemiBold, PlusJakartaSans_700Bold, PlusJakartaSans_800ExtraBold } from '@expo-google-fonts/plus-jakarta-sans';
+import { Linking } from 'react-native';
 
 
 
@@ -77,16 +78,20 @@ const Learn = () => {
             </View>
             <View style={styles.allImages}>
               <View style={styles.imageOneHelp}>
+              <TouchableOpacity style={{ flex: 1 }} onPress={() => Linking.openURL('https://www.epa.gov/recycle/composting-home')} activeOpacity={0.7} >
                 <Image style={styles.imageOne} source={require('../../../assets/composting_tips.png')}/>
                 <View style={styles.imageTextBox}>
                   <Text style={styles.imageText}>Composting Tips</Text>
                 </View>
+              </TouchableOpacity>
               </View>
               <View style={styles.imageTwoHelp}>
+              <TouchableOpacity style={{ flex: 1 }} onPress={() => Linking.openURL('https://www.weightwatchers.com/us/blog/weight-loss/low-carbon-diet')} activeOpacity={0.7} >
                 <Image style={styles.imageTwo} source={require('../../../assets/low_carbon_diet.png')}/>
                 <View style={styles.imageTextBox}>
                   <Text style={styles.imageText}>Low Carbon Diet</Text>
                 </View>
+              </TouchableOpacity>
               </View>
             </View>
           </View>
