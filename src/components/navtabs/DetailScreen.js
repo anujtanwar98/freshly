@@ -10,6 +10,7 @@ import { useFonts, PlusJakartaSans_500Medium, PlusJakartaSans_400Regular, PlusJa
 import { AntDesign } from '@expo/vector-icons';
 import MyFreezeTempIcon from './../../../assets/freezetemp';
 import { Iconify } from 'react-native-iconify';
+import MyEditPencil from '../../../assets/editPencil';
 
 const DetailScreen = ({ route }) => {
   const { itemId, category} = route.params;
@@ -50,10 +51,13 @@ const DetailScreen = ({ route }) => {
         headerRight: () => (
           <TouchableOpacity
             onPress={() => navigation.navigate('EditFoodScreen', { itemId: itemData.id, currentName: itemData.item, currentCategory: itemData.category, currentMinFreshness: itemData.freshness_duration_min, currentMaxFreshness: itemData.freshness_duration_max, currentEmoji: itemData.emoji })}
-            style={{ flexDirection: 'row', alignItems: 'center', paddingRight: 10 }}
+            style={[styles.editTextIcon ,{ flexDirection: 'row', alignItems: 'center', paddingRight: 10 }]}
           >
-            <Octicons name="pencil" size={24} color="#168715" />
-            <Text style={{ marginLeft: 5, color: '#168715', fontSize: 16 }}>Edit</Text>
+            {/* <Octicons name="pencil" size={24} color="#168715" /> */}
+            <View style={[styles.headerButtonIconText, { flexDirection: 'row', alignItems: 'center' }]} >
+              <MyEditPencil style={styles.headerButtonIcon} />
+              <Text style={[styles.headerButtonText ,{ marginLeft: 5, color: '#168715', fontSize: 16 }]}>Edit</Text>
+            </View>
           </TouchableOpacity>
         ),
       });
@@ -477,6 +481,39 @@ const styles = StyleSheet.create({
     maxWidth: 260,
     marginLeft: 20,
     marginTop: 10,
+  },
+  editTextIcon: {
+    marginTop: -5,
+    padding: 4,
+    backgroundColor: '#ffffff',
+    borderRadius: 20,
+    borderWidth: 1,
+    borderColor: '#E9E9E9',
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    shadowOpacity: 0.05,
+    shadowRadius: 3.9,
+    elevation: 2,
+    marginRight: 10,
+  },
+  headerButtonText: {
+    color: '#168715',
+    paddingRight: 5,
+    paddingLeft: 2,
+    fontSize: 16,
+    fontFamily: 'PlusJakartaSans_600SemiBold',
+  },
+  headerButtonIconText: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginLeft: 5,
+  },
+  headerButtonIcon: {
+    marginRight: -2,
   },
 });
 
