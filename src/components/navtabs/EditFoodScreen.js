@@ -1,11 +1,12 @@
 // EditFoodScreen.js
-import React, { useState } from 'react';
+import React, { useState, useLayoutEffect } from 'react';
 import { View, Text, TextInput, Button, StyleSheet, Alert, TouchableOpacity, SafeAreaView } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import RNPickerSelect from 'react-native-picker-select';
 import { useFonts, PlusJakartaSans_500Medium, PlusJakartaSans_400Regular, PlusJakartaSans_600SemiBold } from '@expo-google-fonts/plus-jakarta-sans';
 import { Entypo } from '@expo/vector-icons';
 import EmojiSelector, { Categories } from 'react-native-emoji-selector';
+import { Iconify } from 'react-native-iconify';
 
 const EditFoodScreen = ({ route, navigation }) => {
   const { itemId, currentName, currentCategory, currentMinFreshness, currentMaxFreshness, currentEmoji } = route.params;
@@ -74,6 +75,23 @@ const EditFoodScreen = ({ route, navigation }) => {
       Alert.alert("Error", "Failed to update the item name");
     }
   };
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerTitle: 'Edit Item',
+      headerTitleStyle: { color: '#163C16' },
+      headerStyle: { backgroundColor: '#FBFBFB' },
+      headerTintColor: '#616774',
+      headerRight: () => (
+        <TouchableOpacity onPress={saveItemDetails} style={[styles.headerButton, { marginRight: 10 }]}>
+          <View style={[styles.headerButtonIconText, { flexDirection: 'row', alignItems: 'center' }]} >
+            <Iconify style={styles.headerButtonIcon} icon="uil:check" size={24} color="#168715"/>
+            <Text style={[styles.headerButtonText, { color: '#168715' }]}>Done</Text>
+          </View>
+        </TouchableOpacity>
+      ),
+    });
+  }, [navigation, saveItemDetails]);
 
   const deleteItem = async () => {
     try {
@@ -164,6 +182,7 @@ const EditFoodScreen = ({ route, navigation }) => {
                     keyboardType="numeric"
                   />
               </View>
+              <Entypo name="minus" size={24} color="#163C16" />
               <View style={styles.editMaxBox}>
                 <TextInput
                   style={styles.freshForInput}
@@ -174,20 +193,12 @@ const EditFoodScreen = ({ route, navigation }) => {
               </View>
             </View>
         </View>
-        {/* <Button
-          title="Save"
-          onPress={saveItemDetails}
-        /> */}
-        <TouchableOpacity style={styles.saveButton} onPress={saveItemDetails} >
+        {/* <TouchableOpacity style={styles.saveButton} onPress={saveItemDetails} >
           <Text style={styles.saveButtonText}>Save</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={deleteItem}>
+        </TouchableOpacity> */}
+        <TouchableOpacity style={styles.deleteButton} onPress={deleteItem}>
           <Text style={styles.deleteButtonText}>Delete</Text>
         </TouchableOpacity>
-        {/* <Button
-          title="Delete"
-          onPress={deleteItem}
-        /> */}
       </View>
     </SafeAreaView>
   );
@@ -211,6 +222,7 @@ const styles = StyleSheet.create({
   freshBoxWrapper: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+    alignItems: 'center',
   },
   editFreshBox: {
     width: '100%',
@@ -219,17 +231,17 @@ const styles = StyleSheet.create({
   },
   editMinBox: {
     width: '100%',
-    maxWidth: 180,
+    maxWidth: 150,
   },
   editMaxBox: {
     width: '100%',
-    maxWidth: 180,
+    maxWidth: 150,
   },
   freshForInput: {
     height: 40,
     width: '100%',
     borderWidth: 1,
-    marginBottom: 12,
+    // marginBottom: 12,
     paddingHorizontal: 8,
     fontFamily: 'PlusJakartaSans_500Medium',
     backgroundColor: '#ffffff',
@@ -285,6 +297,14 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 20,
   },
+  deleteButton: {
+    padding: 10,
+    width: '100%',
+    borderRadius: 44,
+    backgroundColor: '#FFE1E0',
+    maxWidth: 342,
+    marginTop: 12,
+  },
   deleteButtonText: {
     color: '#FF0000',
     padding: 10,
@@ -323,6 +343,37 @@ const styles = StyleSheet.create({
   },
   emojiSelector: {
     height: 100,
+  },
+  headerButtonText: {
+    color: '#168715',
+    paddingRight: 5,
+    paddingLeft: 5,
+    fontSize: 16,
+    fontFamily: 'PlusJakartaSans_600SemiBold',
+  },
+  headerButton: {
+    marginTop: -5,
+    padding: 4,
+    backgroundColor: '#ffffff',
+    borderRadius: 20,
+    borderWidth: 1,
+    borderColor: '#E9E9E9',
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    shadowOpacity: 0.05,
+    shadowRadius: 3.9,
+    elevation: 2,
+  },
+  headerButtonIconText: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  headerButtonIcon: {
+    marginRight: -2,
   },
 });
 const pickerSelectStyles = StyleSheet.create({
