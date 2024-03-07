@@ -2,7 +2,7 @@ import React from "react";
 import Recipes from "./navtabs/Recipes";
 import Explore from "./navtabs/Explore";
 import UploadReceiptScreen from "./navtabs/HomeMain";
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, getFocusedRouteNameFromRoute } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Feather } from '@expo/vector-icons';
 import { MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
@@ -16,7 +16,7 @@ import DetailRecipeScreen from "./navtabs/DetailRecipeScreen";
 import EditFoodScreen from "./navtabs/EditFoodScreen";
 import EatSoon from "./navtabs/EatSoon";
 import { useFonts, PlusJakartaSans_700Bold, PlusJakartaSans_600SemiBold } from '@expo-google-fonts/plus-jakarta-sans';
-import { Text } from 'react-native';
+import { Text, View } from 'react-native';
 import { Iconify } from 'react-native-iconify';
 import MyChef from '../../assets/chefhat';
 import MyLearnIcon from '../../assets/learnicon';
@@ -24,6 +24,7 @@ import MyLearnIcon from '../../assets/learnicon';
 const Tab = createBottomTabNavigator()
 const UploadReceiptStack = createStackNavigator();
 const RecipesStack = createStackNavigator();
+const hideTabBarScreens = ['EditFoodScreen'];
 
 function UploadReceiptStackScreen() {
   return (
@@ -82,11 +83,12 @@ const Nav = () => {
           tabBarInactiveTintColor: '#808B9F',
           tabBarStyle: {
             backgroundColor: '#ffffff',
+            display: hideTabBarScreens.includes(getFocusedRouteNameFromRoute(route)) ? 'none' : 'flex',
           },
           tabBarLabel: ({ focused, color }) => {
             const label = route.name;
             const fontFamily = focused ? 'PlusJakartaSans_700Bold' : 'PlusJakartaSans_600SemiBold';
-            return <Text style={{ color, fontFamily, fontSize: 14 }}>{label}</Text>;
+            return <Text style={{ color, fontFamily, fontSize: 12 }}>{label}</Text>;
           },
         })}>
           <Tab.Screen name="My Fridge" component={UploadReceiptStackScreen} options={{
