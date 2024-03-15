@@ -19,7 +19,9 @@ const RecipeIdeas = () => {
   if (isLoading) {
     return (
       <View style={styles.loaderContainer}>
-        <ActivityIndicator size="large" color="#7CC106" />
+        <ActivityIndicator style={styles.activityIndicator} size="large" color="#7CC106" />
+        <Image source={require('./../../../assets/foodloader.gif')}/>
+        <Text style={styles.indicatorText}>Generating recipe ideas...</Text>
       </View>
     );
   }
@@ -92,6 +94,16 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: '#FFFFFF',
+  },
+  activityIndicator: {
+    display: 'none',
+  },
+  indicatorText: {
+    color: '#616774',
+    fontSize: 16,
+    position: 'absolute',
+    paddingTop: 150,
   },
   mainWrapper: {
     backgroundColor: '#FBFBFB',
