@@ -43,8 +43,8 @@ function RecipesStackScreen() {
     screenOptions={{
       gestureEnabled: true,
       transitionSpec: {
-        open: { animation: 'timing', config: { duration: 500 } },
-        close: { animation: 'timing', config: { duration: 500 } },
+        open: { animation: 'timing', config: { duration: 300 } },
+        close: { animation: 'timing', config: { duration: 300 } },
       },
     }}>
       <RecipesStack.Screen name="Recipes" component={Recipes} options={{ headerShown: false }} />
