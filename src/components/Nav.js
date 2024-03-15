@@ -28,7 +28,14 @@ const hideTabBarScreens = ['EditFoodScreen'];
 
 function UploadReceiptStackScreen() {
   return (
-    <UploadReceiptStack.Navigator>
+    <UploadReceiptStack.Navigator
+    screenOptions={{
+      gestureEnabled: true,
+      transitionSpec: {
+        open: { animation: 'timing', config: { duration: 300 } },
+        close: { animation: 'timing', config: { duration: 300 } },
+      },
+    }}>
       <UploadReceiptStack.Screen name="My Fridge" component={UploadReceiptScreen} options={{ headerShown: false }} />
       <UploadReceiptStack.Screen name="DetailScreen" component={DetailScreen} options={{ headerTitle: '', headerTitleStyle: { color: '#163C16' }, headerStyle: { backgroundColor: '#FBFBFB' }, headerTintColor: '#616774', }} />
       <UploadReceiptStack.Screen name="EditFoodScreen" component={EditFoodScreen} options={{ headerTitle: 'Edit Item', headerTitleStyle: { color: '#163C16' }, headerStyle: { backgroundColor: '#FBFBFB' }, headerTintColor: '#616774', }} />
