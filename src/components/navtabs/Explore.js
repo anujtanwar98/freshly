@@ -128,7 +128,7 @@ const styles = StyleSheet.create({
   },
   searchContainer: {
     flex: 1,
-    backgroundColor: '#D8D8D8',
+    backgroundColor: '#EDEDED',
     display: 'flex',
     alignItems: 'center',
     flexDirection: 'row',

@@ -230,6 +230,10 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     borderColor: '#F0F0F0',
     borderWidth: 1,
+    shadowColor: '#000000',
+    shadowOffset: {width: 0, height: 3},
+    shadowOpacity: 0.06,
+    shadowRadius: 9,
   },
   foodText: {
     fontFamily: 'PlusJakartaSans_600SemiBold',
@@ -256,9 +260,6 @@ const styles = StyleSheet.create({
     color: '#20821E',
     fontWeight: '600',
   },
-  numberServing: {
-
-  },
   numberServingText: {
     marginLeft: 24,
     marginTop: 24,
@@ -276,6 +277,10 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     backgroundColor: '#FFFFFF',
     flexDirection: 'row',
+    shadowColor: '#000000',
+    shadowOffset: {width: 0, height: 3},
+    shadowOpacity: 0.06,
+    shadowRadius: 9,
   },  
   servingButton: {
     width: 75,
@@ -329,6 +334,10 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 18,
     backgroundColor: '#FFFFFF',
+    shadowColor: '#000000',
+    shadowOffset: {width: 0, height: 3},
+    shadowOpacity: 0.06,
+    shadowRadius: 9,
   },
   ingredientBox: {
     backgroundColor: '#168715',
@@ -375,6 +384,10 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 18,
     backgroundColor: '#FFFFFF',
+    shadowColor: '#000000',
+    shadowOffset: {width: 0, height: 3},
+    shadowOpacity: 0.06,
+    shadowRadius: 9,
   },
   stepNumberText: {
     fontFamily: 'PlusJakartaSans_600SemiBold',
