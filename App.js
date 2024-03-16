@@ -1,10 +1,13 @@
 import React from "react";
 import Nav from "./src/components/Nav";
-import Login from "./src/components/screens/Login";
+
+// only temporary use just to record screen
+import { LogBox } from 'react-native';
+
+LogBox.ignoreAllLogs();
 
 const App = () => {
   return (
-    // <Login />
     <Nav />
   );
 }
