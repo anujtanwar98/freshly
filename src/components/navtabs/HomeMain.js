@@ -275,11 +275,12 @@ const UploadReceiptScreen = () => {
             {categories.map((category, index) => (
                 <TouchableOpacity 
                     key={index} 
-                    style={[styles.filterButton, selectedCategory === category && styles.selectedFilterButton]} 
+                    style={[styles.filterButton, selectedCategory === category && hasItems() && styles.selectedFilterButton,
+                        !hasItems() && styles.disabledFilterButton 
+                    ]} 
                     onPress={() => hasItems() && filterByCategory(category)}
                     disabled={!hasItems()}>
-                    {/* <Text style={styles.filterButtonText}>{category}</Text> */}
-                    <Text style={[styles.filterButtonText, selectedCategory === category && styles.selectedFilterButtonText, !hasItems() && styles.disabledFilterButtonText]}>{category}</Text>
+                    <Text style={[styles.filterButtonText, selectedCategory === category && hasItems() && styles.selectedFilterButtonText, !hasItems() && styles.disabledFilterButtonText]}>{category}</Text>
                 </TouchableOpacity>
             ))}
             </ScrollView>
@@ -653,7 +654,8 @@ const styles = StyleSheet.create({
         fontFamily: 'PlusJakartaSans_600SemiBold',
     },
     selectedFilterButton: {
-        backgroundColor: '#168715', // Green background color for selected button
+        backgroundColor: '#168715',
+        borderWidth: 0,
     },
     selectedFilterButtonText: {
         color: '#ffffff', // Light green text color for selected button
@@ -670,11 +672,11 @@ const styles = StyleSheet.create({
         fontFamily: 'PlusJakartaSans_600SemiBold',
     },
     disabledFilterButton: {
-        backgroundColor: '#e0e0e0', // Example disabled background color
-        borderColor: '#cccccc', // Example disabled border color
+        backgroundColor: '#EFEFEF',
+        // borderColor: '#cccccc',
     },
     disabledFilterButtonText: {
-        color: '#a0a0a0', // Example disabled text color
+        color: '#616774',
     }, 
     eatSoonBox: {
         flexDirection: 'row',
