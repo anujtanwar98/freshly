@@ -207,7 +207,7 @@ const UploadReceiptScreen = () => {
             } else if (selectedCategory !== 'All') {
             return (
                 <View key={index} style={styles.noItemContainer}>
-                    <Text style={styles.noItemMessage}>No food item in {category} category...</Text>
+                    <Text style={styles.noItemMessage}>No food items in {category} category...</Text>
                 </View>
             );
         }
@@ -267,6 +267,9 @@ const UploadReceiptScreen = () => {
         {/* <ScrollView contentContainerStyle={styles.container}> */}
         <ScrollView style={styles.container}>
         <Text style={styles.text}>My Freshly Fridge</Text>
+        {hasItems() && (
+        <Text style={styles.lastScanText}>Last scanned groceries: 0 days ago</Text>
+        )}
         <View style={styles.filterContainer}>
             <ScrollView horizontal showsHorizontalScrollIndicator={false}>
             {categories.map((category, index) => (
@@ -288,7 +291,7 @@ const UploadReceiptScreen = () => {
                 <Text style={styles.eatSoonTitle}>Eat Soon</Text>
             </View>
             <View style={styles.eatSoonSeeAll}>
-            <TouchableOpacity onPress={() => navigation.navigate('EatSoon', { eatSoonItems: getEatSoonItems(true) })}>
+            <TouchableOpacity style={styles.eatSoonButtonClick} onPress={() => navigation.navigate('EatSoon', { eatSoonItems: getEatSoonItems(true) })}>
                     <Text style={styles.eatSoonSeeAllTitle}>See All <AntDesign name="right" size={16} color="#616774" /></Text>
                 </TouchableOpacity>
             </View>
@@ -441,10 +444,10 @@ const styles = StyleSheet.create({
         backgroundColor: '#ffffff',
         maxWidth: 170,
         minWidth: 170,
-        shadowColor: '#171717',
-        shadowOffset: {width: -2, height: 4},
-        shadowOpacity: 0.2,
-        shadowRadius: 3,
+        shadowColor: '#000000',
+        shadowOffset: {width: 0, height: 3},
+        shadowOpacity: 0.06,
+        shadowRadius: 9,
         display: 'flex',
         flexDirection: 'column',
     },
@@ -500,13 +503,22 @@ const styles = StyleSheet.create({
     text: {
         color: '#168715',
         fontSize: 24,
-        fontWeight: 'bold',
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'flex-start',
         paddingTop: 16,
         paddingHorizontal: 20,
         fontFamily: 'PlusJakartaSans_800ExtraBold',
+    },
+    lastScanText: {
+        color: '#616774',
+        fontSize: 12,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'flex-start',
+        paddingTop: 8,
+        paddingHorizontal: 20,
+        fontFamily: 'PlusJakartaSans_500Medium',
     },
     button: {
         backgroundColor: '#BDFFBE',
@@ -630,6 +642,10 @@ const styles = StyleSheet.create({
         paddingHorizontal: 12,
         borderRadius: 14,
         marginHorizontal: 5,
+        shadowColor: '#000000',
+        shadowOffset: {width: 0, height: 4},
+        shadowOpacity: 0.03,
+        shadowRadius: 3.9,
     },
     filterButtonText: {
         color: '#163C16',
@@ -787,6 +803,10 @@ const styles = StyleSheet.create({
         marginTop: 5,
         marginRight: 10,
         marginLeft: 10,
+        shadowColor: '#000000',
+        shadowOffset: {width: 0, height: 3},
+        shadowOpacity: 0.06,
+        shadowRadius: 9,
     },
     eat_soon_emoji: {
         fontSize: 30,
