@@ -4,10 +4,23 @@ import { Ionicons } from '@expo/vector-icons';
 import { Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import MyGen from '../../../assets/genicon';
+import { useFonts, PlusJakartaSans_500Medium, PlusJakartaSans_400Regular, PlusJakartaSans_600SemiBold, PlusJakartaSans_700Bold, PlusJakartaSans_800ExtraBold } from '@expo-google-fonts/plus-jakarta-sans';
 
 
 const Recipes = ({ navigation }) => {
   const [selectedCategory, setSelectedCategory] = useState(null);
+
+  let [fontsLoaded] = useFonts({
+    PlusJakartaSans_500Medium,
+    PlusJakartaSans_400Regular,
+    PlusJakartaSans_600SemiBold,
+    PlusJakartaSans_700Bold,
+    PlusJakartaSans_800ExtraBold,
+  });
+
+  if (!fontsLoaded) {
+      return null;
+  }
 
     return (
     <SafeAreaView style={styles.SafeAreaViewMain}>
@@ -81,7 +94,7 @@ const styles = StyleSheet.create({
   text: {
     color: '#168715',
     fontSize: 24,
-    fontWeight: 'bold',
+    fontFamily: 'PlusJakartaSans_800ExtraBold',
   },
   icon: {
     color: '#000',
@@ -103,7 +116,7 @@ const styles = StyleSheet.create({
   brocTextContainer: {
     color: '#163C16',
     fontSize: 16,
-    fontWeight: '500',
+    fontFamily: 'PlusJakartaSans_500Medium',
     lineHeight: 20.8,
     marginLeft: 24,
     alignItems: 'center',
@@ -146,7 +159,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     fontSize: 16,
-    fontWeight: '500',
+    fontFamily: 'PlusJakartaSans_600SemiBold',
     color: '#163c16'
   },
   generateButton: {
@@ -154,7 +167,7 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 50,
     flexDirection: 'row',
-    justifyContent: 'space-evenly',
+    justifyContent: 'center',
     alignItems: 'center',
     width: 300,
     height: 50,
@@ -167,8 +180,9 @@ const styles = StyleSheet.create({
   generateButtonText: {
     fontSize: 16,
     lineHeight: 18,
-    fontWeight: '500',
+    fontFamily: 'PlusJakartaSans_600SemiBold',
     color: '#fff',
+    paddingLeft: 5.24,
   },
   selectedCategoryButton: {
     borderColor: '#168715',

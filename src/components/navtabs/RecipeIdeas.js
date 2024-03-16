@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, SafeAreaView, ScrollView, Image, ActivityIndicator } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import MyIdeaIcon from '../../../assets/genideaicon';
+import { useFonts, PlusJakartaSans_500Medium, PlusJakartaSans_400Regular, PlusJakartaSans_600SemiBold, PlusJakartaSans_700Bold, PlusJakartaSans_800ExtraBold } from '@expo-google-fonts/plus-jakarta-sans';
 
 const RecipeIdeas = () => {
   const navigation = useNavigation(); // Initialize the navigation hook
@@ -15,6 +16,18 @@ const RecipeIdeas = () => {
 
     return () => clearTimeout(timer);
   }, []);
+
+  let [fontsLoaded] = useFonts({
+    PlusJakartaSans_500Medium,
+    PlusJakartaSans_400Regular,
+    PlusJakartaSans_600SemiBold,
+    PlusJakartaSans_700Bold,
+    PlusJakartaSans_800ExtraBold,
+  });
+
+  if (!fontsLoaded) {
+      return null;
+  }
 
   if (isLoading) {
     return (
@@ -123,7 +136,7 @@ const styles = StyleSheet.create({
   brocTextContainer: {
     color: '#163C16',
     fontSize: 16,
-    fontWeight: '500',
+    fontFamily: 'PlusJakartaSans_500Medium',
     lineHeight: 20.8,
     marginLeft: 24,
     alignItems: 'center',
@@ -203,7 +216,7 @@ const styles = StyleSheet.create({
   foodText: {
     width: '100%',
     fontSize: 14,
-    fontWeight: '600',
+    fontFamily: 'PlusJakartaSans_600SemiBold',
     lineHeight: 18,
     color: '#163C16',
     paddingLeft: 16,
@@ -215,7 +228,7 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 44,
     flexDirection: 'row',
-    justifyContent: 'space-evenly',
+    justifyContent: 'center',
     alignItems: 'center',
     width: 287,
     height: 53,
@@ -228,8 +241,9 @@ const styles = StyleSheet.create({
   generateButtonText: {
     fontSize: 16,
     lineHeight: 18,
-    fontWeight: '600',
+    fontFamily: 'PlusJakartaSans_600SemiBold',
     color: '#fff',
+    paddingLeft: 5.24,
   },
   generateButtonActive: {
     backgroundColor: '#168715', // Active color when a category is selected

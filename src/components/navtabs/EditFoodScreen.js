@@ -154,7 +154,7 @@ const EditFoodScreen = ({ route, navigation }) => {
           </View>
         </View>
         <View style={styles.editNameBox}>
-          <Text style={[styles.label, { fontFamily: 'PlusJakartaSans_600SemiBold' }]}>Item Name:</Text>
+          <Text style={[styles.label, { fontFamily: 'PlusJakartaSans_600SemiBold' }]}>Item Name</Text>
           <TextInput
             style={styles.input}
             onChangeText={setName}
@@ -162,7 +162,7 @@ const EditFoodScreen = ({ route, navigation }) => {
           />
         </View>
         <View style={styles.editNameBox}>
-          <Text style={[styles.label, { fontFamily: 'PlusJakartaSans_600SemiBold' }]}>Category:</Text>
+          <Text style={[styles.label, { fontFamily: 'PlusJakartaSans_600SemiBold' }]}>Category</Text>
           <RNPickerSelect
               onValueChange={(value) => setCategory(value)}
               items={categories.map(cat => ({ label: cat, value: cat }))}
@@ -172,7 +172,7 @@ const EditFoodScreen = ({ route, navigation }) => {
             />
         </View>
         <View style={styles.editFreshBox}>
-          <Text style={[styles.label, { fontFamily: 'PlusJakartaSans_600SemiBold' }]}>Days Fresh For:</Text>
+          <Text style={[styles.label, { fontFamily: 'PlusJakartaSans_600SemiBold' }]}>Days Fresh For</Text>
             <View style={styles.freshBoxWrapper}>
               <View style={styles.editMinBox}>
                 <TextInput
@@ -197,7 +197,7 @@ const EditFoodScreen = ({ route, navigation }) => {
           <Text style={styles.saveButtonText}>Save</Text>
         </TouchableOpacity> */}
         <TouchableOpacity style={styles.deleteButton} onPress={deleteItem}>
-          <Text style={styles.deleteButtonText}>Delete</Text>
+          <Text style={styles.deleteButtonText}>Delete Item</Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>
@@ -304,6 +304,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFE1E0',
     maxWidth: 342,
     marginTop: 12,
+    maxWidth: '100%'
   },
   deleteButtonText: {
     color: '#FF0000',
