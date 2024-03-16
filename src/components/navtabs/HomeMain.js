@@ -300,7 +300,7 @@ const UploadReceiptScreen = () => {
                 </TouchableOpacity>
             </View>
         </View>
-        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+        <ScrollView style={styles.eatSoonScrollBox} horizontal showsHorizontalScrollIndicator={false}>
         {getEatSoonItems().map((item, index) => (
             // <Text key={index}>{item.item} - {item.freshness_duration_max} days left</Text>
             // <View key={index}>
@@ -478,7 +478,7 @@ const styles = StyleSheet.create({
         fontSize: 16,
         marginBottom: 8,
         color: '#163C16',
-        marginLeft: 10,
+        marginLeft: 18,
         fontFamily: 'PlusJakartaSans_700Bold',
     },
       emojiText: {
@@ -511,7 +511,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'flex-start',
         paddingTop: 16,
-        paddingHorizontal: 20,
+        paddingHorizontal: 24,
         fontFamily: 'PlusJakartaSans_800ExtraBold',
     },
     lastScanText: {
@@ -521,7 +521,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'flex-start',
         paddingTop: 8,
-        paddingHorizontal: 20,
+        paddingHorizontal: 24,
         fontFamily: 'PlusJakartaSans_500Medium',
     },
     button: {
@@ -636,7 +636,7 @@ const styles = StyleSheet.create({
     },
     filterContainer: {
         paddingVertical: 10,
-        paddingHorizontal: 5,
+        paddingLeft: 18,
     },
     filterButton: {
         backgroundColor: '#ffffff',
@@ -685,7 +685,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        marginHorizontal: 10,
+        marginHorizontal: 24,
         marginTop: 20,
         marginBottom: 10,
     },
@@ -791,6 +791,9 @@ const styles = StyleSheet.create({
           shadowOpacity: 0.5,
           shadowRadius: 10,
     },
+    eatSoonScrollBox: {
+        marginLeft: 16,
+    },
     eat_soon_container: {
         justifyContent: 'center',
         alignItems: 'center',
@@ -806,8 +809,8 @@ const styles = StyleSheet.create({
         borderColor: '#E9E9E9',
         position: 'relative',
         marginTop: 5,
-        marginRight: 10,
-        marginLeft: 10,
+        marginRight: 8,
+        marginLeft: 8,
         shadowColor: '#000000',
         shadowOffset: {width: 0, height: 3},
         shadowOpacity: 0.06,
