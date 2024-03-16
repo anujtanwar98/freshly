@@ -267,8 +267,11 @@ const UploadReceiptScreen = () => {
         {/* <ScrollView contentContainerStyle={styles.container}> */}
         <ScrollView style={styles.container}>
         <Text style={styles.text}>My Freshly Fridge</Text>
-        {hasItems() && (
+        {!hasItems() && (
         <Text style={styles.lastScanText}>Last scanned groceries: 0 days ago</Text>
+        )}
+        {hasItems() && (
+        <Text style={styles.lastScanText}>Last scanned groceries: Today</Text>
         )}
         <View style={styles.filterContainer}>
             <ScrollView horizontal showsHorizontalScrollIndicator={false}>

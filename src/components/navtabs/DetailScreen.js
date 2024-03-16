@@ -118,7 +118,9 @@ const DetailScreen = ({ route }) => {
           <Text style={styles.emoji}>{itemData.emoji}</Text>
             <View style={styles.nameCategory}>
               <Text style={styles.title}>{itemData.item}</Text>
-              <Text style={styles.category}>{itemData.category}</Text>
+              <View style={styles.categoryBox}>
+                <Text style={styles.category}>{itemData.category}</Text>
+              </View>
             </View>
         </View>
         {itemData.freshness_duration_max <= 2 && (
@@ -241,14 +243,20 @@ const styles = StyleSheet.create({
     marginTop: 15,
     marginBottom: 10,
   },
-  category: {
-    color: '#616774',
-    backgroundColor: '#fff',
+  categoryBox: {
+    backgroundColor: '#ffffff',
     borderColor: '#616774',
     borderWidth: 1,
-    borderRadius: 20,
-    padding: 10,
+    borderRadius: 30,
+    padding: 5,
     marginTop: 10,
+  },
+  category: {
+    color: '#616774',
+    paddingTop: 4,
+    paddingBottom: 4,
+    paddingLeft: 8,
+    paddingRight: 8,
     fontSize: 12,
     fontFamily: 'PlusJakartaSans_700Bold',
   },
@@ -307,11 +315,14 @@ const styles = StyleSheet.create({
     color: '#168715',
   },
   storageTips: {
-    padding: 20,
+    paddingLeft: 20,
+    paddingRight: 20,
   },
   storageTipsTitle: {
-    fontSize: 18,
+    fontSize: 16,
     fontFamily: 'PlusJakartaSans_600SemiBold',
+    paddingTop: 24,
+    paddingBottom: 6,
   },
   storageTipsFridge: {
     backgroundColor: '#ffffff',
@@ -345,13 +356,14 @@ const styles = StyleSheet.create({
     backgroundColor: '#ffffff',
     borderRadius: 20,
     padding: 20,
-    marginTop: 10,
+    marginTop: 16,
     borderWidth: 1,
     borderColor: '#F0F0F0',
     shadowColor: '#171717',
     shadowOffset: {width: -2, height: 4},
     shadowOpacity: 0.2,
     shadowRadius: 3,
+    marginBottom: 16,
   },
   storageTipsFreezerBox: {
     flexDirection: 'row',
@@ -383,7 +395,10 @@ const styles = StyleSheet.create({
     margin: 20,
     backgroundColor: "#ffffff",
     borderRadius: 20,
-    padding: 35,
+    paddingRight: 28,
+    paddingLeft: 28,
+    paddingTop: 32,
+    paddingBottom: 32,
     alignItems: "center",
     shadowColor: "#000",
     shadowOffset: {
