@@ -360,7 +360,7 @@ const UploadReceiptScreen = () => {
                     <View style={styles.uploadingContainer}>
                         <ActivityIndicator size="large" color="#168715" />
                         <View>
-                            <Text style={styles.uploadingText}>Finding all your food items...</Text>
+                            <Text style={styles.uploadingText}>Finding your food items...</Text>
                         </View>
                     </View>
                     ) : (

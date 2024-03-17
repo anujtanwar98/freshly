@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Image } from 'react-native';
 import { useFonts, PlusJakartaSans_500Medium, PlusJakartaSans_400Regular, PlusJakartaSans_600SemiBold, PlusJakartaSans_700Bold, PlusJakartaSans_800ExtraBold } from '@expo-google-fonts/plus-jakarta-sans';
 import Checkbox from 'expo-checkbox';
 import { useNavigation } from '@react-navigation/native';
@@ -58,10 +58,14 @@ const ReceiptReview = ({ route }) => {
   };  
   // Now you can map over categoriesAndItems to display your data
   return (
-    <View style={{ backgroundColor: '#FBFBFB', flex: 1 }}>
+    <View style={styles.lastOutsideWrapper}>
     <>
       <ScrollView style={styles.container}>
         <Text style={styles.mainTitle}>Receipt Review</Text>
+        <View style={styles.brocContainer}>
+          <Text style={styles.brocTextContainer}>Here you can edit any food names or deselect any items that you don't want to add to your fridge! </Text>
+          <Image style={styles.brocImage} source={require('./../../../assets/broc.png')}/>
+        </View>
         {categoriesAndItems.map((categoryData, categoryIndex) => (
           <View key={categoryIndex}>
             {categoryData.items.map((item, itemIndex) => (
@@ -94,14 +98,14 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingLeft: 24,
-    paddingRight: 24,
+    // paddingRight: 24,
     backgroundColor: '#FBFBFB',
     marginBottom: 80,
   },
   mainTitle: {
     fontSize: 24,
     fontFamily: 'PlusJakartaSans_800ExtraBold',
-    marginBottom: 20,
+    // marginBottom: 20,
     color: '#168715',
   },
   outsideBox: {
@@ -134,6 +138,10 @@ const styles = StyleSheet.create({
     paddingRight: 24,
     paddingLeft: 24,
     backgroundColor: '#FBFBFB',
+    shadowColor: '#000000',
+    shadowOffset: {width: 0, height: -0.5},
+    shadowOpacity: .2,
+    shadowRadius: 9,
   },
   confirmButton: {
     backgroundColor: '#168715',
@@ -143,12 +151,39 @@ const styles = StyleSheet.create({
     height: 53,
     justifyContent: 'center',
     marginBottom: 10,
+    marginTop: 20,
   },
   confirmButtonText: {
     color: '#FFFFFF',
     fontSize: 16,
     fontFamily: 'PlusJakartaSans_600SemiBold',
     marginLeft: 10,
+  },
+  brocContainer: {
+    flex: 1,
+    backgroundColor: '#D9F2AF',
+    display: 'flex',
+    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: 10,
+    borderTopLeftRadius: 20,
+    borderBottomLeftRadius: 20,
+    marginBottom: 20,
+  },
+  brocTextContainer: {
+    color: '#163C16',
+    fontSize: 16,
+    fontFamily: 'PlusJakartaSans_500Medium',
+    lineHeight: 20.8,
+    marginLeft: 24,
+    alignItems: 'center',
+    justifyContent: 'center',
+    maxWidth: 256,
+  },
+  lastOutsideWrapper: {
+    backgroundColor: '#FBFBFB',
+    flex: 1,
   },
 });
 
