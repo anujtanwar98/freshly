@@ -20,6 +20,7 @@ import { Text, View } from 'react-native';
 import { Iconify } from 'react-native-iconify';
 import MyChef from '../../assets/chefhat';
 import MyLearnIcon from '../../assets/learnicon';
+import ReceiptReview from "./navtabs/receiptReview";
 
 const Tab = createBottomTabNavigator()
 const UploadReceiptStack = createStackNavigator();
@@ -40,6 +41,11 @@ function UploadReceiptStackScreen() {
       <UploadReceiptStack.Screen name="DetailScreen" component={DetailScreen} options={{ headerTitle: '', headerTitleStyle: { color: '#163C16' }, headerStyle: { backgroundColor: '#FBFBFB' }, headerTintColor: '#616774', }} />
       <UploadReceiptStack.Screen name="EditFoodScreen" component={EditFoodScreen} options={{ headerTitle: 'Edit Item', headerTitleStyle: { color: '#163C16' }, headerStyle: { backgroundColor: '#FBFBFB' }, headerTintColor: '#616774', }} />
       <UploadReceiptStack.Screen name="EatSoon" component={EatSoon} options={{ headerTitle: 'Eat Soon', headerTitleStyle: { color: '#163C16' }, headerStyle: { backgroundColor: '#FBFBFB' }, headerTintColor: '#616774', }} />
+      <UploadReceiptStack.Screen
+        name="ReceiptReview"
+        component={ReceiptReview}
+        options={{ headerTitle: '', headerBackTitle: "Redo", headerTintColor: '#616774', headerStyle: { backgroundColor: '#FBFBFB' }, }}
+      />
     </UploadReceiptStack.Navigator>
   );
 }

@@ -24,7 +24,7 @@ const UploadReceiptScreen = () => {
 
     const hasItems = () => {
         return Object.values(categorizedItems).some(categoryItems => categoryItems.length > 0);
-      };      
+    };
 
     useFocusEffect(
         React.useCallback(() => {
@@ -80,11 +80,11 @@ const UploadReceiptScreen = () => {
             return;
         }
         setCategorizedItems({});
-    try {
-        await AsyncStorage.removeItem('categorizedItems');
-    } catch (error) {
-        console.error('Error clearing previous items:', error);
-    }
+        try {
+            await AsyncStorage.removeItem('categorizedItems');
+        } catch (error) {
+            console.error('Error clearing previous items:', error);
+        }
         const formData = new FormData();
         formData.append('receipt', {
             uri: receiptImage.uri,
@@ -114,6 +114,7 @@ const UploadReceiptScreen = () => {
 
             setCategorizedItems(data);
             await AsyncStorage.setItem('categorizedItems', JSON.stringify(data));
+        navigation.navigate('ReceiptReview', { items: data });
         } catch (error) {
             console.error('Error uploading receipt: ', error);
             alert('Failed to upload receipt');
