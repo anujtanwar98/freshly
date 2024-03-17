@@ -34,7 +34,7 @@ const RecipeIdeas = () => {
       <View style={styles.loaderContainer}>
         <ActivityIndicator style={styles.activityIndicator} size="large" color="#7CC106" />
         <Image source={require('./../../../assets/foodloader.gif')}/>
-        <Text style={styles.indicatorText}>Generating recipe ideas...</Text>
+        <Text style={styles.indicatorText}>Broc is generating recipes from your food...</Text>
       </View>
     );
   }
