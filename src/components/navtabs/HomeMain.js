@@ -26,6 +26,11 @@ const UploadReceiptScreen = () => {
         return Object.values(categorizedItems).some(categoryItems => categoryItems.length > 0);
     };
 
+    // keep this for receipt review debugging
+    const navigateToReceiptReview = () => {
+        navigation.navigate('ReceiptReview', { items: categorizedItems });
+    };
+
     useFocusEffect(
         React.useCallback(() => {
           const loadCategorizedItems = async () => {
@@ -289,6 +294,10 @@ const UploadReceiptScreen = () => {
             ))}
             </ScrollView>
         </View>
+        {/* keep this for receipt review debugging */}
+        <TouchableOpacity style={styles.reviewButton} onPress={navigateToReceiptReview}>
+            <Text style={styles.reviewButtonText}>Review Receipt</Text>
+        </TouchableOpacity>
         {hasItems() && (
                 <>
         <View style={styles.eatSoonBox}>
