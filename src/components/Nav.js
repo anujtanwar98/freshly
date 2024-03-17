@@ -106,13 +106,13 @@ const Nav = () => {
           tabBarLabel: ({ focused, color }) => {
             const label = route.name;
             const fontFamily = focused ? 'PlusJakartaSans_700Bold' : 'PlusJakartaSans_600SemiBold';
-            return <Text style={{ color, fontFamily, fontSize: 12 }}>{label}</Text>;
+            return <Text style={{ color, fontFamily, fontSize: 12, marginBottom: -5 }}>{label}</Text>;
           },
         })}>
           <Tab.Screen name="My Fridge" component={UploadReceiptStackScreen} options={{
             tabBarIcon: ({ focused  }) => (
               // <FontAwesome5 name="carrot" color={focused ? '#7CC106' : '#808B9F'} size={25} />
-              <Iconify icon="fluent:food-carrot-24-regular" color={focused ? '#168715' : '#808B9F'} size={25}/>
+              <Iconify icon="fluent:food-carrot-24-regular" style={{ marginTop: 10}} color={focused ? '#168715' : '#808B9F'} size={25}/>
               // <FoodLogo size={24} color={focused ? '#7CC106' : '#808B9F'} />
             ),
             headerShown: false,
@@ -120,13 +120,17 @@ const Nav = () => {
           <Tab.Screen name="Learn" component={Explore} options={{
             tabBarIcon: ({ focused }) => (
               // <Iconify icon="nimbus:university" color={focused ? '#168715' : '#808B9F'} size={25} />
+              <View style={{ marginTop: 10}}>
               <MyLearnIcon focused={focused} strokeWidth={1.75} />
+              </View>
             ),
             headerShown: false,
           }} />
           <Tab.Screen name="Recipes" component={RecipesStackScreen} options={{
             tabBarIcon: ({ focused }) => (
+              <View style={{ marginTop: 10}}>
               <MyChef focused={focused}/>
+              </View>
             ),
             headerShown: false,
           }} />
