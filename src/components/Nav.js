@@ -25,7 +25,7 @@ import ReceiptReview from "./navtabs/receiptReview";
 const Tab = createBottomTabNavigator()
 const UploadReceiptStack = createStackNavigator();
 const RecipesStack = createStackNavigator();
-const hideTabBarScreens = ['EditFoodScreen'];
+const hideTabBarScreens = ['EditFoodScreen', 'ReceiptReview'];
 
 function UploadReceiptStackScreen() {
   return (

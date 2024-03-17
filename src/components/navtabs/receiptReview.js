@@ -58,6 +58,7 @@ const ReceiptReview = ({ route }) => {
   };  
   // Now you can map over categoriesAndItems to display your data
   return (
+    <View style={{ backgroundColor: '#FBFBFB', flex: 1 }}>
     <>
       <ScrollView style={styles.container}>
         <Text style={styles.mainTitle}>Receipt Review</Text>
@@ -85,6 +86,7 @@ const ReceiptReview = ({ route }) => {
         </TouchableOpacity>
       </View>
     </>
+    </View>
   );
 };
 
@@ -94,7 +96,7 @@ const styles = StyleSheet.create({
     paddingLeft: 24,
     paddingRight: 24,
     backgroundColor: '#FBFBFB',
-    marginBottom: 40,
+    marginBottom: 80,
   },
   mainTitle: {
     fontSize: 24,
@@ -135,13 +137,12 @@ const styles = StyleSheet.create({
   },
   confirmButton: {
     backgroundColor: '#168715',
-    paddingVertical: 10,
-    paddingHorizontal: 20,
     borderRadius: 50,
     width: '100%',
     alignItems: 'center',
     height: 53,
     justifyContent: 'center',
+    marginBottom: 10,
   },
   confirmButtonText: {
     color: '#FFFFFF',
