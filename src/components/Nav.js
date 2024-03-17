@@ -44,7 +44,12 @@ function UploadReceiptStackScreen() {
       <UploadReceiptStack.Screen
         name="ReceiptReview"
         component={ReceiptReview}
-        options={{ headerTitle: '', headerBackTitle: "Redo", headerTintColor: '#616774', headerStyle: { backgroundColor: '#FBFBFB' }, }}
+        options={{ headerTitle: '', headerBackTitle: "Redo", headerTintColor: '#616774', headerStyle: { backgroundColor: '#FBFBFB' }, 
+        transitionSpec: {
+          open: { animation: 'timing', config: { duration: 1 } },
+          close: { animation: 'timing', config: { duration: 100 } },
+        },
+      }}
       />
     </UploadReceiptStack.Navigator>
   );
