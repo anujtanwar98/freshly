@@ -27,9 +27,9 @@ const UploadReceiptScreen = () => {
     };
 
     // keep this for receipt review debugging
-    const navigateToReceiptReview = () => {
-        navigation.navigate('ReceiptReview', { items: categorizedItems });
-    };
+    // const navigateToReceiptReview = () => {
+    //     navigation.navigate('ReceiptReview', { items: categorizedItems });
+    // };
 
     useFocusEffect(
         React.useCallback(() => {
@@ -295,9 +295,9 @@ const UploadReceiptScreen = () => {
             </ScrollView>
         </View>
         {/* keep this for receipt review debugging */}
-        <TouchableOpacity style={styles.reviewButton} onPress={navigateToReceiptReview}>
+        {/* <TouchableOpacity style={styles.reviewButton} onPress={navigateToReceiptReview}>
             <Text style={styles.reviewButtonText}>Review Receipt</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
         {hasItems() && (
                 <>
         <View style={styles.eatSoonBox}>
@@ -494,7 +494,7 @@ const styles = StyleSheet.create({
         fontSize: 16,
         marginBottom: 8,
         color: '#163C16',
-        marginLeft: 18,
+        marginLeft: 14,
         fontFamily: 'PlusJakartaSans_700Bold',
     },
       emojiText: {
@@ -655,7 +655,7 @@ const styles = StyleSheet.create({
     },
     filterContainer: {
         paddingVertical: 10,
-        paddingLeft: 18,
+        paddingLeft: 14,
     },
     filterButton: {
         backgroundColor: '#ffffff',
@@ -704,7 +704,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        marginHorizontal: 24,
+        marginHorizontal: 20,
         marginTop: 20,
         marginBottom: 10,
     },
@@ -811,7 +811,7 @@ const styles = StyleSheet.create({
           shadowRadius: 10,
     },
     eatSoonScrollBox: {
-        marginLeft: 16,
+        marginLeft: 14,
     },
     eat_soon_container: {
         justifyContent: 'center',

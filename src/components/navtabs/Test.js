@@ -343,6 +343,7 @@ const UploadReceiptScreen = () => {
         onRequestClose={() => {
           setPreviewModalVisible(!previewModalVisible);
         }}>
+            <BlurView intensity={10} style={[StyleSheet.absoluteFill, { backgroundColor: 'rgba(255, 255, 255, 1)' }]}>
             <View style={styles.centeredView}>
                 <View style={styles.previewModalView}>
                     {/* {isLoading ? (
@@ -351,27 +352,32 @@ const UploadReceiptScreen = () => {
                     </View>    
                     ) : (
                         <> */}
-                    {receiptImage && (
+                    {/* {receiptImage && (
                     <Image source={receiptImage} style={styles.previewImage} />
-                    )}
+                    )} */}
                 {/* <Image source={{ uri: selectedImage }} style={styles.previewImage} /> */}
                 {isLoading ? (
-                        <View style={styles.uploadingContainer}>
+                    <View style={styles.uploadingContainer}>
                         <ActivityIndicator size="large" color="#168715" />
-                    </View>    
+                        <View>
+                            <Text style={styles.uploadingText}>Finding your food items...</Text>
+                        </View>
+                    </View>
                     ) : (
                     <View style={styles.previewButtonContainer}>
-                    <TouchableOpacity style={styles.previewButtonCancel} onPress={() => setPreviewModalVisible(false)} >
-                        <Text style={styles.previewButtonCancelText}>Cancel</Text>
-                    </TouchableOpacity>
                     <TouchableOpacity style={styles.uploadReceiptButton} onPress={uploadReceipt} >
                         <Text style={styles.uploadReceiptButtonText} >Upload Receipt</Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity style={styles.previewButtonCancel} onPress={() => setPreviewModalVisible(false)} >
+                        <Text style={styles.previewButtonCancelText}>Cancel</Text>
                     </TouchableOpacity>
                     </View>
                     // </>
                 )}
               </View>
             </View>
+            </BlurView>
         </Modal>
         <Modal animationType="slide" transparent={true} visible={modalVisible} onRequestClose={() => { setModalVisible(!modalVisible); }} >
         <BlurView intensity={10} style={[StyleSheet.absoluteFill, { backgroundColor: 'rgba(16, 20, 15, 0.1)' }]}>
@@ -601,8 +607,8 @@ const styles = StyleSheet.create({
     },
     previewModalView: {
         margin: 20,
-        backgroundColor: "#ffffff",
-        // borderRadius: 20,
+        // backgroundColor: "#ffffff",
+        borderRadius: 20,
         padding: 35,
         alignItems: 'center',
         justifyContent: 'space-between',
@@ -617,20 +623,22 @@ const styles = StyleSheet.create({
         //   elevation: 5,
     },
     previewButtonContainer: {
-        flexDirection: 'row',
+        flexDirection: 'column',
         justifyContent: 'space-around',
         width: '100%',
+        alignItems: 'center',
       },
     previewButtonCancel: {
-        backgroundColor: "#808B9F",
+        // backgroundColor: "#808B9F",
         padding: 10,
         borderRadius: 20,
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
+        marginTop: 30,
     },
     uploadReceiptButton: {
-        backgroundColor: '#7CC106', // Blue color
+        backgroundColor: '#168715',
         padding: 10,
         borderRadius: 20,
     },
@@ -638,9 +646,10 @@ const styles = StyleSheet.create({
         color: '#ffffff',
         fontSize: 16,
         padding: 5,
+        fontFamily: 'PlusJakartaSans_500Medium',
     },
     previewButtonCancelText: {
-        color: '#ffffff',
+        color: '#ff0000',
         fontSize: 16,
         padding: 5,
     },
@@ -843,6 +852,12 @@ const styles = StyleSheet.create({
         fontFamily: 'PlusJakartaSans_600SemiBold',
         marginBottom: 10,
         maxWidth: 100,
+    },
+    uploadingText: {
+        color: '#616774',
+        fontSize: 16,
+        fontFamily: 'PlusJakartaSans_600SemiBold',
+        marginTop: 24,
     },
 });
 
