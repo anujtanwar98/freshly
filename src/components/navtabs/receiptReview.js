@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-nati
 import { useFonts, PlusJakartaSans_500Medium, PlusJakartaSans_400Regular, PlusJakartaSans_600SemiBold, PlusJakartaSans_700Bold, PlusJakartaSans_800ExtraBold } from '@expo-google-fonts/plus-jakarta-sans';
 import Checkbox from 'expo-checkbox';
 import { useNavigation } from '@react-navigation/native';
+import { Iconify } from 'react-native-iconify';
 
 const ReceiptReview = ({ route }) => {
   const { items } = route.params;
@@ -77,7 +78,10 @@ const ReceiptReview = ({ route }) => {
       </ScrollView>
       <View style={styles.confirmButtonBox}>
         <TouchableOpacity style={styles.confirmButton} onPress={navigateToMyFridge}>
-          <Text style={styles.confirmButtonText}>Confirm</Text>
+          <View style={styles.iconConfirmText}>
+            <Iconify icon="icon-park-outline:check-one"color='white' size={18}/>
+            <Text style={styles.confirmButtonText}>Confirm</Text>
+          </View>
         </TouchableOpacity>
       </View>
     </>
@@ -116,6 +120,10 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontFamily: 'PlusJakartaSans_500Medium',
   },
+  iconConfirmText: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
   confirmButtonBox: {
     position: 'absolute',
     bottom: 10,
@@ -129,14 +137,17 @@ const styles = StyleSheet.create({
     backgroundColor: '#168715',
     paddingVertical: 10,
     paddingHorizontal: 20,
-    borderRadius: 20,
+    borderRadius: 50,
     width: '100%',
     alignItems: 'center',
+    height: 53,
+    justifyContent: 'center',
   },
   confirmButtonText: {
     color: '#FFFFFF',
     fontSize: 16,
     fontFamily: 'PlusJakartaSans_600SemiBold',
+    marginLeft: 10,
   },
 });
 
